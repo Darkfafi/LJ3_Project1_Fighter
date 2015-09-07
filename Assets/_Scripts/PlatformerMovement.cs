@@ -13,8 +13,8 @@ public class PlatformerMovement : MonoBehaviour {
 	public event GameObjectDelegate LandedOnGround;
 	public event GameObjectDelegate ReleasedFromGround;
 
-	public event GameObjectDelegate StartedSideTouch;
-	public event GameObjectDelegate EndedSideTouch;
+	public event GameObjectDelegate StartedWallSlide;
+	public event GameObjectDelegate EndedWallSlde;
 
 	// Current state.
 	private bool _inWallSlide = false;
@@ -27,18 +27,15 @@ public class PlatformerMovement : MonoBehaviour {
 
 	// Remember Data
 	private GameObject _preGround;
+	private GameObject _preWall;
 
 
 	TouchDetector2D touch;
 
 	void Start(){
-		colliderBox = GetComponent<BoxCollider2D> ();
-		sizeCollider = colliderBox.size;
-		centerCollider = new Vector2 (sizeCollider.x / 2, sizeCollider.y / 2);
-
 		touch = gameObject.AddComponent<TouchDetector2D> ();
-		touch.TouchStarted += TouchDetection;
-		touch.TouchEnded += TouchEnd;
+		touch.TouchStarted += TouchDetectionStart;
+		touch.TouchEnded += TouchDetectionEnd;
 	}
 
 	public void Move(int directionConst, float moveSpeed){
@@ -46,44 +43,39 @@ public class PlatformerMovement : MonoBehaviour {
 	}
 
 	void Update(){
-		RaycastHit2D hit;
-		//check if landed on an object
-		hit = Physics2D.Raycast(centerCollider,Vector2.down,sizeCollider.y / 2);
+		Debug.Log (_onGround);
+	}
 
-		if(hit.collider != null && !_onGround){
+	void TouchDetectionStart(GameObject obj, Vector2 vec){
+		if (vec == Vector2.down) {
+			// we can even say if its a player then no grounded but attack if stunned else ignore.
 			_onGround = true;
+			_preGround = obj;
 			if(LandedOnGround != null){
-				LandedOnGround(hit.collider.gameObject);
+				LandedOnGround(obj);
 			}
-			_preGround = hit.collider.gameObject;
-		}else if(_onGround){
-			_onGround = false;
-			if(ReleasedFromGround != null){
-				ReleasedFromGround(_preGround);
-			}
-		}
-		if (!_onGround) {
-			//check wallslide.
-			hit = Physics2D.Raycast(centerCollider,Vector2.right,sizeCollider.x / 2);
-			if(hit.collider != null){
+		} else if (vec == Vector2.left || vec == Vector2.right) {
+			if(!_onGround){
 				_inWallSlide = true;
-			}else{
-				hit = Physics2D.Raycast(centerCollider,Vector2.left,sizeCollider.x / 2); 
-				if(hit != null){
-					_inWallSlide = true;
-				}else{
-					_inWallSlide = false;
+				if(StartedWallSlide != null){
+					StartedWallSlide(obj);
 				}
 			}
 		}
 	}
 
-	void TouchDetection(GameObject obj, Vector2 vec){
-		Debug.Log (obj + " | " + vec);
-	}
-
-	void TouchEnd(Vector2 vec){
-		Debug.Log ("end " + vec);
+	void TouchDetectionEnd(Vector2 vec){
+		if (vec == Vector2.down) {
+			_onGround = false;
+			if (ReleasedFromGround != null) {
+				ReleasedFromGround (_preGround);
+			}
+		} else if (vec == Vector2.left || vec == Vector2.right) {
+			_inWallSlide = false;
+			if(EndedWallSlde != null){
+				EndedWallSlde(_preWall);
+			}
+		}
 	}
 
 	public bool onGround{
