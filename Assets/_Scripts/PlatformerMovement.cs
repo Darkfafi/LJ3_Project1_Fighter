@@ -29,10 +29,16 @@ public class PlatformerMovement : MonoBehaviour {
 	private GameObject _preGround;
 
 
+	TouchDetector2D touch;
+
 	void Start(){
 		colliderBox = GetComponent<BoxCollider2D> ();
 		sizeCollider = colliderBox.size;
 		centerCollider = new Vector2 (sizeCollider.x / 2, sizeCollider.y / 2);
+
+		touch = gameObject.AddComponent<TouchDetector2D> ();
+		touch.TouchStarted += TouchDetection;
+		touch.TouchEnded += TouchEnd;
 	}
 
 	public void Move(int directionConst, float moveSpeed){
@@ -70,6 +76,14 @@ public class PlatformerMovement : MonoBehaviour {
 				}
 			}
 		}
+	}
+
+	void TouchDetection(GameObject obj, Vector2 vec){
+		Debug.Log (obj + " | " + vec);
+	}
+
+	void TouchEnd(Vector2 vec){
+		Debug.Log ("end " + vec);
 	}
 
 	public bool onGround{
