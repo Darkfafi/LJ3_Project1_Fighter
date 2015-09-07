@@ -33,7 +33,7 @@ public class PlatformerMovement : MonoBehaviour {
 	TouchDetector2D touch;
 
 	void Start(){
-		touch = gameObject.AddComponent<TouchDetector2D> ();
+		touch = gameObject.GetComponent<TouchDetector2D> ();
 		touch.TouchStarted += TouchDetectionStart;
 		touch.TouchEnded += TouchDetectionEnd;
 	}
@@ -43,7 +43,7 @@ public class PlatformerMovement : MonoBehaviour {
 	}
 
 	void Update(){
-		Debug.Log (_onGround);
+		//Debug.Log (_onGround);
 	}
 
 	void TouchDetectionStart(GameObject obj, Vector2 vec){

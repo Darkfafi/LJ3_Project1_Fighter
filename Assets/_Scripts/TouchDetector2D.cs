@@ -32,7 +32,7 @@ public class TouchDetector2D : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		RaycastHit2D hit;
 		float dist; 
 		Vector2 currentDirVector;
