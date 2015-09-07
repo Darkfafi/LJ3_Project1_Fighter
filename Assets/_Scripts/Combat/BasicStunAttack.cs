@@ -22,7 +22,7 @@ public class BasicStunAttack : MonoBehaviour {
 		touchDetector.TouchStarted += OnTouch;
 	}
 
-	void Attack(float hitPower,float slidePower){
+	public void Attack(float hitPower,float slidePower){
 		//hitPower determines how long the hit person is stunned The hit person calculates with this. So maybe the orc is stunned for a shorter time then the Asian chick...
 		//slidePower is how much you push yourself towards the direction.
 		_hitPowerForce = hitPower;
@@ -42,9 +42,6 @@ public class BasicStunAttack : MonoBehaviour {
 		if (Mathf.Abs (rigidBody.velocity.x) <= 0.3f && _attacking) {
 			StopAttacking();
 		}
-		if (Input.GetKeyDown (KeyCode.S)) {
-			Attack(10,1.5f);
-		}
 	}
 
 	void OnTouch(GameObject gameObject, Vector2 vec){
@@ -58,7 +55,7 @@ public class BasicStunAttack : MonoBehaviour {
 		}
 	}
 
-	void StopAttacking(){
+	public void StopAttacking(){
 		_attacking = false;
 		_hitPowerForce = 0;
 		if (AttackStopped != null) {

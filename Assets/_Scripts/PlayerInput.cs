@@ -16,7 +16,7 @@ public class PlayerInput : MonoBehaviour {
 	private KeyCode _down;
 	private KeyCode _action;
 	
-	void Awake () 
+	void Start () 
 	{
 		string playerID = GetComponent<Player>().playerControls;
 		Controls controls = GameObject.FindGameObjectWithTag(Tags.GAMECONTROLLER).GetComponent<Controls>();
