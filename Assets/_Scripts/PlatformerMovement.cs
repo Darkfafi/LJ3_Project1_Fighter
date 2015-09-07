@@ -6,6 +6,8 @@ public class PlatformerMovement : MonoBehaviour {
 	// public constants
 	public static int DIR_RIGHT = 1;
 	public static int DIR_LEFT = -1;
+	public static int DIR_DOWN = -1;
+	public static int DIR_UP = 1;
 
 	// public delegates and events
 	public delegate void GameObjectDelegate (GameObject obj);
@@ -29,8 +31,16 @@ public class PlatformerMovement : MonoBehaviour {
 	private GameObject _preGround;
 	private GameObject _preWall;
 
+	//Physics
+	private Rigidbody2D _rigidbody;
 
+	//TouchDetector
 	TouchDetector2D touch;
+
+	void Awake()
+	{
+		_rigidbody = GetComponent<Rigidbody2D>();
+	}
 
 	void Start(){
 		touch = gameObject.AddComponent<TouchDetector2D> ();
@@ -38,14 +48,49 @@ public class PlatformerMovement : MonoBehaviour {
 		touch.TouchEnded += TouchDetectionEnd;
 	}
 
-	public void Move(int directionConst, float moveSpeed){
-		transform.Translate (new Vector3 (directionConst * moveSpeed,0,0));
+	public void MoveHorizontal(int directionConst, float moveSpeed){
+		if(_inWallSlide && directionConst != GetPlayerDirection() || !_inWallSlide)
+		{
+			transform.Translate (new Vector3 (directionConst * moveSpeed,0,0) * Time.deltaTime);
+			if(_rigidbody.velocity.x != 0)
+			{
+				_rigidbody.velocity = new Vector2(0,_rigidbody.velocity.y);
+			}
+		}
 	}
 
-	void Update(){
-		Debug.Log (_onGround);
+	public void MoveVertical(int directionConst, float moveSpeed)
+	{
+		transform.Translate (new Vector3 (0,directionConst * moveSpeed,0) * Time.deltaTime);
 	}
 
+	public void Jump(float jumpForce)
+	{
+		if(_onGround)
+		{
+			_rigidbody.velocity += new Vector2(0,jumpForce);
+		} 
+		else if(_inWallSlide)
+		{
+			//check wich direction you are currently sliding at + add velocity at negative direction.
+			_rigidbody.velocity += new Vector2(-GetPlayerDirection() * jumpForce/2,jumpForce/2);
+		}
+	}
+
+	int GetPlayerDirection()
+	{
+		int dir = 0;
+		if(transform.localScale.x > 0)
+		{
+			dir = 1;
+		}
+		else 
+		{
+			dir = 0;
+		}
+		return dir;
+	}
+	
 	void TouchDetectionStart(GameObject obj, Vector2 vec){
 		if (vec == Vector2.down) {
 			// we can even say if its a player then no grounded but attack if stunned else ignore.

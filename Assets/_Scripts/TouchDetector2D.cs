@@ -28,6 +28,8 @@ public class TouchDetector2D : MonoBehaviour {
 
 		colliderBox = GetComponent<BoxCollider2D> ();
 		sizeCollider = colliderBox.size;
+		sizeCollider.x *= transform.localScale.x;
+		sizeCollider.y *= transform.localScale.y;
 		centerCollider = new Vector2 (sizeCollider.x / 2, sizeCollider.y / 2);
 	}
 
