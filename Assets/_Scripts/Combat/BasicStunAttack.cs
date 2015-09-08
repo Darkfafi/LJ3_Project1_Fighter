@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BasicStunAttack : MonoBehaviour {
+public class BasicStunAttack : AttackBase {
 
 	public delegate void VoidDelegate();
 	public event VoidDelegate AttackStarted;
@@ -22,7 +22,7 @@ public class BasicStunAttack : MonoBehaviour {
 		touchDetector.TouchStarted += OnTouch;
 	}
 
-	void Attack(float hitPower,float slidePower){
+	public void Attack(float hitPower,float slidePower){
 		//hitPower determines how long the hit person is stunned The hit person calculates with this. So maybe the orc is stunned for a shorter time then the Asian chick...
 		//slidePower is how much you push yourself towards the direction.
 		_hitPowerForce = hitPower;
@@ -42,23 +42,15 @@ public class BasicStunAttack : MonoBehaviour {
 		if (Mathf.Abs (rigidBody.velocity.x) <= 0.3f && _attacking) {
 			StopAttacking();
 		}
-		if (Input.GetKeyDown (KeyCode.S)) {
-			Attack(10,1.5f);
+	}
+
+	void OnTouch(GameObject gObject, Vector2 vec){
+		if (vec == _attackingDir && _attacking) {
+			Hit(gObject,_hitPowerForce); //gObject.GetComponent<StunCatcher>().CatchStun(this.gameObject,_hitPowerForce);
 		}
 	}
 
-	void OnTouch(GameObject gameObject, Vector2 vec){
-		Vector2 attackDir;
-		if (gameObject.GetComponent<StunCatcher> () != null) {
-			if (vec == _attackingDir) {
-				if (_attacking) {
-					gameObject.GetComponent<StunCatcher>().CatchStun(this.gameObject,_hitPowerForce);
-				}
-			}
-		}
-	}
-
-	void StopAttacking(){
+	public void StopAttacking(){
 		_attacking = false;
 		_hitPowerForce = 0;
 		if (AttackStopped != null) {
