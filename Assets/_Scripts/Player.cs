@@ -20,6 +20,7 @@ public class Player : MonoBehaviour {
 
 
 	private TouchDetector2D _touchDetector;
+	private AttackCather _attackCatcher;
 
 	void Awake()
 	{
@@ -27,6 +28,11 @@ public class Player : MonoBehaviour {
 		_myPlayerInput = gameObject.AddComponent<PlayerInput>();
 		_myPlatformerMovement = GetComponent<PlatformerMovement>();
 		_touchDetector = gameObject.AddComponent<TouchDetector2D> ();
+		_attackCatcher = gameObject.AddComponent<AttackCather> ();
+
+		_attackCatcher.OnStunAttackCatch += OnStunHit;
+		_attackCatcher.OnStunKillAttackCatch += OnStunKillHit; // if Jump on my head hit while in stun
+		_attackCatcher.OnKillAttackCatch += OnKillHit;
 	}
 	
 	void Start()
@@ -37,6 +43,9 @@ public class Player : MonoBehaviour {
 		_myPlayerInput.DownKeyPressed += FallDown;
 		_myPlayerInput.ActionKeyPressed += DoAction;
 	}
+
+	// Movement
+
 	void MoveRight()
 	{
 		if (!_busyAction) {
@@ -67,6 +76,20 @@ public class Player : MonoBehaviour {
 			// if in normal form do a basicStunAttack else do special attack.
 			GetComponent<BasicStunAttack>().Attack(_stunPower,_dashForce);
 		}
+	}
+
+
+	// Hit by attacks (MAYBE CODE IN A DIFFERENT COMPONENT)
+
+	void OnStunHit(float stunPower, GameObject attacker){
+		//TODO CALL STUN FUNCTION
+	}
+
+	void OnStunKillHit(GameObject attacker){
+		//TODO IF STUNNED THEN CALL DEAD FUNCTION
+	}
+	void OnKillHit(GameObject attacker){
+		//TODO CALL DEAD FUNCTION
 	}
 
 	public string playerControls{

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BasicStunAttack : MonoBehaviour {
+public class BasicStunAttack : AttackBase {
 
 	public delegate void VoidDelegate();
 	public event VoidDelegate AttackStarted;
@@ -44,14 +44,9 @@ public class BasicStunAttack : MonoBehaviour {
 		}
 	}
 
-	void OnTouch(GameObject gameObject, Vector2 vec){
-		Vector2 attackDir;
-		if (gameObject.GetComponent<StunCatcher> () != null) {
-			if (vec == _attackingDir) {
-				if (_attacking) {
-					gameObject.GetComponent<StunCatcher>().CatchStun(this.gameObject,_hitPowerForce);
-				}
-			}
+	void OnTouch(GameObject gObject, Vector2 vec){
+		if (vec == _attackingDir && _attacking) {
+			Hit(gObject,_hitPowerForce); //gObject.GetComponent<StunCatcher>().CatchStun(this.gameObject,_hitPowerForce);
 		}
 	}
 
