@@ -22,17 +22,17 @@ public class BasicStunAttack : AttackBase {
 		touchDetector.TouchStarted += OnTouch;
 	}
 
-	public void Attack(float hitPower,float slidePower){
+	public override void Attack(Player player){
 		//hitPower determines how long the hit person is stunned The hit person calculates with this. So maybe the orc is stunned for a shorter time then the Asian chick...
 		//slidePower is how much you push yourself towards the direction.
-		_hitPowerForce = hitPower;
-		_attacking = true;
+		_hitPowerForce = player.stunPower;
+		SetAttacking(true);
 		if (gameObject.transform.localScale.x < 0) {
 			_attackingDir = Vector2.left;
 		} else {
 			_attackingDir = Vector2.right;
 		}
-		rigidBody.velocity += slidePower * _attackingDir;
+		rigidBody.velocity += player.dashForce * _attackingDir;
 		if (AttackStarted != null) {
 			AttackStarted();
 		}
@@ -51,10 +51,15 @@ public class BasicStunAttack : AttackBase {
 	}
 
 	public void StopAttacking(){
-		_attacking = false;
+		SetAttacking(false);
 		_hitPowerForce = 0;
 		if (AttackStopped != null) {
 			AttackStopped();
 		}
+	}
+
+	void SetAttacking(bool value){
+		_attacking = value;
+		gameObject.GetComponent<Player> ().busyAction = value;
 	}
 }
