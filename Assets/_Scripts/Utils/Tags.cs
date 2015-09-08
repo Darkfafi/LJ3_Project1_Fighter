@@ -6,4 +6,6 @@ public class Tags : MonoBehaviour {
 	public const string PLAYER = "Player";
 	public const string CAMERA = "MainCamera";
 	public const string FLOOR = "Floor";
+	public const string SPAWN = "SpawnPoint";
+	public const string ITEMSPAWN = "ItemSpawnPoint";
 }

@@ -10,61 +10,56 @@ public class PlayerInput : MonoBehaviour {
 	public event KeyPressed DownKeyPressed;
 	public event KeyPressed ActionKeyPressed;
 
-	private KeyCode _right;
-	private KeyCode _left;
-	private KeyCode _jump;
-	private KeyCode _down;
-	private KeyCode _action;
-	
-	void Awake () 
+	private string _horizontalAxis;
+	private string _verticalAxis;
+	private string _actionKey;
+
+	void Start()
 	{
-		string playerID = GetComponent<Player>().playerControls;
-		Controls controls = GameObject.FindGameObjectWithTag(Tags.GAMECONTROLLER).GetComponent<Controls>();
-		Dictionary<string,KeyCode> currentControls = controls.controls[playerID];
-
-		_right = currentControls[Controls.RIGHTKEY];
-		_left = currentControls[Controls.LEFTKEY];
-		_jump = currentControls[Controls.JUMPKEY];
-		_down = currentControls[Controls.DOWNKEY];
-		_action = currentControls[Controls.ACTIONKEY];
-
+		Player myPlayerScript = GetComponent<Player>();
+		_horizontalAxis = myPlayerScript.horizontalAxis;
+		_verticalAxis = myPlayerScript.verticalAxis;
+		_actionKey = myPlayerScript.actionKey;
 	}
 
 	void Update () 
 	{
-		Inputs();
+		if(!GameController.isPaused)
+			Inputs ();
 	}
+
 	private void Inputs()
 	{
-		if(Input.GetKey(_right))
+		if(Input.GetAxis(_horizontalAxis) > 0)
 		{
 			//send right event
 			if(RightKeyPressed != null)
 				RightKeyPressed();
 		} 
-		else if(Input.GetKey(_left))
+		else if(Input.GetAxis(_horizontalAxis) < 0)
 		{
 			//send left event
 			if(LeftKeyPressed != null)
 				LeftKeyPressed();
 		}
-		if(Input.GetKey(_down))
+		if(Input.GetAxis(_verticalAxis) < 0)
 		{
 			//send down event
 			if(DownKeyPressed != null)
 				DownKeyPressed();
 		}
-		else if(Input.GetKeyDown(_jump))
+		if(Input.GetAxis(_verticalAxis) > 0)
 		{
 			//send up event
 			if(JumpKeyPressed != null)
 				JumpKeyPressed();
 		}
-		if(Input.GetKey(_action))
+
+		if(Input.GetButtonDown(_actionKey))
 		{
 			//send action event
 			if(ActionKeyPressed != null)
-				ActionKeyPressed();
+					ActionKeyPressed();
 		}
 	}
 }
