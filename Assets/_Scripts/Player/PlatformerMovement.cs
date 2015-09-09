@@ -49,13 +49,12 @@ public class PlatformerMovement : MonoBehaviour {
 	}
 
 	public void MoveHorizontal(int directionConst, float moveSpeed){
-		if(_inWallSlide && directionConst != GetPlayerDirection() || !_inWallSlide)
+		transform.Translate (new Vector3 (directionConst * moveSpeed,0,0) * Time.deltaTime);
+
+		//set velocity to 0 so you can move without getting resistance
+		if(_rigidbody.velocity.x != 0)
 		{
-			transform.Translate (new Vector3 (directionConst * moveSpeed,0,0) * Time.deltaTime);
-			if(_rigidbody.velocity.x != 0)
-			{
-				_rigidbody.velocity = new Vector2(0,_rigidbody.velocity.y);
-			}
+			_rigidbody.velocity = new Vector2(0,_rigidbody.velocity.y);
 		}
 	}
 
@@ -77,7 +76,7 @@ public class PlatformerMovement : MonoBehaviour {
 		}
 	}
 
-	int GetPlayerDirection()
+	public int GetPlayerDirection()
 	{
 		int dir = 0;
 		if(transform.localScale.x > 0)

@@ -23,6 +23,10 @@ public class Player : MonoBehaviour {
 	private BasicStunAttack _basicAttack;
 	private SpecialAttack _specialAttack;
 
+	private string _horizontalAxis;
+	private string _verticalAxis;
+	private string _actionKey;
+
 	private TouchDetector2D _touchDetector;
 	private AttackCather _attackCatcher;
 	
@@ -30,7 +34,7 @@ public class Player : MonoBehaviour {
 
 	void Awake()
 	{
-		_playerControls = Controls.PLAYER01;
+		//_playerControls = Controls.PLAYER01;
 
 		_myPlayerInput = gameObject.AddComponent<PlayerInput>();
 		_myPlatformerMovement = GetComponent<PlatformerMovement>();
@@ -44,6 +48,7 @@ public class Player : MonoBehaviour {
 		_attackCatcher.OnStunKillAttackCatch += OnStunKillHit; // if Jump on my head hit while in stun
 		_attackCatcher.OnKillAttackCatch += OnKillHit;
 	}
+
 	void Start()
 	{
 		_myPlayerInput.RightKeyPressed += MoveRight;
@@ -58,25 +63,45 @@ public class Player : MonoBehaviour {
 	void MoveRight()
 	{
 		if (!busyAction) {
-			if(transform.localScale.x < 0){
-				transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x),transform.localScale.y,transform.localScale.z);
+			if (transform.localScale.x < 0) { //TODO dit moet in de platformer movement component
+				transform.localScale = new Vector3 (Mathf.Abs (transform.localScale.x), transform.localScale.y, transform.localScale.z);
 			}
-			_myPlatformerMovement.MoveHorizontal (PlatformerMovement.DIR_RIGHT, _movementSpeed);
+			if (_myPlatformerMovement.sideTouching && PlatformerMovement.DIR_RIGHT != _myPlatformerMovement.GetPlayerDirection () || !_myPlatformerMovement.sideTouching) { //TODO deze check moet in de platformermovement component
+				_myPlatformerMovement.MoveHorizontal (PlatformerMovement.DIR_RIGHT, _movementSpeed);
+			}
 		}
 	}
+
+	public void SetCharacter(string characterName)
+	{
+		Animator newAnimator = gameObject.AddComponent<Animator>();
+		newAnimator = CharDB.GetCharacterAnimator(characterName);
+
+		//TODO: add special!
+	}
+	public void SetKeys(string playerHorizontalAxis,string playerVerticalAxis,string playerActionKey)
+	{
+		_horizontalAxis = playerHorizontalAxis;
+		_verticalAxis = playerVerticalAxis;
+		_actionKey = playerActionKey;
+	}
+
 	void MoveLeft()
 	{
 		if (!busyAction) {
 			if(transform.localScale.x > 0){
 				transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x) * -1,transform.localScale.y,transform.localScale.z);;
 			}
-			_myPlatformerMovement.MoveHorizontal (PlatformerMovement.DIR_LEFT, _movementSpeed);
+			if(_myPlatformerMovement.sideTouching && PlatformerMovement.DIR_LEFT != _myPlatformerMovement.GetPlayerDirection() || !_myPlatformerMovement.sideTouching)
+			{
+				_myPlatformerMovement.MoveHorizontal(PlatformerMovement.DIR_LEFT, _movementSpeed);
+			}
 		}
 	}
 	void Jump()
 	{
 		if (!busyAction) {
-			_myPlatformerMovement.Jump (_jumpForce);
+			_myPlatformerMovement.Jump(_jumpForce);
 		}
 	}
 	void FallDown()
@@ -169,6 +194,31 @@ public class Player : MonoBehaviour {
 	public float pushPower{
 		get{
 			return _pushPower;
+		}	
+	}
+	//public variables for keyinputs
+	public string horizontalAxis{
+		get {
+			return _horizontalAxis;
+		}
+		set {
+			_horizontalAxis = value;
+		}
+	}
+	public string verticalAxis{
+		get {
+			return _verticalAxis;
+		}
+		set {
+			_verticalAxis = value;
+		}
+	}
+	public string actionKey{
+		get {
+			return _actionKey;
+		}
+		set {
+			_verticalAxis = value;
 		}
 	}
 }
