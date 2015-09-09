@@ -68,4 +68,8 @@ public class TouchDetector2D : MonoBehaviour {
 			}
 		}
 	}
+
+	public bool IsTouchingSide(Vector2 sideDirection){
+		return _sidesTouched[sideDirection];
+	}
 }

@@ -25,14 +25,14 @@ public class BasicStunAttack : AttackBase {
 	public override void Attack(Player player){
 		//hitPower determines how long the hit person is stunned The hit person calculates with this. So maybe the orc is stunned for a shorter time then the Asian chick...
 		//slidePower is how much you push yourself towards the direction.
-		_hitPowerForce = player.stunPower;
+		_hitPowerForce = player.playerStats.stunPower;
 		SetAttacking(true);
 		if (gameObject.transform.localScale.x < 0) {
 			_attackingDir = Vector2.left;
 		} else {
 			_attackingDir = Vector2.right;
 		}
-		rigidBody.velocity += player.dashForce * _attackingDir;
+		rigidBody.velocity += player.playerStats.dashForce * _attackingDir;
 		if (AttackStarted != null) {
 			AttackStarted();
 		}

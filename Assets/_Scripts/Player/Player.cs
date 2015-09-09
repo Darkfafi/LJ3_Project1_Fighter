@@ -2,47 +2,45 @@
 using System.Collections;
 
 public class Player : MonoBehaviour {
-
-
-	private string _playerControls;
-	private PlayerInput _myPlayerInput;
-	private PlatformerMovement _myPlatformerMovement;
+	
 
 
 	//Stats
-	private bool _transformed = false;
-	private float _movementSpeed = 5f;
-	private float _jumpForce = 10f;
-	private float _fallSpeed = 2f;
-	private float _stunPower = 5f;
-	private float _pushPower = 2f;
-	private float _dashForce = 5f;
+	private PlayerStats _playerStats = new PlayerStats(5f,10f,2f,5f,2f,5f); // set all base stats
 
 	public bool busyAction = false;
 
+	// Combat
 	private BasicStunAttack _basicAttack;
 	private SpecialAttack _specialAttack;
-
-	private string _horizontalAxis;
-	private string _verticalAxis;
-	private string _actionKey;
-
-	private TouchDetector2D _touchDetector;
 	private AttackCather _attackCatcher;
-	
+
 	private Timer _stunTimer;
+	
+	// Input
+	private PlayerInput _myPlayerInput;
+	private string _horizontalAxis = "HorizontalPlayer1";
+	private string _verticalAxis = "VerticalPlayer1";
+	private string _actionKey = "ActionKeyPlayer1";
+
+	// Utils
+	private PlatformerMovement _myPlatformerMovement;
+	private TouchDetector2D _touchDetector;
+	
+	private PlayerAnimationHandler _playerAnimHandler;
 
 	void Awake()
 	{
-		//_playerControls = Controls.PLAYER01;
 
 		_myPlayerInput = gameObject.AddComponent<PlayerInput>();
 		_myPlatformerMovement = GetComponent<PlatformerMovement>();
 		_touchDetector = gameObject.AddComponent<TouchDetector2D> ();
-		_attackCatcher = gameObject.AddComponent<AttackCather> ();
 
+		_attackCatcher = gameObject.AddComponent<AttackCather> ();
 		_basicAttack = gameObject.AddComponent<BasicStunAttack> ();
 		gameObject.AddComponent<LandOnTopKill> ();
+
+		_playerAnimHandler = gameObject.AddComponent<PlayerAnimationHandler> ();
 
 		_attackCatcher.OnStunAttackCatch += OnStunHit;
 		_attackCatcher.OnStunKillAttackCatch += OnStunKillHit; // if Jump on my head hit while in stun
@@ -66,9 +64,7 @@ public class Player : MonoBehaviour {
 			if (transform.localScale.x < 0) { //TODO dit moet in de platformer movement component
 				transform.localScale = new Vector3 (Mathf.Abs (transform.localScale.x), transform.localScale.y, transform.localScale.z);
 			}
-			if (_myPlatformerMovement.sideTouching && PlatformerMovement.DIR_RIGHT != _myPlatformerMovement.GetPlayerDirection () || !_myPlatformerMovement.sideTouching) { //TODO deze check moet in de platformermovement component
-				_myPlatformerMovement.MoveHorizontal (PlatformerMovement.DIR_RIGHT, _movementSpeed);
-			}
+			_myPlatformerMovement.MoveHorizontal (PlatformerMovement.DIR_RIGHT, _playerStats.movementSpeed);
 		}
 	}
 
@@ -89,36 +85,28 @@ public class Player : MonoBehaviour {
 	void MoveLeft()
 	{
 		if (!busyAction) {
-			if(transform.localScale.x > 0){
-				transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x) * -1,transform.localScale.y,transform.localScale.z);;
-			}
-			if(_myPlatformerMovement.sideTouching && PlatformerMovement.DIR_LEFT != _myPlatformerMovement.GetPlayerDirection() || !_myPlatformerMovement.sideTouching)
-			{
-				_myPlatformerMovement.MoveHorizontal(PlatformerMovement.DIR_LEFT, _movementSpeed);
-			}
+			_myPlatformerMovement.MoveHorizontal(PlatformerMovement.DIR_LEFT, playerStats.movementSpeed);
 		}
 	}
 	void Jump()
 	{
 		if (!busyAction) {
-			_myPlatformerMovement.Jump(_jumpForce);
+			_myPlatformerMovement.Jump(_playerStats.jumpForce);
 		}
 	}
 	void FallDown()
 	{
 		if (!busyAction) {
-			_myPlatformerMovement.MoveVertical (PlatformerMovement.DIR_DOWN, _fallSpeed);
+			_myPlatformerMovement.MoveVertical (PlatformerMovement.DIR_DOWN, _playerStats.fallSpeed);
 		}
 	}
 
 	void DoAction(){
 		if (!busyAction) {
-			// if in normal form do a basicStunAttack else do special attack.
 			AttackBase currentAttack = _basicAttack;
-			if(!_transformed){
+			if(!_playerStats.transformed){
 				currentAttack = _basicAttack;
 			}else{
-				//TODO CurrentAttack = Special Attack
 				currentAttack = _specialAttack;
 			}
 
@@ -165,37 +153,14 @@ public class Player : MonoBehaviour {
 
 	// GETTERS
 
-	public string playerControls{
-		get{
-			return _playerControls;
-		}
+	public PlayerStats playerStats{
+		get{return _playerStats;}
 	}
 
-	public float movementSpeed{
-		get{
-			return _movementSpeed;
-		}
+	public PlayerAnimationHandler playerAnimHandler{
+		get{return _playerAnimHandler;}
 	}
-	public float jumpForce{
-		get{
-			return _jumpForce;
-		}
-	}
-	public float stunPower{
-		get{
-			return _stunPower;
-		}
-	}
-	public float dashForce{
-		get{
-			return _dashForce;
-		}
-	}
-	public float pushPower{
-		get{
-			return _pushPower;
-		}	
-	}
+
 	//public variables for keyinputs
 	public string horizontalAxis{
 		get {

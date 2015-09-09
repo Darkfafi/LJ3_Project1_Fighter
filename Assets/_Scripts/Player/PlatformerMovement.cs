@@ -49,7 +49,14 @@ public class PlatformerMovement : MonoBehaviour {
 	}
 
 	public void MoveHorizontal(int directionConst, float moveSpeed){
-		transform.Translate (new Vector3 (directionConst * moveSpeed,0,0) * Time.deltaTime);
+
+		if (transform.localScale.x != directionConst * Mathf.Abs(transform.localScale.x)) { //TODO dit moet in de platformer movement component
+			transform.localScale = new Vector3 (directionConst * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+		}
+
+		if (!touch.IsTouchingSide(new Vector2(directionConst,0))) {
+			transform.Translate (new Vector3 (directionConst * moveSpeed, 0, 0) * Time.deltaTime);
+		}
 
 		//set velocity to 0 so you can move without getting resistance
 		if(_rigidbody.velocity.x != 0)
@@ -125,7 +132,7 @@ public class PlatformerMovement : MonoBehaviour {
 	public bool onGround{
 		get{return _onGround;}
 	}
-	public bool sideTouching{
+	public bool inWallSlide{
 		get{return _inWallSlide;}
 	}
 }
