@@ -38,7 +38,7 @@ public class Player : MonoBehaviour {
 		_attackCatcher = gameObject.AddComponent<AttackCather> ();
 		_basicAttack = gameObject.AddComponent<BasicStunAttack> ();
 		_playerTransformer = gameObject.AddComponent<PlayerTransformer> ();
-
+		gameObject.AddComponent<TouchDetector2D> ();
 		gameObject.AddComponent<LandOnTopKill> ();
 
 		_playerAnimHandler = gameObject.AddComponent<PlayerAnimationHandler> ();
