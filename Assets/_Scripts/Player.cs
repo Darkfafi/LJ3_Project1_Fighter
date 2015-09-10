@@ -3,8 +3,10 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
+	private string _horizontalAxis = "HorizontalPlayer1";
+	private string _verticalAxis = "VerticalPlayer1";
+	private string _actionKey = "ActionKeyPlayer1";
 
-	private string _playerControls;
 	private PlayerInput _myPlayerInput;
 	private PlatformerMovement _myPlatformerMovement;
 
@@ -24,7 +26,6 @@ public class Player : MonoBehaviour {
 
 	void Awake()
 	{
-		_playerControls = Controls.PLAYER01;
 		_myPlayerInput = gameObject.AddComponent<PlayerInput>();
 		_myPlatformerMovement = GetComponent<PlatformerMovement>();
 		_touchDetector = gameObject.AddComponent<TouchDetector2D> ();
@@ -92,9 +93,33 @@ public class Player : MonoBehaviour {
 		//TODO CALL DEAD FUNCTION
 	}
 
-	public string playerControls{
+	//getters and setters
+	public void SetCharacter(string characterName)
+	{
+		Animator newAnimator = gameObject.AddComponent<Animator>();
+		newAnimator = CharDB.GetCharacterAnimator(characterName);
+		
+		//TODO: add special!
+	}
+	public void SetKeys(string playerHorizontalAxis,string playerVerticalAxis,string playerActionKey)
+	{
+		_horizontalAxis = playerHorizontalAxis;
+		_verticalAxis = playerVerticalAxis;
+		_actionKey = playerActionKey;
+	}
+	public string horizontalAxis{
 		get{
-			return _playerControls;
+			return _horizontalAxis;
+		}
+	}
+	public string verticalAxis{
+		get{
+			return _verticalAxis;
+		}
+	}
+	public string actionKey{
+		get{
+			return _actionKey;
 		}
 	}
 }
