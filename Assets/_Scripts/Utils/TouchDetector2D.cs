@@ -17,7 +17,7 @@ public class TouchDetector2D : MonoBehaviour {
 
 	// Collider variables
 	private BoxCollider2D colliderBox;
-	private Vector2 centerCollider;
+	//private Vector2 centerCollider;
 	private Vector2 sizeCollider;
 
 	void Awake(){
@@ -30,7 +30,7 @@ public class TouchDetector2D : MonoBehaviour {
 		sizeCollider = colliderBox.size;
 		sizeCollider.x *= transform.localScale.x;
 		sizeCollider.y *= transform.localScale.y;
-		centerCollider = new Vector2 (sizeCollider.x / 2, sizeCollider.y / 2);
+		//centerCollider = new Vector2 (sizeCollider.x / 2, sizeCollider.y / 2);
 	}
 
 	// Update is called once per frame

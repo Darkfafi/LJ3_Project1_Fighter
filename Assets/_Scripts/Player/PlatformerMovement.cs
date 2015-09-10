@@ -108,6 +108,7 @@ public class PlatformerMovement : MonoBehaviour {
 		} else if (vec == Vector2.left || vec == Vector2.right) {
 			if(!_onGround){
 				_inWallSlide = true;
+				_preWall = obj;
 				if(StartedWallSlide != null){
 					StartedWallSlide(obj);
 				}

@@ -6,6 +6,7 @@ public class Player : MonoBehaviour {
 
 
 	//Stats
+	private PlayerTransformer _playerTransformer;
 	private PlayerStats _playerStats = new PlayerStats(5f,10f,2f,5f,2f,5f); // set all base stats
 
 	public bool busyAction = false;
@@ -25,7 +26,6 @@ public class Player : MonoBehaviour {
 
 	// Utils
 	private PlatformerMovement _myPlatformerMovement;
-	private TouchDetector2D _touchDetector;
 	
 	private PlayerAnimationHandler _playerAnimHandler;
 
@@ -34,10 +34,11 @@ public class Player : MonoBehaviour {
 
 		_myPlayerInput = gameObject.AddComponent<PlayerInput>();
 		_myPlatformerMovement = GetComponent<PlatformerMovement>();
-		_touchDetector = gameObject.AddComponent<TouchDetector2D> ();
 
 		_attackCatcher = gameObject.AddComponent<AttackCather> ();
 		_basicAttack = gameObject.AddComponent<BasicStunAttack> ();
+		_playerTransformer = gameObject.AddComponent<PlayerTransformer> ();
+
 		gameObject.AddComponent<LandOnTopKill> ();
 
 		_playerAnimHandler = gameObject.AddComponent<PlayerAnimationHandler> ();
@@ -70,10 +71,16 @@ public class Player : MonoBehaviour {
 
 	public void SetCharacter(string characterName)
 	{
-		Animator newAnimator = gameObject.AddComponent<Animator>();
-		newAnimator = CharDB.GetCharacterAnimator(characterName);
+		CharDBInfo characterInfo = CharDB.GetCharacterDataBaseInfo (characterName);
 
-		//TODO: add special!
+		Animator newAnimator = gameObject.AddComponent<Animator>();
+
+		newAnimator = characterInfo.animator;
+
+		_playerTransformer.transformStats = characterInfo.transformationStatsBuff;
+
+		_specialAttack = gameObject.AddComponent<SpecialAttack> ();
+		_specialAttack = characterInfo.specialAttack;
 	}
 	public void SetKeys(string playerHorizontalAxis,string playerVerticalAxis,string playerActionKey)
 	{
