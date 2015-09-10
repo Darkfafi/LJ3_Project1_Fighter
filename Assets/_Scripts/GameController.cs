@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public class GameController : MonoBehaviour {
 	public static bool isPaused = false;
-
 	public delegate void pauseGame();
 	public event pauseGame PauseGame;
 	public event pauseGame ResumeGame;
