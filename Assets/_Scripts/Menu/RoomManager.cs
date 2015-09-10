@@ -34,6 +34,15 @@ public class RoomManager : MonoBehaviour {
 		{
 			//TODO: go back to main menu + reset character selection
 		}
+		if(Input.GetKeyDown(KeyCode.Return))
+		{
+			StartGame();
+		}
+	}
+	private void StartGame()
+	{
+		PlayerPrefs.SetInt("PlayerCount", _playerCount);
+		Application.LoadLevel(1);
 	}
 	private void AddPlayer(string controls)
 	{
@@ -48,5 +57,6 @@ public class RoomManager : MonoBehaviour {
 	{
 		playerTexts[_playerCount].text = "Player-" + _playerCount;
 		playerPanels[_playerCount].SetActive(true);
+		playerPanels[_playerCount].GetComponent<CharacterSelect>().SetControls(controls);
 	}
 }

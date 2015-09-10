@@ -13,9 +13,6 @@ public class GameController : MonoBehaviour {
 	public List<GameObject> currentPlayers = new List<GameObject>();
 
 	public GameObject playerPrefab;
-
-	private int _startTime = 3; //3 seconds start time
-
 	public void Start()
 	{
 		FindAllSpawnPoints();
