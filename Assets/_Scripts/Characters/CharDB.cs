@@ -7,26 +7,6 @@ public class CharDB : MonoBehaviour {
 	public const string CHARACTER03 = "Character03";
 	public const string CHARACTER04 = "Character04";
 
-	/*public static Animator GetCharacterAnimator(string character)
-	{
-		switch(character)
-		{
-		case CHARACTER01:
-			//TODO: return character1 Animator.
-			break;
-		case CHARACTER02:
-			//TODO: return character2 Animator.
-			break;
-		case CHARACTER03:
-			//TODO: return character3 Animator.
-			break;
-		case CHARACTER04:
-			//TODO: return character4 Animator.
-			break;
-		}
-		return null;
-	}*/
-
 	public static CharDBInfo GetCharacterDataBaseInfo(string character)
 	{
 		StatsHolder transformModStats = GetCharacterTransformStats(character);
@@ -57,7 +37,6 @@ public class CharDB : MonoBehaviour {
 		charDBInfo = new CharDBInfo(characterAnimator,transformModStats,specialAttack);
 		return charDBInfo;
 	}
-
 	// Via deze functie kan je makkelijk de stats per character invullen.
 	private static StatsHolder GetCharacterTransformStats(string character){
 		StatsHolder stats = new StatsHolder ();
@@ -97,5 +76,20 @@ public class CharDB : MonoBehaviour {
 			break;
 		}
 		return stats;
+	}
+	public static string GetCharacterByInt(int i)
+	{
+		switch(i)
+		{
+		case 0:
+			return CHARACTER01;
+		case 1:
+			return CHARACTER02;
+		case 2:
+			return CHARACTER03;
+		case 3:
+			return CHARACTER04;
+		}
+		return "";
 	}
 }

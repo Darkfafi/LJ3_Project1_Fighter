@@ -6,8 +6,9 @@ using UnityEngine.UI;
 public class RoomManager : MonoBehaviour {
 	public GameObject[] playerPanels = new GameObject[0];
 	public Text[] playerTexts = new Text[0];
+	private List<string> _controlsInUse = new List<string>();
+	private List<CharacterSelect> _playersReady = new List<CharacterSelect>();
 	private int _playerCount = 0;
-	
 	// Update is called once per frame
 	void Update () 
 	{
@@ -34,10 +35,24 @@ public class RoomManager : MonoBehaviour {
 		{
 			//TODO: go back to main menu + reset character selection
 		}
+		/*
+		//FORCE START GAME
 		if(Input.GetKeyDown(KeyCode.Return))
 		{
 			StartGame();
+		} */
+	}
+	public void AddPlayerReady(CharacterSelect player)
+	{
+		_playersReady.Add(player);
+		if(_playersReady.Count == _playerCount && _playerCount > 1)
+		{
+			StartGame();
 		}
+	}
+	public void RemovePlayerReady(CharacterSelect player)
+	{
+		_playersReady.Remove(player);
 	}
 	private void StartGame()
 	{
@@ -46,17 +61,33 @@ public class RoomManager : MonoBehaviour {
 	}
 	private void AddPlayer(string controls)
 	{
-		List<string> playerControls = Controls.GetControls(controls);
-		PlayerPrefs.SetString("Horizontal-" + _playerCount, playerControls[0]);
-		PlayerPrefs.SetString("Vertical-" + _playerCount, playerControls[1]);
-		PlayerPrefs.SetString("Action-" + _playerCount, playerControls[2]);
-		ActivatePanel(controls);
-		_playerCount++;
+		//check if the controls are already in use.
+		bool controlsInUse = false;
+		foreach(string curControls in _controlsInUse)
+		{
+			if(curControls == controls)
+			{
+				controlsInUse = true;
+				break;
+			}
+		}
+		if(!controlsInUse)
+		{
+			//add player if the controls are not in use.
+			_controlsInUse.Add(controls);
+			List<string> playerControls = Controls.GetControls(controls);
+			PlayerPrefs.SetString("Horizontal-" + _playerCount, playerControls[0]);
+			PlayerPrefs.SetString("Vertical-" + _playerCount, playerControls[1]);
+			PlayerPrefs.SetString("Action-" + _playerCount, playerControls[2]);
+			ActivatePanel(controls);
+			_playerCount++;
+		}
 	}
 	private void ActivatePanel(string controls)
 	{
+		//activate character select panel
 		playerTexts[_playerCount].text = "Player-" + _playerCount;
 		playerPanels[_playerCount].SetActive(true);
-		playerPanels[_playerCount].GetComponent<CharacterSelect>().SetControls(controls);
+		playerPanels[_playerCount].GetComponent<CharacterSelect>().SetPlayer(_playerCount,controls);
 	}
 }

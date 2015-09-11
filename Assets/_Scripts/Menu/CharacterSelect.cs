@@ -6,22 +6,31 @@ using UnityEngine.UI;
 public class CharacterSelect : MonoBehaviour 
 {
 	private RectTransform _rectTransform;
+	private RoomManager _roomManager;
+
 	private string _verticalAxis;
 	private string _actionKey;
+
 	private bool _busy;
 	private bool _ready;
+
 	private int _picHeight;
-	private int _counter = 0;
+	private int _characterID = 0;
+	private int _playerID;
+
+	private float _standardY;
 	private float _moveSpeed;
 
 	void Awake()
 	{
 		_rectTransform = GetComponent<RectTransform>();
+		_roomManager = GameObject.FindGameObjectWithTag(Tags.ROOMMANAGER).GetComponent<RoomManager>();
 	}
 	void Start()
 	{
+		_standardY = _rectTransform.localPosition.y;
 		_picHeight = 100;
-		_moveSpeed = 15;
+		_moveSpeed = 10;
 	}
 
 	void Update()
@@ -36,46 +45,52 @@ public class CharacterSelect : MonoBehaviour
 			{
 				CharacterDown();
 			} 
-			else if(Input.GetButtonDown(_actionKey))
-			{
-				ReadyUp();
-			}
 		} 
-		else if(_busy)
+		else
 		{
-
-			Vector3 oldPos = _rectTransform.localPosition;
 			Vector3 newPos = _rectTransform.localPosition;
-			newPos.y = _picHeight * _counter;
+			newPos.y = _standardY + _picHeight * _characterID;
 
-			_rectTransform.localPosition = Vector3.Lerp(oldPos,newPos, _moveSpeed * Time.deltaTime);
+			_rectTransform.localPosition = Vector3.Lerp(_rectTransform.localPosition,newPos, _moveSpeed * Time.deltaTime);
 
-			if(_rectTransform.localPosition.y == newPos.y)
+			if(Vector3.Distance(_rectTransform.localPosition,newPos) < 0.1f)
 				_busy = false;
+		}
+		if(Input.GetButtonDown(_actionKey))
+		{
+			ReadyUp();
 		}
 	}
 	private void CharacterUp()
 	{
-		if(_counter < 3)
+		if(_characterID < 3)
 		{
-			_counter++;
+			_characterID++;
 			_busy = true;
 		}
 	}
 	private void CharacterDown()
 	{
-		if(_counter > 0)
+		if(_characterID > 0)
 		{
-			_counter--;
+			_characterID--;
 			_busy = true;
 		}
 	}
 	private void ReadyUp()
 	{
 		_ready = true;
+		PlayerPrefs.SetString("Character-" + _playerID, CharDB.GetCharacterByInt(_characterID));
+		_roomManager.AddPlayerReady(this);
 	}
-	public void SetControls(string controls)
+	private void UnReady()
 	{
+		_ready = false;
+		_roomManager.RemovePlayerReady(this);
+	}
+	public void SetPlayer(int playerid,string controls)
+	{
+		_playerID = playerid;
 		List<string> playerControls = Controls.GetControls(controls);
 		//HorizontalAxis = playerControls[0];
 		_verticalAxis = playerControls[1];
