@@ -23,6 +23,7 @@ public class Player : MonoBehaviour {
 	private string _horizontalAxis = "HorizontalPlayer1";
 	private string _verticalAxis = "VerticalPlayer1";
 	private string _actionKey = "ActionKeyPlayer1";
+	private string _jumpKey = "Null";
 
 	// Utils
 	private PlatformerMovement _myPlatformerMovement;
@@ -82,11 +83,12 @@ public class Player : MonoBehaviour {
 		_specialAttack = gameObject.AddComponent<SpecialAttack> ();
 		_specialAttack = characterInfo.specialAttack;
 	}
-	public void SetKeys(string playerHorizontalAxis,string playerVerticalAxis,string playerActionKey)
+	public void SetKeys(string playerHorizontalAxis,string playerVerticalAxis,string playerActionKey, string playerJumpKey = "Null")
 	{
 		_horizontalAxis = playerHorizontalAxis;
 		_verticalAxis = playerVerticalAxis;
 		_actionKey = playerActionKey;
+		_jumpKey = playerJumpKey;
 	}
 
 	void TransformPlayer(string playerTransformerConst){
@@ -196,6 +198,14 @@ public class Player : MonoBehaviour {
 		}
 		set {
 			_verticalAxis = value;
+		}
+	}
+	public string jumpKey{
+		get {
+			return _jumpKey;
+		}
+		set {
+			_jumpKey = value;
 		}
 	}
 }

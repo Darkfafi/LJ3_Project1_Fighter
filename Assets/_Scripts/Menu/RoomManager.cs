@@ -18,16 +18,16 @@ public class RoomManager : MonoBehaviour {
 		} else if(Input.GetButtonDown("ActionKeyPlayer2"))
 		{
 			AddPlayer(Controls.keyboard02);
-		} else if(Input.GetButton("JoystickActionKey1"))
+		} else if(Input.GetButtonDown("JoystickActionKey1") || Input.GetButtonDown("JoystickJumpKey1"))
 		{
 			AddPlayer(Controls.joystick01);
-		} else if(Input.GetButton("JoystickActionKey2"))
+		} else if(Input.GetButtonDown("JoystickActionKey2") || Input.GetButtonDown("JoystickJumpKey2"))
 		{
 			AddPlayer(Controls.joystick02);
-		} else if(Input.GetButton("JoystickActionKey3"))
+		} else if(Input.GetButtonDown("JoystickActionKey3") || Input.GetButtonDown("JoystickJumpKey3"))
 		{
 			AddPlayer(Controls.joystick03);
-		} else if(Input.GetButton("JoystickActionKey4"))
+		} else if(Input.GetButtonDown("JoystickActionKey4") || Input.GetButtonDown("JoystickJumpKey4"))
 		{
 			AddPlayer(Controls.joystick04);
 		}

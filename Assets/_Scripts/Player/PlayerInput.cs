@@ -13,6 +13,7 @@ public class PlayerInput : MonoBehaviour {
 	private string _horizontalAxis;
 	private string _verticalAxis;
 	private string _actionKey;
+	private string _jumpKey; //this is only available for joystick users
 
 	void Start()
 	{
@@ -20,6 +21,7 @@ public class PlayerInput : MonoBehaviour {
 		_horizontalAxis = myPlayerScript.horizontalAxis;
 		_verticalAxis = myPlayerScript.verticalAxis;
 		_actionKey = myPlayerScript.actionKey;
+		_jumpKey = myPlayerScript.jumpKey;
 	}
 
 	void Update () 
@@ -48,7 +50,7 @@ public class PlayerInput : MonoBehaviour {
 			if(DownKeyPressed != null)
 				DownKeyPressed();
 		}
-		if(Input.GetAxis(_verticalAxis) > 0)
+		if(Input.GetAxis(_verticalAxis) > 0 || Input.GetButtonDown(_jumpKey))
 		{
 			//send up event
 			if(JumpKeyPressed != null)
