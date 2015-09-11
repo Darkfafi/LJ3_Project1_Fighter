@@ -33,7 +33,7 @@ public class Player : MonoBehaviour {
 	{
 
 		_myPlayerInput = gameObject.AddComponent<PlayerInput>();
-		_myPlatformerMovement = GetComponent<PlatformerMovement>();
+		_myPlatformerMovement = gameObject.AddComponent<PlatformerMovement>();
 
 		_attackCatcher = gameObject.AddComponent<AttackCather> ();
 		_basicAttack = gameObject.AddComponent<BasicStunAttack> ();
@@ -89,6 +89,10 @@ public class Player : MonoBehaviour {
 		_actionKey = playerActionKey;
 	}
 
+	void TransformPlayer(string playerTransformerConst){
+		_playerTransformer.TransformCharacter (playerTransformerConst);
+	}
+
 	void MoveLeft()
 	{
 		if (!busyAction) {
@@ -124,20 +128,21 @@ public class Player : MonoBehaviour {
 	// Hit by attacks (MAYBE CODE IN A DIFFERENT COMPONENT)
 	void OnStunHit(float stunPower, GameObject attacker, float pushPower){
 		//TODO CALL STUN FUNCTION
-		if (!_stunTimer.IsRunning ()) {
+		if (_stunTimer == null || !_stunTimer.IsRunning ()) {
 			GetStunned(stunPower);
 		}
 	}
 
 	void OnStunKillHit(GameObject attacker, float pushPower){
 		//TODO IF STUNNED THEN CALL DEAD FUNCTION
-		if (_stunTimer.IsRunning ()) {
+		if (_stunTimer != null && _stunTimer.IsRunning ()) {
 			GetKilled();
 		}
 	}
 	void OnKillHit(GameObject attacker, float pushPower){
 		//TODO CALL DEAD FUNCTION
 		GetKilled();
+		Destroy (gameObject);
 	}
 
 	void GetStunned(float stunPower){

@@ -15,6 +15,7 @@ public class PlayerAnimationHandler : MonoBehaviour {
 
 	public void PlayAnimation(string animationName){
 		string addOnString = "";
+		Debug.Log("Gaat best goed Romar, hoe gaat het met jou?");
 		if (playerStats.transformed) {
 			addOnString = "Transform";
 		}
