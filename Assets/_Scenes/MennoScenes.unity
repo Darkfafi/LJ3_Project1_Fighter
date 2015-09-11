@@ -325,7 +325,7 @@ MonoBehaviour:
   currentSpawnPoints: []
   currentItemSpawnPoints: []
   currentPlayers: []
-  playerPrefab: {fileID: 136302, guid: dbea70d8cdf27d04289173495d3e4a5c, type: 2}
+  playerPrefab: {fileID: 156962, guid: 14c965227e3715a499491cf5d8893fd5, type: 2}
 --- !u!4 &1801688856
 Transform:
   m_ObjectHideFlags: 0

@@ -9,8 +9,7 @@ public class Player : MonoBehaviour {
 	private PlayerTransformer _playerTransformer;
 	private PlayerStats _playerStats = new PlayerStats(5f,10f,2f,5f,2f,5f); // set all base stats
 
-	public bool busyAction = false;
-
+	public bool busyAction = false; 
 	// Combat
 	private BasicStunAttack _basicAttack;
 	private SpecialAttack _specialAttack;
@@ -152,8 +151,8 @@ public class Player : MonoBehaviour {
 		busyAction = true;
 	}
 	void HealStun(){
-		_stunTimer.Stop ();
 		busyAction = false;
+		_stunTimer.Stop ();
 	}
 	void GetKilled(){
 		// Die

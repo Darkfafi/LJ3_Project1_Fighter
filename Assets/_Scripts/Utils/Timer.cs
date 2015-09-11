@@ -40,7 +40,8 @@ public class Timer{
 		if (TimerTik != null) {
 			TimerTik(_currentCount);
 		}
-		if (_currentCount < _timesToRepeat + 1) {
+
+		if (_currentCount < _timesToRepeat) {
 			Tik ();
 		} else {
 			if(TimerEnded != null){

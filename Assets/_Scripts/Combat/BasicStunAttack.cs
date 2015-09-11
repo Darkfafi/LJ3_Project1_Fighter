@@ -41,6 +41,7 @@ public class BasicStunAttack : AttackBase {
 	void Update(){
 		if (Mathf.Abs (rigidBody.velocity.x) <= 0.3f && _attacking) {
 			StopAttacking();
+			Debug.Log("dffg");
 		}
 	}
 
