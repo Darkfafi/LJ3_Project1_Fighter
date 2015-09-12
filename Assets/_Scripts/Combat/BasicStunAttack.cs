@@ -13,6 +13,8 @@ public class BasicStunAttack : AttackBase {
 	private float _hitPowerForce;
 	private Vector2 _attackingDir;
 
+	private float _oldGravityScale;
+
 	private Rigidbody2D rigidBody;
 
 	// Use this for initialization
@@ -27,21 +29,22 @@ public class BasicStunAttack : AttackBase {
 		//slidePower is how much you push yourself towards the direction.
 		_hitPowerForce = player.playerStats.stunPower;
 		SetAttacking(true);
+		_oldGravityScale = rigidBody.gravityScale;
+		rigidBody.gravityScale = 0;
 		if (gameObject.transform.localScale.x < 0) {
 			_attackingDir = Vector2.left;
 		} else {
 			_attackingDir = Vector2.right;
 		}
-		rigidBody.velocity += player.playerStats.dashForce * _attackingDir;
+		rigidBody.velocity = player.playerStats.dashForce * _attackingDir;
 		if (AttackStarted != null) {
 			AttackStarted();
 		}
 	}
 
 	void Update(){
-		if (Mathf.Abs (rigidBody.velocity.x) <= 0.3f && _attacking) {
-			StopAttacking();
-			Debug.Log("dffg");
+		if (Mathf.Abs (rigidBody.velocity.x) <= 0.3f && _attacking) { //TODO timer
+			StopAttacking ();
 		}
 	}
 
@@ -53,6 +56,7 @@ public class BasicStunAttack : AttackBase {
 
 	public void StopAttacking(){
 		SetAttacking(false);
+		rigidBody.gravityScale = _oldGravityScale;
 		_hitPowerForce = 0;
 		if (AttackStopped != null) {
 			AttackStopped();
