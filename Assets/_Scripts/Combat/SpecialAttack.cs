@@ -5,7 +5,7 @@ public class SpecialAttack : AttackBase {
 
 	protected int _maxUseCounter;
 
-	public override void Attack (Player player)
+	protected override void OnAttack (Player player)
 	{
 		//if counter == maxUseCounter then transform back.
 	}

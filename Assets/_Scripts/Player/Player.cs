@@ -7,7 +7,7 @@ public class Player : MonoBehaviour {
 
 	//Stats
 	private PlayerTransformer _playerTransformer;
-	private PlayerStats _playerStats = new PlayerStats(5f,10f,2f,5f,2f,5f); // set all base stats
+	private PlayerStats _playerStats = new PlayerStats(5f,10f,2f,5f,2f,10f); // set all base stats
 
 	public bool busyAction = false; 
 	// Combat
