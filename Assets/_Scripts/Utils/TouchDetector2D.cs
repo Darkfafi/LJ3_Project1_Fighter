@@ -9,7 +9,7 @@ public class TouchDetector2D : MonoBehaviour {
 	public delegate void GoVecDelegate (GameObject obj,Vector2 vec);
 	
 	public event GoVecDelegate TouchStarted;
-	public event VecDelegate TouchEnded;
+	public event GoVecDelegate TouchEnded;
 
 	//Check 
 	private Dictionary<Vector2,bool> _sidesTouched = new Dictionary<Vector2, bool>();
@@ -19,6 +19,8 @@ public class TouchDetector2D : MonoBehaviour {
 	private BoxCollider2D colliderBox;
 	//private Vector2 centerCollider;
 	private Vector2 sizeCollider;
+
+	private GameObject objectTouched;
 
 	void Awake(){
 		_sidesTouched.Add (Vector2.up, false);
@@ -57,12 +59,13 @@ public class TouchDetector2D : MonoBehaviour {
 				if(!_sidesTouched[currentDirVector]){
 					if(TouchStarted != null){
 						TouchStarted(hit.collider.gameObject,currentDirVector);
+						objectTouched = hit.collider.gameObject;
 						_sidesTouched[currentDirVector] = true;
 					}
 				}
 			}else if(_sidesTouched[currentDirVector]){
 				if(TouchEnded != null){
-					TouchEnded(currentDirVector);
+					TouchEnded(objectTouched, currentDirVector);
 				}
 				_sidesTouched[currentDirVector] = false;
 			}
@@ -71,5 +74,9 @@ public class TouchDetector2D : MonoBehaviour {
 
 	public bool IsTouchingSide(Vector2 sideDirection){
 		return _sidesTouched[sideDirection];
+	}
+	public GameObject GetObjectCurrentlyTouching()
+	{
+		return objectTouched;
 	}
 }

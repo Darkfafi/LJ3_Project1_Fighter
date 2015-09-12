@@ -29,6 +29,7 @@ public class PlatformerMovement : MonoBehaviour {
 
 	// Remember Data
 	private GameObject _preGround;
+	private GameObject _prePlatform;
 	private GameObject _preWall;
 
 	//Physics
@@ -40,6 +41,7 @@ public class PlatformerMovement : MonoBehaviour {
 	void Awake()
 	{
 		_rigidbody = GetComponent<Rigidbody2D>();
+		colliderBox = GetComponent<BoxCollider2D>();
 	}
 
 	void Start(){
@@ -74,6 +76,10 @@ public class PlatformerMovement : MonoBehaviour {
 	public void MoveVertical(int directionConst, float moveSpeed)
 	{
 		transform.Translate (new Vector3 (0,directionConst * moveSpeed,0) * Time.deltaTime);
+		if(directionConst == -1 && _onGround && _preGround.tag == Tags.PASSABLE) {
+			BoxCollider2D preGroundCol = _preGround.GetComponent<BoxCollider2D>();
+			Physics2D.IgnoreCollision(this.colliderBox, preGroundCol, true);
+		}
 	}
 
 	public void Jump(float jumpForce)
@@ -106,23 +112,61 @@ public class PlatformerMovement : MonoBehaviour {
 	void TouchDetectionStart(GameObject obj, Vector2 vec){
 		if (vec == Vector2.down) {
 			// we can even say if its a player then no grounded but attack if stunned else ignore.
-			_onGround = true;
+
+			//Checking if player just fell down a platform or just jumped through a platform, if thats true stop ignorring collision.
+			if(_preGround != null) {
+				if(_preGround != obj) {
+					BoxCollider2D preGroundCol = _preGround.GetComponent<BoxCollider2D>();
+					if(Physics2D.GetIgnoreCollision(this.colliderBox, preGroundCol)) {
+						Physics2D.IgnoreCollision(this.colliderBox, preGroundCol, false);
+					}
+				}
+			}
+			if(_prePlatform != null)
+			{
+				if(_prePlatform == obj)
+				{
+					BoxCollider2D prePlatformCol = _preGround.GetComponent<BoxCollider2D>();
+					if(Physics2D.GetIgnoreCollision(this.colliderBox, prePlatformCol)) {
+						Physics2D.IgnoreCollision(this.colliderBox, prePlatformCol, false);
+					}
+				}
+			}
+
+			BoxCollider2D objCol = obj.GetComponent<BoxCollider2D>();
+			if(!Physics2D.GetIgnoreCollision(this.colliderBox, objCol)) {
+				_onGround = true;
+			} 
+
 			_preGround = obj;
+
 			if(LandedOnGround != null){
 				LandedOnGround(obj);
 			}
 		} else if (vec == Vector2.left || vec == Vector2.right) {
 			if(!_onGround){
-				_inWallSlide = true;
+				//if the object is collideable with the platformer then wallslide is true
+				BoxCollider2D objCol = obj.GetComponent<BoxCollider2D>();
+				if(!Physics2D.GetIgnoreCollision(this.colliderBox, objCol)) {
+					_inWallSlide = true;
+
+				} 
+
 				_preWall = obj;
 				if(StartedWallSlide != null){
 					StartedWallSlide(obj);
 				}
 			}
+		} else if (vec == Vector2.up) { //if you bump your head against a platform that is passable then stop colliding with given platform
+			if(obj.tag == Tags.PASSABLE) {
+				BoxCollider2D objCol = obj.GetComponent<BoxCollider2D>();
+				Physics2D.IgnoreCollision(this.colliderBox, objCol, true);
+				_prePlatform = obj;
+			}
 		}
 	}
 
-	void TouchDetectionEnd(Vector2 vec){
+	void TouchDetectionEnd(GameObject obj, Vector2 vec){
 		if (vec == Vector2.down) {
 			_onGround = false;
 			if (ReleasedFromGround != null) {
@@ -132,6 +176,15 @@ public class PlatformerMovement : MonoBehaviour {
 			_inWallSlide = false;
 			if(EndedWallSlde != null){
 				EndedWallSlde(_preWall);
+			}
+		}  else if(vec == Vector2.up) {
+			if(_preGround != null) {
+				if(obj == _preGround) { //set collision back to normal if you passed through it
+					BoxCollider2D objCol = obj.GetComponent<BoxCollider2D>();
+					if(Physics2D.GetIgnoreCollision(this.colliderBox, objCol)) {
+						Physics2D.IgnoreCollision(this.colliderBox, objCol, false);
+					}
+				}
 			}
 		}
 	}
