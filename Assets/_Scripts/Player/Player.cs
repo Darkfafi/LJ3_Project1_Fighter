@@ -7,6 +7,7 @@ public class Player : MonoBehaviour {
 
 	//Stats
 	private PlayerTransformer _playerTransformer;
+
 	private PlayerStats _playerStats = new PlayerStats(5f,10f,2f,5f,2f,10f); // set all base stats
 
 	public bool busyAction = false; 
@@ -62,9 +63,6 @@ public class Player : MonoBehaviour {
 	void MoveRight()
 	{
 		if (!busyAction) {
-			if (transform.localScale.x < 0) { //TODO dit moet in de platformer movement component
-				transform.localScale = new Vector3 (Mathf.Abs (transform.localScale.x), transform.localScale.y, transform.localScale.z);
-			}
 			_myPlatformerMovement.MoveHorizontal (PlatformerMovement.DIR_RIGHT, _playerStats.movementSpeed);
 		}
 	}
