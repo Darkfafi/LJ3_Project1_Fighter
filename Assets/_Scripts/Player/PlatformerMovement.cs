@@ -47,21 +47,27 @@ public class PlatformerMovement : MonoBehaviour {
 		touch.TouchStarted += TouchDetectionStart;
 		touch.TouchEnded += TouchDetectionEnd;
 	}
-
 	public void MoveHorizontal(int directionConst, float moveSpeed){
 
-		if (transform.localScale.x != directionConst * Mathf.Abs(transform.localScale.x)) { //TODO dit moet in de platformer movement component
+		if (transform.localScale.x != directionConst * Mathf.Abs(transform.localScale.x)) {
 			transform.localScale = new Vector3 (directionConst * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
 		}
 
 		if (!touch.IsTouchingSide(new Vector2(directionConst,0))) {
-			transform.Translate (new Vector3 (directionConst * moveSpeed, 0, 0) * Time.deltaTime);
-		}
-
-		//set velocity to 0 so you can move without getting resistance
-		if(_rigidbody.velocity.x != 0)
-		{
-			_rigidbody.velocity = new Vector2(0,_rigidbody.velocity.y);
+			transform.Translate (new Vector3 (directionConst * moveSpeed + _rigidbody.velocity.x * directionConst, 0, 0) * Time.deltaTime);
+			//damping the velocity so you can walljump more times
+			if(_rigidbody.velocity.x != 0 && directionConst == 1)
+			{
+				_rigidbody.velocity += new Vector2(moveSpeed * 2, 0) * Time.deltaTime;
+				if(_rigidbody.velocity.x > 0)
+					_rigidbody.velocity = new Vector2(0, _rigidbody.velocity.y);
+			} 
+			else if(_rigidbody.velocity.x != 0 && directionConst == -1)
+			{
+				_rigidbody.velocity -= new Vector2(moveSpeed * 2, 0) * Time.deltaTime;
+				if(_rigidbody.velocity.x < 0)
+					_rigidbody.velocity = new Vector2(0, _rigidbody.velocity.y);
+			}
 		}
 	}
 
@@ -74,12 +80,12 @@ public class PlatformerMovement : MonoBehaviour {
 	{
 		if(_onGround)
 		{
-			_rigidbody.velocity += new Vector2(0,jumpForce);
+			_rigidbody.velocity = new Vector2(0,jumpForce);
 		} 
 		else if(_inWallSlide)
 		{
 			//check wich direction you are currently sliding at + add velocity at negative direction.
-			_rigidbody.velocity += new Vector2(-GetPlayerDirection() * jumpForce/2,jumpForce/2);
+			_rigidbody.velocity = new Vector2(-GetPlayerDirection() * jumpForce/2,jumpForce);
 		}
 	}
 
