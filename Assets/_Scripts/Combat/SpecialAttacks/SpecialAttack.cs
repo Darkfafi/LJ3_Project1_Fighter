@@ -13,6 +13,10 @@ public class SpecialAttack : AttackBase {
 
 	private Player _player;
 
+	void Awake(){
+		_transformBackTimer = gameObject.AddComponent<ComTimer> ();
+	}
+
 	void Start(){
 		_player = gameObject.GetComponent<Player> ();
 		_transformBackTimer.StartTimer (_timeInTransformation);
@@ -31,6 +35,7 @@ public class SpecialAttack : AttackBase {
 	private void EndTransform(){
 		_transformBackTimer.StopTimer ();
 		_transformBackTimer.TimerEnded -= EndTransform;
+		Destroy (_transformBackTimer);
 		_player.TransformPlayer (PlayerTransformer.NORMAL_MOD);
 	}
 }

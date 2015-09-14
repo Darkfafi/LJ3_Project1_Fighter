@@ -8,13 +8,15 @@ public class Player : MonoBehaviour {
 	//Stats
 	private PlayerTransformer _playerTransformer;
 
-	private PlayerStats _playerStats = new PlayerStats(5f,10f,2f,5f,2f,10f); // set all base stats
+	private PlayerStats _playerStats = new PlayerStats(5f,10f,2f,5f,10f,10f); // set all base stats
 
 	public bool busyAction = false; 
 	// Combat
 	private BasicStunAttack _basicAttack;
 	private SpecialAttack _specialAttack;
 	private AttackCather _attackCatcher;
+	private ClashAble _clashAble;
+
 
 	private Timer _stunTimer;
 	
@@ -37,6 +39,7 @@ public class Player : MonoBehaviour {
 		_myPlatformerMovement = gameObject.AddComponent<PlatformerMovement>();
 
 		_attackCatcher = gameObject.AddComponent<AttackCather> ();
+		_clashAble = gameObject.AddComponent<ClashAble> ();
 		_basicAttack = gameObject.AddComponent<BasicStunAttack> ();
 		_playerTransformer = gameObject.AddComponent<PlayerTransformer> ();
 		gameObject.AddComponent<TouchDetector2D> ();
@@ -170,6 +173,10 @@ public class Player : MonoBehaviour {
 
 	public PlayerAnimationHandler playerAnimHandler{
 		get{return _playerAnimHandler;}
+	}
+
+	public ClashAble clasher{
+		get{return _clashAble;}
 	}
 
 	//public variables for keyinputs

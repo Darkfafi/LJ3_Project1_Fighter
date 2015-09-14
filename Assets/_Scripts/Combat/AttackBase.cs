@@ -30,7 +30,6 @@ public class AttackBase : MonoBehaviour {
 	}
 
 	protected void Hit(GameObject targetObject,float stunPower,float pushPower = 0){
-		//if stunPower is over lets say 10000 then kill.
 		if (targetObject.GetComponent<AttackCather> () != null) {
 			targetObject.GetComponent<AttackCather>().CatchAttack(this.gameObject,stunPower,pushPower);
 		}
