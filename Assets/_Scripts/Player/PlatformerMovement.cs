@@ -126,7 +126,7 @@ public class PlatformerMovement : MonoBehaviour {
 			{
 				if(_prePlatform == obj)
 				{
-					BoxCollider2D prePlatformCol = _preGround.GetComponent<BoxCollider2D>();
+					BoxCollider2D prePlatformCol = _prePlatform.GetComponent<BoxCollider2D>();
 					if(Physics2D.GetIgnoreCollision(this.colliderBox, prePlatformCol)) {
 						Physics2D.IgnoreCollision(this.colliderBox, prePlatformCol, false);
 					}

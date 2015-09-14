@@ -57,11 +57,11 @@ public class BasicStunAttack : AttackBase {
 	}
 
 	void OnTouch(GameObject gObject, Vector2 vec){
-		if (vec == _attackingDir) {
+		if (vec == _attackingDir) { //TODO: if isDashing then clash
 			if(_inAttackTimer.running){
 				Hit(gObject,_hitPowerForce); //gObject.GetComponent<StunCatcher>().CatchStun(this.gameObject,_hitPowerForce);
 			}
-		}
+		} // clash = opposite direction velocity + particle system emitter added with timer.
 	}
 
 	private void EndTimer(){
