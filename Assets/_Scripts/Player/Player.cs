@@ -88,7 +88,7 @@ public class Player : MonoBehaviour {
 		_jumpKey = playerJumpKey;
 	}
 
-	void TransformPlayer(string playerTransformerConst){
+	public void TransformPlayer(string playerTransformerConst){
 		_playerTransformer.TransformCharacter (playerTransformerConst);
 	}
 
@@ -140,8 +140,7 @@ public class Player : MonoBehaviour {
 	}
 	void OnKillHit(GameObject attacker, float pushPower){
 		//TODO CALL DEAD FUNCTION
-		GetKilled();
-		Destroy (gameObject);
+		GetKilled ();
 	}
 
 	void GetStunned(float stunPower){
@@ -156,6 +155,7 @@ public class Player : MonoBehaviour {
 	}
 	void GetKilled(){
 		// Die
+		Destroy (gameObject);
 	}
 
 	void StunTimerEnded(){

@@ -16,6 +16,7 @@ public class PlayerTransformer : MonoBehaviour {
 
 	public void TransformCharacter(string transformModConst){
 		if(transformModConst == SPECIAL_MOD){
+			//TODO call global transform special animation.
 			_player.playerStats.ModCharacter(true,transformStats.movementSpeed,
 			                                 transformStats.jumpForce,
 			                                 transformStats.fallSpeed,
@@ -23,6 +24,7 @@ public class PlayerTransformer : MonoBehaviour {
 			                                 transformStats.pushPower,
 			                                 transformStats.dashForce);
 		}else if(transformModConst == NORMAL_MOD){
+			//TODO call global transform back animation.
 			_player.playerStats.ModCharacter(false,0f,0f,0f,0f,0f,0f);
 		}
 	}
