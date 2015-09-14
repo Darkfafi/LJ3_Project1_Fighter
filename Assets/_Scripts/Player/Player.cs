@@ -11,6 +11,7 @@ public class Player : MonoBehaviour {
 	private PlayerStats _playerStats = new PlayerStats(5f,10f,2f,5f,2f,10f); // set all base stats
 
 	public bool busyAction = false; 
+
 	// Combat
 	private BasicStunAttack _basicAttack;
 	private SpecialAttack _specialAttack;
@@ -88,7 +89,7 @@ public class Player : MonoBehaviour {
 		_jumpKey = playerJumpKey;
 	}
 
-	void TransformPlayer(string playerTransformerConst){
+	public void TransformPlayer(string playerTransformerConst){
 		_playerTransformer.TransformCharacter (playerTransformerConst);
 	}
 
@@ -162,8 +163,7 @@ public class Player : MonoBehaviour {
 		HealStun ();
 	}
 
-	// GETTERS
-
+	// GETTERS and SETTERS
 	public PlayerStats playerStats{
 		get{return _playerStats;}
 	}

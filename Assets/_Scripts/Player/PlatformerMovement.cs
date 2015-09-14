@@ -56,7 +56,7 @@ public class PlatformerMovement : MonoBehaviour {
 		}
 
 		if (!touch.IsTouchingSide(new Vector2(directionConst,0))) {
-			transform.Translate (new Vector3 (directionConst * moveSpeed + _rigidbody.velocity.x * directionConst, 0, 0) * Time.deltaTime);
+			transform.Translate (new Vector3 (directionConst * moveSpeed + _rigidbody.velocity.x, 0, 0) * Time.deltaTime);
 			//damping the velocity so you can walljump more times
 			if(_rigidbody.velocity.x != 0 && directionConst == 1)
 			{
@@ -104,7 +104,7 @@ public class PlatformerMovement : MonoBehaviour {
 		}
 		else 
 		{
-			dir = 0;
+			dir = -1;
 		}
 		return dir;
 	}
