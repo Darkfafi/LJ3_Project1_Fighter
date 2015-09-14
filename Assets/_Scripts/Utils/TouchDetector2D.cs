@@ -12,7 +12,7 @@ public class TouchDetector2D : MonoBehaviour {
 	public event GoVecDelegate TouchEnded;
 
 	//Check 
-	private Dictionary<Vector2,bool> _sidesTouched = new Dictionary<Vector2, bool>();
+	private Dictionary<Vector2,GameObject> _sidesTouched = new Dictionary<Vector2, GameObject>();
 	private Vector2[] _sidesToCheck = new Vector2[]{Vector2.up,Vector2.down,Vector2.right,Vector2.left}; 
 
 	// Collider variables
@@ -23,10 +23,10 @@ public class TouchDetector2D : MonoBehaviour {
 	private GameObject objectTouched;
 
 	void Awake(){
-		_sidesTouched.Add (Vector2.up, false);
-		_sidesTouched.Add (Vector2.right, false);
-		_sidesTouched.Add (Vector2.down, false);
-		_sidesTouched.Add (Vector2.left, false);
+		_sidesTouched.Add (Vector2.up, null);
+		_sidesTouched.Add (Vector2.right, null);
+		_sidesTouched.Add (Vector2.down, null);
+		_sidesTouched.Add (Vector2.left, null);
 
 		colliderBox = GetComponent<BoxCollider2D> ();
 		sizeCollider = colliderBox.size;
@@ -60,21 +60,26 @@ public class TouchDetector2D : MonoBehaviour {
 					if(TouchStarted != null){
 						TouchStarted(hit.collider.gameObject,currentDirVector);
 						objectTouched = hit.collider.gameObject;
-						_sidesTouched[currentDirVector] = true;
+						_sidesTouched[currentDirVector] = hit.collider.gameObject;
 					}
 				}
 			}else if(_sidesTouched[currentDirVector]){
 				if(TouchEnded != null){
 					TouchEnded(objectTouched, currentDirVector);
 				}
-				_sidesTouched[currentDirVector] = false;
+				_sidesTouched[currentDirVector] = null;
 			}
 		}
 	}
 
 	public bool IsTouchingSide(Vector2 sideDirection){
+		return _sidesTouched[sideDirection] != null;
+	}
+
+	public GameObject IsTouchingSideGetGameObject(Vector2 sideDirection){
 		return _sidesTouched[sideDirection];
 	}
+
 	public GameObject GetObjectCurrentlyTouching()
 	{
 		return objectTouched;
