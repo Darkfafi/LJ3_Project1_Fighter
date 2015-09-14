@@ -8,6 +8,7 @@ TagManager:
   - ItemSpawnPoint
   - RoomManager
   - PassAble
+  - SpecialItem
   layers:
   - Default
   - TransparentFX
