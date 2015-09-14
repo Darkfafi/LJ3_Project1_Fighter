@@ -149,7 +149,6 @@ public class PlatformerMovement : MonoBehaviour {
 				BoxCollider2D objCol = obj.GetComponent<BoxCollider2D>();
 				if(!Physics2D.GetIgnoreCollision(this.colliderBox, objCol)) {
 					_inWallSlide = true;
-
 				} 
 
 				_preWall = obj;

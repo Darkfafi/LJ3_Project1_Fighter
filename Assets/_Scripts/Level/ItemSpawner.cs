@@ -5,34 +5,53 @@ public class ItemSpawner : MonoBehaviour {
 	public GameObject specialItem;
 	private int _spawnPercentage;
 	private int _spawnTimer;
+	private int _percentageCounter;
+	private int _standardSpawnPercentage;
 	private GameObject _currentSpecialItem;
 	private bool _isSpawningItem;
 
 	void Start()
 	{
-		StartCoroutine(CheckSpawnItem());
-		_spawnPercentage = 10; //10%
+		StartCoroutine("CheckSpawnItem");
+		_isSpawningItem = false;
+		_standardSpawnPercentage = 5; //5%
+		_spawnPercentage = _standardSpawnPercentage;
 		_spawnTimer = 0;
+		_percentageCounter = 0;
 	}
 
 	IEnumerator CheckSpawnItem () 
 	{
-		if(_currentSpecialItem == null && !_isSpawningItem)
+		while(true)
 		{
-			if(Random.Range(0,100) >= _spawnPercentage) //% change to spawn item per second
+			if(_currentSpecialItem == null && !_isSpawningItem)
 			{
-				StartSpawningItem();
-			}
+				if(Random.Range(0,100) <= _spawnPercentage) //% change to spawn item per second
+				{
+					StartSpawningItem();
+					_spawnPercentage = _standardSpawnPercentage;
+				}
+				else
+				{
+					_percentageCounter++;
+					if(_percentageCounter == 10)
+					{
+						_spawnPercentage += 5;
+						_percentageCounter = 0;
+					}
+				}
+			} 
+			yield return new WaitForSeconds(1);
 		}
-		yield return new WaitForSeconds(1);
 	}
 	private void StartSpawningItem()
 	{
 		_isSpawningItem = true;
+		GetComponent<SpriteRenderer>().color = Color.red;
 	}
 	private void SpawnItem()
 	{
-		Vector3 eulerSpawnItemRot = new Vector3(0,Random.Range(0,360), 0); //randomize the rotation of the item
+		Vector3 eulerSpawnItemRot = new Vector3(0, 0, Random.Range(0,360)); //randomize the rotation of the item
 		_currentSpecialItem = Instantiate(specialItem, this.transform.position, Quaternion.identity) as GameObject;
 		_currentSpecialItem.transform.eulerAngles = eulerSpawnItemRot;
 	}
@@ -46,6 +65,7 @@ public class ItemSpawner : MonoBehaviour {
 			if(_spawnTimer == 100)
 			{
 				SpawnItem();
+				GetComponent<SpriteRenderer>().color = Color.white;
 				_isSpawningItem = false;
 				_spawnTimer = 0;
 			}
