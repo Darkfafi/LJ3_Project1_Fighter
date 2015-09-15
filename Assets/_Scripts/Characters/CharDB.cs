@@ -7,34 +7,13 @@ public class CharDB : MonoBehaviour {
 	public const string CHARACTER03 = "Character03";
 	public const string CHARACTER04 = "Character04";
 
+
 	public static CharDBInfo GetCharacterDataBaseInfo(string character)
 	{
 		StatsHolder transformModStats = GetCharacterTransformStats(character);
-		Animator characterAnimator = null;
-		SpecialAttack specialAttack = null;
 		CharDBInfo charDBInfo;
 
-		switch(character)
-		{
-		case CHARACTER01:
-			characterAnimator = null;
-			specialAttack = null;
-			break;
-		case CHARACTER02:
-			characterAnimator = null;
-			specialAttack = null;
-			break;
-		case CHARACTER03:
-			characterAnimator = null;
-			specialAttack = null;
-			break;
-		case CHARACTER04:
-			characterAnimator = null;
-			specialAttack = null;
-			break;
-		}
-
-		charDBInfo = new CharDBInfo(characterAnimator,transformModStats,specialAttack);
+		charDBInfo = new CharDBInfo(transformModStats);
 		return charDBInfo;
 	}
 	// Via deze functie kan je makkelijk de stats per character invullen.

@@ -16,7 +16,7 @@ public class BasicStunAttack : AttackBase {
 	private float _oldGravityScale;
 
 	private ComTimer _inAttackTimer;
-	private float _slideDuritation = 0.3f;
+	private float _slideDuritation = 0.25f;
 
 	private Player _player;
 
@@ -39,7 +39,7 @@ public class BasicStunAttack : AttackBase {
 		//hitPower determines how long the hit person is stunned The hit person calculates with this. So maybe the orc is stunned for a shorter time then the Asian chick...
 		//slidePower is how much you push yourself towards the direction.
 		_hitPowerForce = player.playerStats.stunPower;
-		_player.clasher.clashAble = true;
+
 		SetAttacking(true);
 
 		_oldGravityScale = rigidBody.gravityScale;
@@ -61,8 +61,13 @@ public class BasicStunAttack : AttackBase {
 			if(_inAttackTimer.running){
 				if(gObject.GetComponent<ClashAble>() != null && gObject.GetComponent<ClashAble>().clashAble){
 					_player.clasher.Clash(gObject,_player.playerStats.pushPower);
-				}else
-				Hit(gObject,_hitPowerForce); //gObject.GetComponent<StunCatcher>().CatchStun(this.gameObject,_hitPowerForce);
+				}else{
+					Hit(gObject,_hitPowerForce);
+					if(gObject.GetComponent<Rigidbody2D>()){
+						gObject.GetComponent<Rigidbody2D>().velocity += gameObject.GetComponent<Rigidbody2D>().velocity.normalized * _player.playerStats.pushPower;
+					}
+					StopAttacking();
+				}
 			}
 		} // clash = opposite direction velocity + particle system emitter added with timer.
 	}
@@ -74,7 +79,6 @@ public class BasicStunAttack : AttackBase {
 	public void StopAttacking(){
 		rigidBody.velocity = new Vector2(0f,0f);
 		rigidBody.gravityScale = _oldGravityScale;
-		_player.clasher.clashAble = false;
 		SetAttacking(false);
 		_hitPowerForce = 0;
 		if (AttackStopped != null) {
@@ -85,6 +89,7 @@ public class BasicStunAttack : AttackBase {
 
 	void SetAttacking(bool value){
 		_player.busyAction = value;
+		_player.clasher.clashAble = value;
 		if (value == true) {
 			_inAttackTimer.StartTimer(_slideDuritation);
 		} else if(_inAttackTimer.running) {

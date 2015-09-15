@@ -6,23 +6,6 @@ public class SpecialAttack : AttackBase {
 	protected int _useCounter;
 	protected int _maxTimesUse;
 
-
-	// de transform time logica staat in de attack voor het geval je verschillende specials  had dan zou de ene korter duren dan de ander.
-	protected float _timeInTransformation;
-	protected ComTimer _transformBackTimer;
-
-	private Player _player;
-
-	void Awake(){
-		_transformBackTimer = gameObject.AddComponent<ComTimer> ();
-	}
-
-	void Start(){
-		_player = gameObject.GetComponent<Player> ();
-		_transformBackTimer.StartTimer (_timeInTransformation);
-		_transformBackTimer.TimerEnded += EndTransform;
-	}
-
 	protected override void OnAttack (Player player)
 	{
 		_useCounter ++;
@@ -33,9 +16,7 @@ public class SpecialAttack : AttackBase {
 	}
 
 	private void EndTransform(){
-		_transformBackTimer.StopTimer ();
-		_transformBackTimer.TimerEnded -= EndTransform;
-		Destroy (_transformBackTimer);
-		_player.TransformPlayer (PlayerTransformer.NORMAL_MOD);
+		_useCounter = 0;
+		gameObject.GetComponent<Player> ().TransformPlayer (PlayerTransformer.NORMAL_MOD);
 	}
 }

@@ -12,7 +12,8 @@ public class GameController : MonoBehaviour {
 	public List<Transform> currentItemSpawnPoints = new List<Transform>();
 	public List<GameObject> currentPlayers = new List<GameObject>();
 
-	public GameObject playerPrefab;
+	private GameObject _playerPrefab;
+
 	public void Start()
 	{
 		FindAllSpawnPoints();
@@ -37,7 +38,7 @@ public class GameController : MonoBehaviour {
 			playerActionKey = PlayerPrefs.GetString("Action-" + i);
 			
 			//spawnplayer
-			GameObject newPlayer = Instantiate(playerPrefab,new Vector3(0,0,0), Quaternion.identity) as GameObject;
+			GameObject newPlayer = PlayerFactory.CreatePlayer(playerCharacter);//Instantiate(playerPrefab,new Vector3(0,0,0), Quaternion.identity) as GameObject;
 			Player newPlayerScript = newPlayer.GetComponent<Player>();
 			
 			//add player information

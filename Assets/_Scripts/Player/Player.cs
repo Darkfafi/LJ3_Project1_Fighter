@@ -8,7 +8,8 @@ public class Player : MonoBehaviour {
 	//Stats
 	private PlayerTransformer _playerTransformer;
 
-	private PlayerStats _playerStats = new PlayerStats(5f,10f,2f,5f,10f,10f); // set all base stats
+	//private PlayerStats _playerStats = new PlayerStats(6f,10f,3f,5f,10f,12f); // <--- Idee
+	private PlayerStats _playerStats = new PlayerStats (5f, 10f, 2f, 5f, 10f, 10f); // set all base stats
 
 	public bool busyAction = false; 
 
@@ -74,15 +75,8 @@ public class Player : MonoBehaviour {
 	public void SetCharacter(string characterName)
 	{
 		CharDBInfo characterInfo = CharDB.GetCharacterDataBaseInfo (characterName);
-
-		Animator newAnimator = gameObject.AddComponent<Animator>();
-
-		newAnimator = characterInfo.animator;
-
 		_playerTransformer.transformStats = characterInfo.transformationStatsBuff;
-
-		_specialAttack = gameObject.AddComponent<SpecialAttack> ();
-		_specialAttack = characterInfo.specialAttack;
+		_specialAttack = gameObject.GetComponent<SpecialAttack> ();
 	}
 	public void SetKeys(string playerHorizontalAxis,string playerVerticalAxis,string playerActionKey, string playerJumpKey = "Null")
 	{
@@ -93,7 +87,7 @@ public class Player : MonoBehaviour {
 	}
 
 	public void TransformPlayer(string playerTransformerConst){
-		_playerTransformer.TransformCharacter (playerTransformerConst);
+		_playerTransformer.TransformCharacter (this,playerTransformerConst);
 	}
 
 	void MoveLeft()
