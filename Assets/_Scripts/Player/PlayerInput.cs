@@ -50,7 +50,7 @@ public class PlayerInput : MonoBehaviour {
 			if(DownKeyPressed != null)
 				DownKeyPressed();
 		}
-		if(Input.GetAxis(_verticalAxis) > 0 || Input.GetButtonDown(_jumpKey))
+		if(Input.GetButtonDown(_jumpKey))
 		{
 			//send up event
 			if(JumpKeyPressed != null)

@@ -3,7 +3,8 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 	
-
+	public delegate void PlayerDelegate(Player player);
+	public event PlayerDelegate GotKilled;
 
 	//Stats
 	private PlayerTransformer _playerTransformer;
@@ -117,7 +118,6 @@ public class Player : MonoBehaviour {
 			}else{
 				currentAttack = _specialAttack;
 			}
-
 			currentAttack.Attack(this); //geef stats class, player class of gameobject mee zodat de infor gegeven globaal kan blijven.
 		}
 	}
@@ -153,7 +153,9 @@ public class Player : MonoBehaviour {
 	}
 	void GetKilled(){
 		// Die
-		Destroy (gameObject);
+		this.gameObject.SetActive(false);
+		//TODO: spawn kill animation
+		GotKilled(this);
 	}
 
 	void StunTimerEnded(){

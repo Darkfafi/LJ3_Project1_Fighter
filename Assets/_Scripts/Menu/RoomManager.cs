@@ -79,6 +79,7 @@ public class RoomManager : MonoBehaviour {
 			PlayerPrefs.SetString("Horizontal-" + _playerCount, playerControls[0]);
 			PlayerPrefs.SetString("Vertical-" + _playerCount, playerControls[1]);
 			PlayerPrefs.SetString("Action-" + _playerCount, playerControls[2]);
+			PlayerPrefs.SetString("Jump-" + _playerCount, playerControls[3]);
 			ActivatePanel(controls);
 			_playerCount++;
 		}

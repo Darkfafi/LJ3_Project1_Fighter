@@ -28,7 +28,9 @@ GameObject:
   - 61: {fileID: 6199590}
   - 114: {fileID: 11486138}
   - 50: {fileID: 5074308}
+  - 114: {fileID: 11463770}
   - 95: {fileID: 9520236}
+  - 114: {fileID: 11491838}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -107,6 +109,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11463770
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 156962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc0087225e0878049a8bf4f05dd88b02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11486138
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -119,6 +132,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   busyAction: 0
+--- !u!114 &11491838
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 156962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dcf3538eee53f0449f37f70133d72e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpParticles: {fileID: 103408, guid: a4f17bedcf12d214b90ce92db341d167, type: 2}
 --- !u!212 &21224140
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -182,6 +207,10 @@ Prefab:
       propertyPath: m_GravityScale
       value: 2.5
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: jumpParticles
+      value: 
+      objectReference: {fileID: 103408, guid: a4f17bedcf12d214b90ce92db341d167, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 156962}

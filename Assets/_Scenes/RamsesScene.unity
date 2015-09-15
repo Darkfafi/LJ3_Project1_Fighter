@@ -820,7 +820,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentSpawnPoints: []
-  currentItemSpawnPoints: []
   currentPlayers: []
 --- !u!4 &929558375
 Transform:
