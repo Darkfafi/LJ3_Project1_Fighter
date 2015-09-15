@@ -23,10 +23,12 @@ public class Controls : MonoBehaviour {
 		_keyboard01Controls.Add("HorizontalPlayer1"); //0
 		_keyboard01Controls.Add("VerticalPlayer1"); //1
 		_keyboard01Controls.Add("ActionKeyPlayer1"); //2
+		_keyboard01Controls.Add("JumpKeyPlayer1"); //3
 
 		_keyboard02Controls.Add("HorizontalPlayer2"); //0
 		_keyboard02Controls.Add("VerticalPlayer2"); //1
 		_keyboard02Controls.Add("ActionKeyPlayer2"); //2
+		_keyboard02Controls.Add("JumpKeyPlayer2"); // 3
 
 		_joystick01Controls.Add("JoystickHorizontal1"); //0
 		_joystick02Controls.Add("JoystickHorizontal2"); //0

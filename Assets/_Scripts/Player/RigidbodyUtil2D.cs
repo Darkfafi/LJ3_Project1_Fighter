@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class RigidbodyUtil2D : MonoBehaviour {
+	//This util is for pausing the rigidbody velocity etc.
 	private Vector2 _savedVelocity;
 	private float _savedAngularVelocity;
 	private Rigidbody2D _rigidbody;

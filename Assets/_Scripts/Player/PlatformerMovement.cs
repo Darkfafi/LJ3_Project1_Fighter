@@ -22,6 +22,9 @@ public class PlatformerMovement : MonoBehaviour {
 	private bool _inWallSlide = false;
 	private bool _onGround = false;
 
+	// Bool for double jump
+	private bool _doubleJumped = false;
+
 	// Collider variables
 	private BoxCollider2D colliderBox;
 	private Vector2 centerCollider;
@@ -93,6 +96,11 @@ public class PlatformerMovement : MonoBehaviour {
 			//check wich direction you are currently sliding at + add velocity at negative direction.
 			_rigidbody.velocity = new Vector2(-GetPlayerDirection() * jumpForce/2,jumpForce);
 		}
+		else if(!_doubleJumped)
+		{
+			_rigidbody.velocity = new Vector2(0,jumpForce/1.5f);
+			_doubleJumped = true;
+		}
 	}
 
 	public int GetPlayerDirection()
@@ -136,6 +144,7 @@ public class PlatformerMovement : MonoBehaviour {
 			BoxCollider2D objCol = obj.GetComponent<BoxCollider2D>();
 			if(!Physics2D.GetIgnoreCollision(this.colliderBox, objCol)) {
 				_onGround = true;
+				_doubleJumped = false;
 			} 
 
 			_preGround = obj;
@@ -149,6 +158,7 @@ public class PlatformerMovement : MonoBehaviour {
 				BoxCollider2D objCol = obj.GetComponent<BoxCollider2D>();
 				if(!Physics2D.GetIgnoreCollision(this.colliderBox, objCol)) {
 					_inWallSlide = true;
+					_doubleJumped = false;
 				} 
 
 				_preWall = obj;
