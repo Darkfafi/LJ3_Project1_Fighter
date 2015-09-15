@@ -11,12 +11,15 @@ public class PlatformerMovement : MonoBehaviour {
 
 	// public delegates and events
 	public delegate void GameObjectDelegate (GameObject obj);
+	public delegate void NormDelegate ();
 
 	public event GameObjectDelegate LandedOnGround;
 	public event GameObjectDelegate ReleasedFromGround;
 
 	public event GameObjectDelegate StartedWallSlide;
 	public event GameObjectDelegate EndedWallSlde;
+
+	public event NormDelegate Jumped;
 
 	// Current state.
 	private bool _inWallSlide = false;
@@ -90,16 +93,20 @@ public class PlatformerMovement : MonoBehaviour {
 		if(_onGround)
 		{
 			_rigidbody.velocity = new Vector2(0,jumpForce);
+			Jumped();
 		} 
 		else if(_inWallSlide)
 		{
 			//check wich direction you are currently sliding at + add velocity at negative direction.
 			_rigidbody.velocity = new Vector2(-GetPlayerDirection() * jumpForce/2,jumpForce);
+			this.transform.localScale = new Vector3(-this.transform.localScale.x, this.transform.localScale.y, this.transform.localScale.z);
+			Jumped();
 		}
 		else if(!_doubleJumped)
 		{
 			_rigidbody.velocity = new Vector2(0,jumpForce/1.5f);
 			_doubleJumped = true;
+			Jumped();
 		}
 	}
 
