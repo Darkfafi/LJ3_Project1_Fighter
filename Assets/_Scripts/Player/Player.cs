@@ -97,17 +97,6 @@ public class Player : MonoBehaviour {
 		_playerTransformer.TransformCharacter (playerTransformerConst);
 	}
 
-	public void SetSpawn(Transform spawnpoint)
-	{
-		this.transform.position = spawnpoint.position;
-		Invoke("Spawn", GameController.spawnTime);
-	}
-
-	void Spawn()
-	{
-		this.gameObject.SetActive(true);
-	}
-
 	void MoveLeft()
 	{
 		if (!busyAction) {

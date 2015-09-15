@@ -4,8 +4,7 @@ using System.Collections.Generic;
 
 public class GameController : MonoBehaviour {
 	public static bool isPaused = false;
-	public static int spawnTime = 3;
-
+	
 	public delegate void pauseGame();
 	public event pauseGame PauseGame;
 	public event pauseGame ResumeGame;
@@ -17,8 +16,10 @@ public class GameController : MonoBehaviour {
 	private List<GameObject> _currentPlayers = new List<GameObject>();
 	private List<int> _currentPlayerLives = new List<int>();
 
-	//private Dictionary<float, GameObject> _playersToSpawnWithCounter = new Dictionary<float, GameObject>();
-	
+	private Dictionary<float, GameObject> _playersToSpawnWithCounter = new Dictionary<float, GameObject>();
+
+	private int spawnTime = 3; //time to spawn player in seconds
+
 	public void Start()
 	{
 		FindAllSpawnPoints();
@@ -74,11 +75,15 @@ public class GameController : MonoBehaviour {
 				PauseGame();
 			}
 		}
-		/*
 		if(_playersToSpawnWithCounter.Count > 0)
 		{
-			CheckSpawnPlayers();
-		} */
+			//create arrays of _playertospawnwithcounter so we are not itterating
+			List<float> playersSpawnTime = new List<float>(_playersToSpawnWithCounter.Keys);
+			List<GameObject> playersToSpawn = new List<GameObject>(_playersToSpawnWithCounter.Values);
+			for (int i = 0; i < playersToSpawn.Count; i++) {
+				CheckSpawnPlayer(playersSpawnTime[i], playersToSpawn[i]);
+			} 
+		}
 	}
 
 	private void FindAllSpawnPoints()
@@ -96,7 +101,7 @@ public class GameController : MonoBehaviour {
 		_currentPlayerLives[playerIndex] -= 1;
 		if(_currentPlayerLives[playerIndex] != 0)
 		{
-			player.SetSpawn(_currentSpawnPoints[Random.Range(0,_currentSpawnPoints.Count)]);
+			_playersToSpawnWithCounter.Add(spawnTime + Time.time, player.gameObject);
 		} 
 		else 
 		{
@@ -127,18 +132,14 @@ public class GameController : MonoBehaviour {
 		//TODO: generate win screen with player that won
 		Debug.Log("Player: " + playerID + " WON!");
 	}
-
-	/*
-	void CheckSpawnPlayers()
+	
+	void CheckSpawnPlayer(float spawntime, GameObject player)
 	{
-		foreach(KeyValuePair<float, GameObject> player in _playersToSpawnWithCounter)
+		if(spawntime < Time.time)
 		{
-			if(player.Key < Time.time)
-			{
-				player.Value.transform.position = _currentSpawnPoints[Random.Range(0,_currentSpawnPoints.Count)].position;
-				player.Value.SetActive(true);
-				_playersToSpawnWithCounter.Remove(player.Key);
-			}
+			player.transform.position = _currentSpawnPoints[Random.Range(0,_currentSpawnPoints.Count)].position;
+			player.SetActive(true);
+			_playersToSpawnWithCounter.Remove(spawntime);
 		}
-	} */
+	} 
 }
