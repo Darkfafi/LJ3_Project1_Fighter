@@ -819,8 +819,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a8f85d6667abe04a974d27730388682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSpawnPoints: []
-  currentPlayers: []
+  playerPrefab: {fileID: 0}
 --- !u!4 &929558375
 Transform:
   m_ObjectHideFlags: 0

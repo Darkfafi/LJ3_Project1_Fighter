@@ -93,20 +93,26 @@ public class PlatformerMovement : MonoBehaviour {
 		if(_onGround)
 		{
 			_rigidbody.velocity = new Vector2(0,jumpForce);
-			Jumped();
+			if(Jumped != null){
+				Jumped();
+			}
 		} 
 		else if(_inWallSlide)
 		{
 			//check wich direction you are currently sliding at + add velocity at negative direction.
 			_rigidbody.velocity = new Vector2(-GetPlayerDirection() * jumpForce/2,jumpForce);
 			this.transform.localScale = new Vector3(-this.transform.localScale.x, this.transform.localScale.y, this.transform.localScale.z);
-			Jumped();
+			if(Jumped != null){
+				Jumped();
+			}
 		}
 		else if(!_doubleJumped)
 		{
 			_rigidbody.velocity = new Vector2(0,jumpForce/1.5f);
 			_doubleJumped = true;
-			Jumped();
+			if(Jumped != null){
+				Jumped();
+			}
 		}
 	}
 

@@ -41,7 +41,7 @@ public class PlayerFactory {
 			break;
 		case CharDB.CHARACTER02:
 			animatorName = "BirdAnimator";
-			playerObject.AddComponent<ThrowRangedSpecialAttack>();
+			playerObject.AddComponent<SpecialBasicAttack>();
 			break;
 		case CharDB.CHARACTER03:
 			animatorName = "BirdAnimator";
@@ -49,7 +49,7 @@ public class PlayerFactory {
 			break;
 		case CharDB.CHARACTER04:
 			animatorName = "BirdAnimator";
-			playerObject.AddComponent<ThrowRangedSpecialAttack>();
+			playerObject.AddComponent<DeathTouchSpecial>();
 			break;
 		}
 

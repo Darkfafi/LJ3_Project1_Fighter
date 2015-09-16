@@ -64,7 +64,7 @@ public class BasicStunAttack : AttackBase {
 				}else{
 					Hit(gObject,_hitPowerForce);
 					if(gObject.GetComponent<Rigidbody2D>()){
-						gObject.GetComponent<Rigidbody2D>().velocity += gameObject.GetComponent<Rigidbody2D>().velocity.normalized * _player.playerStats.pushPower;
+						gObject.GetComponent<Rigidbody2D>().velocity += gameObject.GetComponent<Rigidbody2D>().velocity.normalized * (_player.playerStats.pushPower * 0.8f);
 					}
 					StopAttacking();
 				}
@@ -77,7 +77,8 @@ public class BasicStunAttack : AttackBase {
 	}
 
 	public void StopAttacking(){
-		rigidBody.velocity = new Vector2(0f,0f);
+		//rigidBody.velocity = new Vector2(0f,0f);
+		rigidBody.velocity = rigidBody.velocity / 2;
 		rigidBody.gravityScale = _oldGravityScale;
 		SetAttacking(false);
 		_hitPowerForce = 0;
