@@ -63,6 +63,7 @@ public class Player : MonoBehaviour {
 		_myPlayerInput.JumpKeyPressed += Jump;
 		_myPlayerInput.DownKeyPressed += FallDown;
 		_myPlayerInput.ActionKeyPressed += DoAction;
+		_myPlayerInput.NoKeyPressed += OnNoKeyPressed;
 	}
 
 	// Movement
@@ -71,7 +72,9 @@ public class Player : MonoBehaviour {
 	{
 		if (!busyAction) {
 			_myPlatformerMovement.MoveHorizontal (PlatformerMovement.DIR_RIGHT, _playerStats.movementSpeed);
-			//_playerAnimHandler.PlayAnimation("Run");
+			if(_myPlatformerMovement.onGround){
+				_playerAnimHandler.PlayAnimation("Run");
+			}
 		}
 	}
 
@@ -97,7 +100,14 @@ public class Player : MonoBehaviour {
 	{
 		if (!busyAction) {
 			_myPlatformerMovement.MoveHorizontal(PlatformerMovement.DIR_LEFT, playerStats.movementSpeed);
-			//_playerAnimHandler.PlayAnimation("Run");
+			if(_myPlatformerMovement.onGround){
+				_playerAnimHandler.PlayAnimation("Run");
+			}
+		}
+	}
+	void OnNoKeyPressed(){
+		if (!busyAction && _myPlatformerMovement.onGround) {
+			_playerAnimHandler.PlayAnimation("Idle");
 		}
 	}
 	void Jump()
