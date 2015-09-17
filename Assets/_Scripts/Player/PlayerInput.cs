@@ -9,6 +9,7 @@ public class PlayerInput : MonoBehaviour {
 	public event KeyPressed LeftKeyPressed;
 	public event KeyPressed DownKeyPressed;
 	public event KeyPressed ActionKeyPressed;
+	public event KeyPressed NoKeyPressed;
 
 	private string _horizontalAxis;
 	private string _verticalAxis;
@@ -32,21 +33,25 @@ public class PlayerInput : MonoBehaviour {
 
 	private void Inputs()
 	{
+		bool aKeyIsPressed = false;
 		if(Input.GetAxis(_horizontalAxis) > 0)
 		{
 			//send right event
+			aKeyIsPressed = true;
 			if(RightKeyPressed != null)
 				RightKeyPressed();
 		} 
 		else if(Input.GetAxis(_horizontalAxis) < 0)
 		{
 			//send left event
+			aKeyIsPressed = true;
 			if(LeftKeyPressed != null)
 				LeftKeyPressed();
 		}
 		if(Input.GetAxis(_verticalAxis) < 0)
 		{
 			//send down event
+			aKeyIsPressed = true;
 			if(DownKeyPressed != null)
 				DownKeyPressed();
 		}
@@ -60,8 +65,14 @@ public class PlayerInput : MonoBehaviour {
 		if(Input.GetButtonDown(_actionKey))
 		{
 			//send action event
+			aKeyIsPressed = true;
 			if(ActionKeyPressed != null)
 					ActionKeyPressed();
+		}
+		if(!aKeyIsPressed)
+		{
+			if(NoKeyPressed != null)
+				NoKeyPressed();
 		}
 	}
 }
