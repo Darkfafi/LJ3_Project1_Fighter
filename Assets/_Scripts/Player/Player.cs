@@ -64,6 +64,8 @@ public class Player : MonoBehaviour {
 		_myPlayerInput.DownKeyPressed += FallDown;
 		_myPlayerInput.ActionKeyPressed += DoAction;
 		_myPlayerInput.NoKeyPressed += OnNoKeyPressed;
+
+		_myPlatformerMovement.ReleasedFromGround += ReleasedGround;
 	}
 
 	// Movement
@@ -114,8 +116,26 @@ public class Player : MonoBehaviour {
 	{
 		if (!busyAction) {
 			_myPlatformerMovement.Jump(_playerStats.jumpForce);
+			_playerAnimHandler.PlayAnimation("Jump");
 		}
 	}
+
+	void ReleasedGround(GameObject obj){
+		if (!busyAction) {
+			if (rigidBody.velocity.y > 0) {
+				_playerAnimHandler.PlayAnimation ("Jump");
+			}
+		}
+	}
+
+	void Update(){
+		if (!busyAction && !_myPlatformerMovement.onGround && !_myPlatformerMovement.inWallSlide) {
+			if (rigidBody.velocity.y < -0.2) {
+				_playerAnimHandler.PlayAnimation ("Fall");
+			}
+		}
+	}
+
 	void FallDown()
 	{
 		if (!busyAction) {
@@ -155,6 +175,7 @@ public class Player : MonoBehaviour {
 	}
 
 	void GetStunned(float stunPower){
+		_playerAnimHandler.PlayAnimation("Stunned");
 		_stunTimer = new Timer ((int)(500 * stunPower));
 		_stunTimer.TimerEnded += StunTimerEnded;
 		_stunTimer.Start ();
