@@ -3,6 +3,8 @@ using System.Collections;
 
 public class DeathTouchSpecial : SpecialAttack {
 
+	private float _attackRange = 0.1f;
+
 	protected override void OnAttack (Player player)
 	{
 		RaycastHit2D hit;
@@ -14,7 +16,7 @@ public class DeathTouchSpecial : SpecialAttack {
 
 		Vector2 startRay = new Vector2 (transform.position.x + dist, transform.position.y); 
 
-		hit = Physics2D.Raycast (startRay,new Vector2(dir,0),0.1f);
+		hit = Physics2D.Raycast (startRay,new Vector2(dir,0),_attackRange);
 
 		if (hit.collider != null && hit.collider.gameObject.GetComponent<AttackCather> () != null) {
 			hit.collider.gameObject.GetComponent<AttackCather> ().CatchAttack (this.gameObject,STUN_POWER_KILL, 0);

@@ -11,6 +11,7 @@ public class PlayerFactory {
 		Animator anim;
 		string animatorName = "";
 		SpriteRenderer spr;
+		BoxCollider2D boxCollider;
 
 
 		//* Placeholder art
@@ -26,8 +27,12 @@ public class PlayerFactory {
 		rb2D.freezeRotation = true;
 
 		anim = playerObject.AddComponent<Animator> ();
+		anim.speed = 5;
 
-		playerObject.AddComponent<BoxCollider2D> ();
+		boxCollider = playerObject.AddComponent<BoxCollider2D> ();
+
+		boxCollider.offset = new Vector2 (-0.01f, -0.06f);
+		boxCollider.size = new Vector2 (0.74f, 1.86f);
 
 		player = playerObject.AddComponent<Player> ();
 

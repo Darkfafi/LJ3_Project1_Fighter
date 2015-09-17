@@ -15,10 +15,11 @@ public class PlayerAnimationHandler : MonoBehaviour {
 
 	public void PlayAnimation(string animationName){
 		string addOnString = "";
-		Debug.Log("Gaat best goed Romar, hoe gaat het met jou?");
-		if (playerStats.transformed) {
-			addOnString = "Transform";
+		if (animationName != "") {
+			if (playerStats.transformed) {
+				addOnString = "Transform";
+			}
+			animator.Play (addOnString + animationName);
 		}
-		animator.Play (addOnString + animationName);
 	}
 }

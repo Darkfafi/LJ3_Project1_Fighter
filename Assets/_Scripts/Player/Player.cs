@@ -32,8 +32,9 @@ public class Player : MonoBehaviour {
 
 	// Utils
 	private PlatformerMovement _myPlatformerMovement;
-	
 	private PlayerAnimationHandler _playerAnimHandler;
+
+	private Rigidbody2D rigidBody;
 
 	void Awake()
 	{
@@ -47,7 +48,7 @@ public class Player : MonoBehaviour {
 		_playerTransformer = gameObject.AddComponent<PlayerTransformer> ();
 		gameObject.AddComponent<TouchDetector2D> ();
 		gameObject.AddComponent<LandOnTopKill> ();
-
+		rigidBody = gameObject.GetComponent<Rigidbody2D> ();
 		_playerAnimHandler = gameObject.AddComponent<PlayerAnimationHandler> ();
 
 		_attackCatcher.OnStunAttackCatch += OnStunHit;
@@ -70,6 +71,7 @@ public class Player : MonoBehaviour {
 	{
 		if (!busyAction) {
 			_myPlatformerMovement.MoveHorizontal (PlatformerMovement.DIR_RIGHT, _playerStats.movementSpeed);
+			//_playerAnimHandler.PlayAnimation("Run");
 		}
 	}
 
@@ -95,6 +97,7 @@ public class Player : MonoBehaviour {
 	{
 		if (!busyAction) {
 			_myPlatformerMovement.MoveHorizontal(PlatformerMovement.DIR_LEFT, playerStats.movementSpeed);
+			//_playerAnimHandler.PlayAnimation("Run");
 		}
 	}
 	void Jump()
