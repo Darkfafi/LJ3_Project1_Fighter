@@ -15,8 +15,11 @@ public class GameController : MonoBehaviour {
 	private List<int> _currentPlayerLives = new List<int>();
 
 	private Dictionary<float, GameObject> _playersToSpawnWithCounter = new Dictionary<float, GameObject>();
+	private Dictionary<int, Player> _playerKills = new Dictionary<int, Player>(); //to store the kills made by wich player
 
 	private int spawnTime = 3; //time to spawn player in seconds
+	private int playerLives; //stocks
+	private int playTime; //for when time game mode is added
 
 	private float _levelBorderMinY = -10f;
 	private float _levelBorderMaxY = 10f;
@@ -27,9 +30,24 @@ public class GameController : MonoBehaviour {
 	public void Start()
 	{
 		FindAllSpawnPoints();
+		InitGameMode();
 		InitializePlayers();
 	}
-
+	private void InitGameMode()
+	{
+		string gameMode = PlayerPrefs.GetString("GameMode");
+		int modeValue = PlayerPrefs.GetInt("ModeValue");
+		spawnTime = PlayerPrefs.GetInt("SpawnTime");
+		if(gameMode == "Stock")
+		{
+			playerLives = modeValue;
+		} 
+		else 
+		{
+			playTime = modeValue;
+			playerLives = 255; //game mode fixes need to come till this can go away
+		}
+	}
 	private void InitializePlayers()
 	{
 		//Retrieving game information
@@ -57,7 +75,7 @@ public class GameController : MonoBehaviour {
 			newPlayerScript.SetKeys(playerHorizontalAxis,playerVerticalAxis,playerActionKey, playerJumpKey);
 			newPlayerScript.GotKilled += PlayerDied;
 			_currentPlayers.Add(newPlayer);
-			_currentPlayerLives.Add(3);
+			_currentPlayerLives.Add(playerLives);
 		}
 		//positioning players
 		for (int i = 0; i < _currentPlayers.Count; i++) 
