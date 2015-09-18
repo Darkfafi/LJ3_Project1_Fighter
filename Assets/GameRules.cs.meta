@@ -1,11 +1,10 @@
 fileFormatVersion: 2
-guid: eaaaf3646950f0247b553b56809b6ecf
-timeCreated: 1442567142
+guid: 88432e3a0977eb1488bb6fa607e72a1f
+timeCreated: 1442579074
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences:
-  - bouncyMaterial: {fileID: 6200000, guid: db01385d84879f14e95f64cb31dc07ed, type: 2}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

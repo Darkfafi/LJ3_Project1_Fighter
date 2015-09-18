@@ -12,7 +12,7 @@ GameObject:
   - 199: {fileID: 19942140}
   - 114: {fileID: 11461262}
   m_Layer: 0
-  m_Name: JumpTestParticleSystem
+  m_Name: placeholderparticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
