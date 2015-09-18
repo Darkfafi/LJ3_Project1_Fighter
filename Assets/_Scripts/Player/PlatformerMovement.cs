@@ -57,7 +57,7 @@ public class PlatformerMovement : MonoBehaviour {
 		touch.TouchStarted += TouchDetectionStart;
 		touch.TouchEnded += TouchDetectionEnd;
 	}
-	public void DoNothing()
+	public void StopRunning()
 	{
 		_isRunning = false;
 	}

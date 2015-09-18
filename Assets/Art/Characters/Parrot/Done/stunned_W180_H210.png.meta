@@ -1,0 +1,605 @@
+fileFormatVersion: 2
+guid: b24c757537fa21847be686ab8c707692
+timeCreated: 1442515796
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: stunned_W180_H210_0
+    21300002: stunned_W180_H210_1
+    21300004: stunned_W180_H210_2
+    21300006: stunned_W180_H210_3
+    21300008: stunned_W180_H210_4
+    21300010: stunned_W180_H210_5
+    21300012: stunned_W180_H210_6
+    21300014: stunned_W180_H210_7
+    21300016: stunned_W180_H210_8
+    21300018: stunned_W180_H210_9
+    21300020: stunned_W180_H210_10
+    21300022: stunned_W180_H210_11
+    21300024: stunned_W180_H210_12
+    21300026: stunned_W180_H210_13
+    21300028: stunned_W180_H210_14
+    21300030: stunned_W180_H210_15
+    21300032: stunned_W180_H210_16
+    21300034: stunned_W180_H210_17
+    21300036: stunned_W180_H210_18
+    21300038: stunned_W180_H210_19
+    21300040: stunned_W180_H210_20
+    21300042: stunned_W180_H210_21
+    21300044: stunned_W180_H210_22
+    21300046: stunned_W180_H210_23
+    21300048: stunned_W180_H210_24
+    21300050: stunned_W180_H210_25
+    21300052: stunned_W180_H210_26
+    21300054: stunned_W180_H210_27
+    21300056: stunned_W180_H210_28
+    21300058: stunned_W180_H210_29
+    21300060: stunned_W180_H210_30
+    21300062: stunned_W180_H210_31
+    21300064: stunned_W180_H210_32
+    21300066: stunned_W180_H210_33
+    21300068: stunned_W180_H210_34
+    21300070: stunned_W180_H210_35
+    21300072: stunned_W180_H210_36
+    21300074: stunned_W180_H210_37
+    21300076: stunned_W180_H210_38
+    21300078: stunned_W180_H210_39
+    21300080: stunned_W180_H210_40
+    21300082: stunned_W180_H210_41
+    21300084: stunned_W180_H210_42
+    21300086: stunned_W180_H210_43
+    21300088: stunned_W180_H210_44
+    21300090: stunned_W180_H210_45
+    21300092: stunned_W180_H210_46
+    21300094: stunned_W180_H210_47
+    21300096: stunned_W180_H210_48
+    21300098: stunned_W180_H210_49
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 4096
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: stunned_W180_H210_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 937
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_1
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 937
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_2
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 937
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_3
+      rect:
+        serializedVersion: 2
+        x: 555
+        y: 937
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_4
+      rect:
+        serializedVersion: 2
+        x: 740
+        y: 937
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_5
+      rect:
+        serializedVersion: 2
+        x: 925
+        y: 937
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_6
+      rect:
+        serializedVersion: 2
+        x: 1110
+        y: 937
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_7
+      rect:
+        serializedVersion: 2
+        x: 1295
+        y: 937
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_8
+      rect:
+        serializedVersion: 2
+        x: 1480
+        y: 937
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_9
+      rect:
+        serializedVersion: 2
+        x: 1665
+        y: 937
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_10
+      rect:
+        serializedVersion: 2
+        x: 1850
+        y: 937
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 726
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_12
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 726
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_13
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 726
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_14
+      rect:
+        serializedVersion: 2
+        x: 555
+        y: 726
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_15
+      rect:
+        serializedVersion: 2
+        x: 740
+        y: 726
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_16
+      rect:
+        serializedVersion: 2
+        x: 925
+        y: 726
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_17
+      rect:
+        serializedVersion: 2
+        x: 1110
+        y: 726
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_18
+      rect:
+        serializedVersion: 2
+        x: 1295
+        y: 726
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_19
+      rect:
+        serializedVersion: 2
+        x: 1480
+        y: 726
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_20
+      rect:
+        serializedVersion: 2
+        x: 1665
+        y: 726
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_21
+      rect:
+        serializedVersion: 2
+        x: 1850
+        y: 726
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_22
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 515
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_23
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 515
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_24
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 515
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_25
+      rect:
+        serializedVersion: 2
+        x: 555
+        y: 515
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_26
+      rect:
+        serializedVersion: 2
+        x: 740
+        y: 515
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_27
+      rect:
+        serializedVersion: 2
+        x: 925
+        y: 515
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_28
+      rect:
+        serializedVersion: 2
+        x: 1110
+        y: 515
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_29
+      rect:
+        serializedVersion: 2
+        x: 1295
+        y: 515
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_30
+      rect:
+        serializedVersion: 2
+        x: 1480
+        y: 515
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_31
+      rect:
+        serializedVersion: 2
+        x: 1665
+        y: 515
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_32
+      rect:
+        serializedVersion: 2
+        x: 1850
+        y: 515
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_33
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 304
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_34
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 304
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_35
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 304
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_36
+      rect:
+        serializedVersion: 2
+        x: 555
+        y: 304
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_37
+      rect:
+        serializedVersion: 2
+        x: 740
+        y: 304
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_38
+      rect:
+        serializedVersion: 2
+        x: 925
+        y: 304
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_39
+      rect:
+        serializedVersion: 2
+        x: 1110
+        y: 304
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_40
+      rect:
+        serializedVersion: 2
+        x: 1295
+        y: 304
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_41
+      rect:
+        serializedVersion: 2
+        x: 1480
+        y: 304
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_42
+      rect:
+        serializedVersion: 2
+        x: 1665
+        y: 304
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_43
+      rect:
+        serializedVersion: 2
+        x: 1850
+        y: 304
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_44
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 93
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_45
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 93
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_46
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 93
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_47
+      rect:
+        serializedVersion: 2
+        x: 555
+        y: 93
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_48
+      rect:
+        serializedVersion: 2
+        x: 740
+        y: 93
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stunned_W180_H210_49
+      rect:
+        serializedVersion: 2
+        x: 925
+        y: 93
+        width: 180
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
