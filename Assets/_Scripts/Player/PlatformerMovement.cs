@@ -39,6 +39,7 @@ public class PlatformerMovement : MonoBehaviour {
 	private GameObject _preGround;
 	private GameObject _prePlatform;
 	private GameObject _preWall;
+	private float _oldGravityScale;
 
 	//Physics
 	private Rigidbody2D _rigidbody;
@@ -56,10 +57,23 @@ public class PlatformerMovement : MonoBehaviour {
 		touch = gameObject.GetComponent<TouchDetector2D> ();
 		touch.TouchStarted += TouchDetectionStart;
 		touch.TouchEnded += TouchDetectionEnd;
+
+		StartedWallSlide += StartSliding;
+		EndedWallSlde += StopSliding;
+		_oldGravityScale = _rigidbody.gravityScale;
 	}
 	public void StopRunning()
 	{
 		_isRunning = false;
+	}
+	public void StartSliding(GameObject obj)
+	{
+		_rigidbody.gravityScale = 0f;
+		_rigidbody.velocity = new Vector2(0,-1);
+	}
+	public void StopSliding(GameObject obj)
+	{
+		_rigidbody.gravityScale = _oldGravityScale;
 	}
 	public void MoveHorizontal(int directionConst, float moveSpeed){
 
