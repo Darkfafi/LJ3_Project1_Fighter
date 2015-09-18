@@ -2,6 +2,9 @@
 using System.Collections;
 using UnityEngine.UI;
 public class GameRules : MonoBehaviour {
+	public static string STOCKMODE = "Stock";
+	public static string TIMEMODE = "Time";
+
 	private string _gameMode = "Stock";
 
 	public Slider modeSlider;
@@ -13,13 +16,13 @@ public class GameRules : MonoBehaviour {
 
 	public void SwitchGameMode() //for when the time game mode is implemented
 	{
-		if(_gameMode == "Stock")
+		if(_gameMode == STOCKMODE)
 		{
-			_gameMode = "Time";
+			_gameMode = TIMEMODE;
 			modeSlider.minValue = 3;
 			modeSlider.maxValue = 10;
 		} else {
-			_gameMode = "Stock";
+			_gameMode = STOCKMODE;
 			modeSlider.minValue = 3;
 			modeSlider.maxValue = 7;
 		}

@@ -30,23 +30,25 @@ public class GameController : MonoBehaviour {
 	public void Start()
 	{
 		FindAllSpawnPoints();
-		InitGameMode();
-		InitializePlayers();
+		InitGame();
 	}
-	private void InitGameMode()
+	private void InitGame()
 	{
 		string gameMode = PlayerPrefs.GetString("GameMode");
 		int modeValue = PlayerPrefs.GetInt("ModeValue");
 		spawnTime = PlayerPrefs.GetInt("SpawnTime");
-		if(gameMode == "Stock")
+		//Setup if gamemodes are still being added
+		if(gameMode == GameRules.STOCKMODE) 
 		{
 			playerLives = modeValue;
-		} 
+		}
 		else 
 		{
 			playTime = modeValue;
-			playerLives = 255; //game mode fixes need to come till this can go away
+			playerLives = 255;
 		}
+		//init players
+		InitializePlayers();
 	}
 	private void InitializePlayers()
 	{
@@ -113,6 +115,7 @@ public class GameController : MonoBehaviour {
 				if(player.transform.position.y < _levelBorderMinY || player.transform.position.y > _levelBorderMaxY || player.transform.position.x > _levelBorderMaxX || player.transform.position.x < _levelBorderMinX)
 				{
 					player.SetActive(false);
+					player.transform.position = new Vector3(0,0,0); //reset pos
 					PlayerDied(player.GetComponent<Player>());
 				}
 			}
