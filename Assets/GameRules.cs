@@ -2,39 +2,37 @@
 using System.Collections;
 using UnityEngine.UI;
 public class GameRules : MonoBehaviour {
-	public static string STOCKMODE = "Stock";
-	public static string TIMEMODE = "Time";
-
-	private string _gameMode = "Stock";
-
-	public Slider modeSlider;
+	public Slider stockSlider;
 	public Slider spawnTimeSlider;
-
-	public Text buttonText;
-	public Text modeValueText;
+	public Slider timeSlider;
+	
+	public Text stockValueText;
 	public Text spawnTimeText;
+	public Text timeValueText;
 
-	public void SwitchGameMode() //for when the time game mode is implemented
+	public void OnStockSliderChange()
 	{
-		if(_gameMode == STOCKMODE)
+		int stockValue = (int)stockSlider.value;
+		stockValueText.text = stockValue.ToString();
+		PlayerPrefs.SetInt("StockValue", stockValue);
+		if(stockValue == 0)
 		{
-			_gameMode = TIMEMODE;
-			modeSlider.minValue = 3;
-			modeSlider.maxValue = 10;
+			timeSlider.minValue = 3;
 		} else {
-			_gameMode = STOCKMODE;
-			modeSlider.minValue = 3;
-			modeSlider.maxValue = 7;
+			timeSlider.minValue = 0;
 		}
-		buttonText.text = _gameMode;
-		PlayerPrefs.SetString("GameMode", _gameMode);
 	}
-
-	public void OnModeSliderChange()
+	public void OnTimeSliderChange()
 	{
-		int modeValue = (int)modeSlider.value;
-		modeValueText.text = modeValue.ToString();
-		PlayerPrefs.SetInt("ModeValue", modeValue);
+		int timeValue = (int)timeSlider.value;
+		timeValueText.text = timeValue.ToString();
+		PlayerPrefs.SetInt("TimeValue", timeValue);
+		if(timeValue == 0)
+		{
+			stockSlider.minValue = 3;
+		} else {
+			stockSlider.minValue = 0;
+		} 
 	}
 	public void OnSpawnTimeSliderChange()
 	{

@@ -35,18 +35,15 @@ public class GameController : MonoBehaviour {
 	private void InitGame()
 	{
 		string gameMode = PlayerPrefs.GetString("GameMode");
-		int modeValue = PlayerPrefs.GetInt("ModeValue");
+		int stockValue = PlayerPrefs.GetInt("StockValue");
+		if(stockValue != 0)
+			playerLives = stockValue;
+		int timeValue = PlayerPrefs.GetInt("TimeValue");
+		if(timeValue != 0)
+			playTime = timeValue;
 		spawnTime = PlayerPrefs.GetInt("SpawnTime");
-		//Setup if gamemodes are still being added
-		if(gameMode == GameRules.STOCKMODE) 
-		{
-			playerLives = modeValue;
-		}
-		else 
-		{
-			playTime = modeValue;
-			playerLives = 255;
-		}
+
+
 		//init players
 		InitializePlayers();
 	}
