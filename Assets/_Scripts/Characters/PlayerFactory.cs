@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerFactory {
 
-	public static GameObject CreatePlayer(string playerConstString){
+	public static GameObject CreatePlayer(string playerConstString, int playerID){
 
 		GameObject playerObject = new GameObject ();
 		Rigidbody2D rb2D;
@@ -58,10 +58,28 @@ public class PlayerFactory {
 			break;
 		}
 
+		PlayerArrow newPlayerArrow = playerObject.AddComponent<PlayerArrow>();
+		newPlayerArrow.Init();
+
+		switch(playerID)
+		{
+		case 0:
+			newPlayerArrow.SetColor(Color.red);
+			break;
+		case 1:
+			newPlayerArrow.SetColor(Color.blue);
+			break;
+		case 2:
+			newPlayerArrow.SetColor(Color.yellow);
+			break;
+		case 3:
+			newPlayerArrow.SetColor(Color.green);
+			break;
+		}
+
 		anim.runtimeAnimatorController = Resources.Load ("Animators/Players/" + animatorName) as RuntimeAnimatorController;
 
 		player.SetCharacter (playerConstString);
-
 		return playerObject;
 	}
 }

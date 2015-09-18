@@ -5,6 +5,8 @@ public class SpecialItem : MonoBehaviour {
 	public delegate void NormDelegate();
 	public event NormDelegate StartBall;
 
+	public PhysicsMaterial2D bouncyMaterial;
+
 	private float _hitsTillBreak;
 	// Use this for initialization
 	void Start () {
@@ -19,7 +21,9 @@ public class SpecialItem : MonoBehaviour {
 	}
 	void AddCollider()
 	{
-		gameObject.AddComponent<CircleCollider2D>();
+		Collider2D col = gameObject.AddComponent<CircleCollider2D>();
+		col.sharedMaterial = bouncyMaterial;
+
 	}
 	void GetHit (float stunPower, GameObject objHitBy, float pushPower) {
 		_hitsTillBreak--;

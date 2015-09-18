@@ -8,15 +8,6 @@ public class GameController : MonoBehaviour {
 	public delegate void pauseGame();
 	public event pauseGame PauseGame;
 	public event pauseGame ResumeGame;
-/*
-<<<<<<< HEAD
-	public List<Transform> currentSpawnPoints = new List<Transform>();
-	public List<Transform> currentItemSpawnPoints = new List<Transform>();
-	public List<GameObject> currentPlayers = new List<GameObject>();
-
-	private GameObject _playerPrefab;
-=======*/
-	public GameObject playerPrefab;
 	
 	private List<Transform> _currentSpawnPoints = new List<Transform>();
 
@@ -26,7 +17,12 @@ public class GameController : MonoBehaviour {
 	private Dictionary<float, GameObject> _playersToSpawnWithCounter = new Dictionary<float, GameObject>();
 
 	private int spawnTime = 3; //time to spawn player in seconds
-//>>>>>>> 338f85501a24b9461556d4649ed9137bbffd84d8
+
+	private float _levelBorderMinY = -10f;
+	private float _levelBorderMaxY = 10f;
+	private float _levelBorderMinX = -10f;
+	private float _levelBorderMaxX = 10f;
+
 
 	public void Start()
 	{
@@ -53,7 +49,7 @@ public class GameController : MonoBehaviour {
 			playerJumpKey = PlayerPrefs.GetString("Jump-" + i);
 			
 			//spawnplayer
-			GameObject newPlayer = PlayerFactory.CreatePlayer(playerCharacter);//Instantiate(playerPrefab,new Vector3(0,0,0), Quaternion.identity) as GameObject;
+			GameObject newPlayer = PlayerFactory.CreatePlayer(playerCharacter, i);
 			Player newPlayerScript = newPlayer.GetComponent<Player>();
 			
 			//add player information
@@ -83,14 +79,25 @@ public class GameController : MonoBehaviour {
 				PauseGame();
 			}
 		}
-		if(_playersToSpawnWithCounter.Count > 0)
+		if(!isPaused)
 		{
-			//create arrays of _playertospawnwithcounter so we are not itterating
-			List<float> playersSpawnTime = new List<float>(_playersToSpawnWithCounter.Keys);
-			List<GameObject> playersToSpawn = new List<GameObject>(_playersToSpawnWithCounter.Values);
-			for (int i = 0; i < playersToSpawn.Count; i++) {
-				CheckSpawnPlayer(playersSpawnTime[i], playersToSpawn[i]);
-			} 
+			if(_playersToSpawnWithCounter.Count > 0)
+			{
+				//create arrays of _playertospawnwithcounter so we are not itterating
+				List<float> playersSpawnTime = new List<float>(_playersToSpawnWithCounter.Keys);
+				List<GameObject> playersToSpawn = new List<GameObject>(_playersToSpawnWithCounter.Values);
+				for (int i = 0; i < playersToSpawn.Count; i++) {
+					CheckSpawnPlayer(playersSpawnTime[i], playersToSpawn[i]);
+				} 
+			}
+			foreach(GameObject player in _currentPlayers)
+			{
+				if(player.transform.position.y < _levelBorderMinY || player.transform.position.y > _levelBorderMaxY || player.transform.position.x > _levelBorderMaxX || player.transform.position.x < _levelBorderMinX)
+				{
+					player.SetActive(false);
+					PlayerDied(player.GetComponent<Player>());
+				}
+			}
 		}
 	}
 

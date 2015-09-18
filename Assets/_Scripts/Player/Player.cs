@@ -13,6 +13,7 @@ public class Player : MonoBehaviour {
 	private PlayerStats _playerStats = new PlayerStats (5f, 10f, 2f, 5f, 10f, 10f); // set all base stats
 
 	public bool busyAction = false; 
+	
 
 	// Combat
 	private BasicStunAttack _basicAttack;
@@ -38,6 +39,7 @@ public class Player : MonoBehaviour {
 
 	void Awake()
 	{
+		this.transform.tag = Tags.PLAYER;
 
 		_myPlayerInput = gameObject.AddComponent<PlayerInput>();
 		_myPlatformerMovement = gameObject.AddComponent<PlatformerMovement>();
@@ -51,6 +53,8 @@ public class Player : MonoBehaviour {
 		rigidBody = gameObject.GetComponent<Rigidbody2D> ();
 		_playerAnimHandler = gameObject.AddComponent<PlayerAnimationHandler> ();
 
+		gameObject.AddComponent<PlayerEffects>();
+
 		_attackCatcher.OnStunAttackCatch += OnStunHit;
 		_attackCatcher.OnStunKillAttackCatch += OnStunKillHit; // if Jump on my head hit while in stun
 		_attackCatcher.OnKillAttackCatch += OnKillHit;
@@ -63,9 +67,15 @@ public class Player : MonoBehaviour {
 		_myPlayerInput.JumpKeyPressed += Jump;
 		_myPlayerInput.DownKeyPressed += FallDown;
 		_myPlayerInput.ActionKeyPressed += DoAction;
+		_myPlayerInput.NoKeyPressed += DoNothing;
 	}
 
 	// Movement
+
+	void DoNothing()
+	{
+		_myPlatformerMovement.DoNothing();
+	}
 
 	void MoveRight()
 	{
@@ -81,6 +91,7 @@ public class Player : MonoBehaviour {
 		_playerTransformer.transformStats = characterInfo.transformationStatsBuff;
 		_specialAttack = gameObject.GetComponent<SpecialAttack> ();
 	}
+
 	public void SetKeys(string playerHorizontalAxis,string playerVerticalAxis,string playerActionKey, string playerJumpKey = "Null")
 	{
 		_horizontalAxis = playerHorizontalAxis;

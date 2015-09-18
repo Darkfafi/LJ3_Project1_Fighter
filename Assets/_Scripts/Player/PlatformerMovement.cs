@@ -20,10 +20,12 @@ public class PlatformerMovement : MonoBehaviour {
 	public event GameObjectDelegate EndedWallSlde;
 
 	public event NormDelegate Jumped;
+	public event NormDelegate StartRunning;
 
 	// Current state.
 	private bool _inWallSlide = false;
 	private bool _onGround = false;
+	private bool _isRunning = false;
 
 	// Bool for double jump
 	private bool _doubleJumped = false;
@@ -55,10 +57,26 @@ public class PlatformerMovement : MonoBehaviour {
 		touch.TouchStarted += TouchDetectionStart;
 		touch.TouchEnded += TouchDetectionEnd;
 	}
+	public void DoNothing()
+	{
+		_isRunning = false;
+	}
 	public void MoveHorizontal(int directionConst, float moveSpeed){
 
 		if (transform.localScale.x != directionConst * Mathf.Abs(transform.localScale.x)) {
 			transform.localScale = new Vector3 (directionConst * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+			if(_onGround)
+			{
+				if(StartRunning != null)
+					StartRunning();
+			}
+		}
+
+		if(!_isRunning && _onGround)
+		{
+			if(StartRunning != null)
+				StartRunning();
+			_isRunning = true;
 		}
 
 		if (!touch.IsTouchingSide(new Vector2(directionConst,0))) {
