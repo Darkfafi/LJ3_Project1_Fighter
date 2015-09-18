@@ -10,22 +10,38 @@ public class AllFollowCamera : MonoBehaviour {
 	
 	private float boundingBoxPadding = 1f;
 	
-	private float minimumOrthographicSize = 5f;
+	private float minimumOrthographicSize = 4.5f;
 
 	private float zoomSpeed = 20f;
 
-	private Rect _screenBoundSize;
+	private float _originalSizeCam;
 
-	private GameObject _screenBoundGo;
+	private GameObject _boundsRepGo;
+	
+	private float _boundLeftLocation;
+	private float _boundRightLocation;
+	private float _boundTopLocation;
+	private float _boundBottomLocation;
 
-	Camera camera;
 
+	Camera _camera;
 	void Awake()
 	{
-		camera = GetComponent<Camera>();
-		camera.orthographic = true;
-	//	_screenBoundGo = GameObject.FindGameObjectsWithTag (Tags.SCREEN_BOUND_OBJECT);
-	//	_screenBoundSize = new Rect (0, 0, _screenBoundGo.GetComponent<SpriteRenderer> ().bounds.size.x,_screenBoundGo.GetComponent<SpriteRenderer>().bounds.size.y);
+		SpriteRenderer rndr;
+
+		_camera = GetComponent<Camera>();
+		_camera.orthographic = true;
+
+		_originalSizeCam = _camera.orthographicSize;
+
+		_boundsRepGo = GameObject.FindGameObjectWithTag (Tags.SCREEN_BOUND_OBJECT);
+		
+		rndr = _boundsRepGo.gameObject.GetComponent<SpriteRenderer> ();
+		
+		_boundRightLocation = _boundsRepGo.transform.position.x + ((rndr.bounds.size.x * _boundsRepGo.transform.localScale.x) / 2);
+		_boundLeftLocation = _boundsRepGo.transform.position.x - ((rndr.bounds.size.x * _boundsRepGo.transform.localScale.x) / 2);
+		_boundTopLocation = _boundsRepGo.transform.position.y + ((rndr.bounds.size.y * _boundsRepGo.transform.localScale.y) / 2);
+		_boundBottomLocation = _boundsRepGo.transform.position.y - ((rndr.bounds.size.y * _boundsRepGo.transform.localScale.y) / 2);
 	}
 
 	void LateUpdate()
@@ -36,9 +52,9 @@ public class AllFollowCamera : MonoBehaviour {
 		}
 
 		Rect boundingBox = CalculatePlayersBoundingBox();
-
-		transform.position = CalculateCameraPosition(boundingBox);
-		camera.orthographicSize = CalculateOrthographicSize(boundingBox);
+		//transform.position = CalculateCameraPosition(boundingBox);
+		_camera.orthographicSize = CalculateOrthographicSize(boundingBox);
+		CorrectCameraPlacement (CalculateCameraPosition(boundingBox));
 	}
 
 	Rect CalculatePlayersBoundingBox()
@@ -67,30 +83,48 @@ public class AllFollowCamera : MonoBehaviour {
 	Vector3 CalculateCameraPosition (Rect boundingBox)
 	{
 		Vector2 boundingBoxCenter = boundingBox.center;
-
-		float aQ = _screenBoundGo.transform.position.x + (_screenBoundSize.x / 2) - (boundingBox.x / 2);
-		aQ = aQ * aQ;
-
-		float bQ = _screenBoundGo.transform.position.y + (_screenBoundSize.y / 2) - (boundingBox.y / 2);
-		bQ = bQ * bQ;
-
-		float maxRadius = Mathf.Sqrt(aQ + bQ);
-
+		
 		return new Vector3(boundingBoxCenter.x, boundingBoxCenter.y, this.transform.position.z);
+	}
+
+	void CorrectCameraPlacement(Vector3 positionToPlace){
+		float camHeightHalfSize = Camera.main.orthographicSize;
+		float camWidthHalfSize = camHeightHalfSize * Screen.width / Screen.height;
+
+		Vector2 newCamPos = new Vector2(positionToPlace.x,positionToPlace.y); 
+
+
+		if (positionToPlace.x + camWidthHalfSize > _boundRightLocation) {
+			newCamPos.x = _boundRightLocation - camWidthHalfSize;
+		} else if(positionToPlace.x - camWidthHalfSize < _boundLeftLocation){
+			newCamPos.x = _boundLeftLocation + camWidthHalfSize;
+		}
+		
+		if (positionToPlace.y + camHeightHalfSize > _boundTopLocation) {
+			newCamPos.y = _boundTopLocation - camHeightHalfSize;
+		} else if (positionToPlace.y - camHeightHalfSize < _boundBottomLocation) {
+			newCamPos.y = _boundBottomLocation + camHeightHalfSize;
+		}
+	
+		_camera.transform.position = Vector3.Lerp(_camera.transform.position,new Vector3(newCamPos.x,newCamPos.y,_camera.transform.position.z),0.2f);
 	}
 
 	float CalculateOrthographicSize (Rect boundingBox)
 	{
-		float orthographicSize = camera.orthographicSize;
+		float orthographicSize = _camera.orthographicSize;
 		Vector3 topRight = new Vector3(boundingBox.x + boundingBox.width, boundingBox.y, 0f);
-		Vector3 topRightAsViewport = camera.WorldToViewportPoint(topRight);
+		Vector3 topRightAsViewport = _camera.WorldToViewportPoint(topRight);
 		
 		if (topRightAsViewport.x >= topRightAsViewport.y)
-			orthographicSize = Mathf.Abs(boundingBox.width) / camera.aspect / 2f;
+			orthographicSize = Mathf.Abs(boundingBox.width) / _camera.aspect / 2f;
 		else
 			orthographicSize = Mathf.Abs(boundingBox.height) / 2f;
-		
-		return Mathf.Clamp(Mathf.Lerp(camera.orthographicSize, orthographicSize, Time.deltaTime * zoomSpeed), minimumOrthographicSize, Mathf.Infinity);
+
+		if (orthographicSize > _originalSizeCam) {
+			orthographicSize = _originalSizeCam;
+		}
+
+		return Mathf.Clamp(Mathf.Lerp(_camera.orthographicSize, orthographicSize, Time.deltaTime * zoomSpeed), minimumOrthographicSize, Mathf.Infinity);
 	}
 
 	void FindAllPlayers()
