@@ -30,7 +30,6 @@ public class ThrowObject : MonoBehaviour {
 			if(other.gameObject.GetComponent<AttackCather> () != null){
 				other.gameObject.GetComponent<AttackCather>().CatchAttack(_thrower,_stunPower,_pushPower);
 			}
-			Debug.Log(other.gameObject);
 			Destroy(this.gameObject);
 		}
 	}

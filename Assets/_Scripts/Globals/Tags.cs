@@ -10,4 +10,5 @@ public class Tags : MonoBehaviour {
 	public const string ITEMSPAWN = "ItemSpawnPoint";
 	public const string ROOMMANAGER = "RoomManager";
 	public const string PASSABLE = "PassAble";
+	public const string SCREEN_BOUND_OBJECT = "ScreenBoundObject";
 }

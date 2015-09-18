@@ -14,11 +14,18 @@ public class AllFollowCamera : MonoBehaviour {
 
 	private float zoomSpeed = 20f;
 
+	private Rect _screenBoundSize;
+
+	private GameObject _screenBoundGo;
+
 	Camera camera;
+
 	void Awake()
 	{
 		camera = GetComponent<Camera>();
 		camera.orthographic = true;
+	//	_screenBoundGo = GameObject.FindGameObjectsWithTag (Tags.SCREEN_BOUND_OBJECT);
+	//	_screenBoundSize = new Rect (0, 0, _screenBoundGo.GetComponent<SpriteRenderer> ().bounds.size.x,_screenBoundGo.GetComponent<SpriteRenderer>().bounds.size.y);
 	}
 
 	void LateUpdate()
@@ -29,6 +36,7 @@ public class AllFollowCamera : MonoBehaviour {
 		}
 
 		Rect boundingBox = CalculatePlayersBoundingBox();
+
 		transform.position = CalculateCameraPosition(boundingBox);
 		camera.orthographicSize = CalculateOrthographicSize(boundingBox);
 	}
@@ -59,7 +67,15 @@ public class AllFollowCamera : MonoBehaviour {
 	Vector3 CalculateCameraPosition (Rect boundingBox)
 	{
 		Vector2 boundingBoxCenter = boundingBox.center;
-		
+
+		float aQ = _screenBoundGo.transform.position.x + (_screenBoundSize.x / 2) - (boundingBox.x / 2);
+		aQ = aQ * aQ;
+
+		float bQ = _screenBoundGo.transform.position.y + (_screenBoundSize.y / 2) - (boundingBox.y / 2);
+		bQ = bQ * bQ;
+
+		float maxRadius = Mathf.Sqrt(aQ + bQ);
+
 		return new Vector3(boundingBoxCenter.x, boundingBoxCenter.y, this.transform.position.z);
 	}
 

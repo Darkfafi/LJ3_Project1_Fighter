@@ -151,6 +151,7 @@ public class Player : MonoBehaviour {
 			}else{
 				currentAttack = _specialAttack;
 			}
+			_playerAnimHandler.PlayAnimation("Attack");
 			currentAttack.Attack(this); //geef stats class, player class of gameobject mee zodat de infor gegeven globaal kan blijven.
 		}
 	}

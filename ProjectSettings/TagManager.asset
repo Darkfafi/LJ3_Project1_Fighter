@@ -9,6 +9,7 @@ TagManager:
   - RoomManager
   - PassAble
   - SpecialItem
+  - ScreenBoundObject
   layers:
   - Default
   - TransparentFX
