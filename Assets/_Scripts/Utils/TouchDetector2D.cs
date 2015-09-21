@@ -9,6 +9,7 @@ public class TouchDetector2D : MonoBehaviour {
 	public delegate void GoVecDelegate (GameObject obj,Vector2 vec);
 	
 	public event GoVecDelegate TouchStarted;
+	public event GoVecDelegate OnTouch;
 	public event GoVecDelegate TouchEnded;
 
 	//Check 
@@ -62,6 +63,9 @@ public class TouchDetector2D : MonoBehaviour {
 						objectTouched = hit.collider.gameObject;
 						_sidesTouched[currentDirVector] = hit.collider.gameObject;
 					}
+				}
+				if(OnTouch != null){
+					OnTouch(hit.collider.gameObject,currentDirVector);
 				}
 			}else if(_sidesTouched[currentDirVector]){
 				if(TouchEnded != null){

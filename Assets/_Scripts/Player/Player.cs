@@ -194,8 +194,10 @@ public class Player : MonoBehaviour {
 	void GetKilled(){
 		// Die
 		this.gameObject.SetActive(false);
-		//TODO: spawn kill animation
-		GotKilled(this);
+		//TODO: Spawn kill animation
+		if (GotKilled != null) {
+			GotKilled (this);
+		}
 	}
 
 	void StunTimerEnded(){

@@ -26,7 +26,7 @@ public class BasicStunAttack : AttackBase {
 	void Start () {
 		touchDetector = gameObject.GetComponent<TouchDetector2D> ();
 		rigidBody = gameObject.GetComponent<Rigidbody2D> ();
-		touchDetector.TouchStarted += OnTouch;
+		touchDetector.OnTouch += OnTouch;
 		_player = gameObject.GetComponent<Player> ();
 
 		_inAttackTimer = gameObject.AddComponent<ComTimer> ();
