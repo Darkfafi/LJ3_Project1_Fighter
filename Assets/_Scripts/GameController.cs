@@ -45,7 +45,7 @@ public class GameController : MonoBehaviour {
 		int timeValue = PlayerPrefs.GetInt("TimeValue");
 		if(timeValue != 0)
 		{
-			playTime = timeValue;
+			playTime = timeValue * 60;
 			_timer.StartTimer(playTime);
 			_timer.TimerEnded += EndGame;
 		}
