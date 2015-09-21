@@ -11,11 +11,11 @@ public class GameController : MonoBehaviour {
 	
 	private List<Transform> _currentSpawnPoints = new List<Transform>();
 
-	private List<GameObject> _currentPlayers = new List<GameObject>();
+	private List<Player> _currentPlayers = new List<Player>();
 	private List<int> _currentPlayerLives = new List<int>();
 
 	private Dictionary<float, GameObject> _playersToSpawnWithCounter = new Dictionary<float, GameObject>();
-	private Dictionary<int, Player> _playerKills = new Dictionary<int, Player>(); //to store the kills made by wich player
+	private Dictionary<Player, int> _playerKills = new Dictionary<Player, int>(); //to store the kills made by wich player
 
 	private int spawnTime = 3; //time to spawn player in seconds
 	private int playerLives; //stocks
@@ -26,21 +26,29 @@ public class GameController : MonoBehaviour {
 	private float _levelBorderMinX = -10f;
 	private float _levelBorderMaxX = 10f;
 
+	private ComTimer _timer;
+
+	private bool _suddenDeath;
 
 	public void Start()
 	{
 		FindAllSpawnPoints();
 		InitGame();
+
+		_timer = gameObject.AddComponent<ComTimer>();
 	}
 	private void InitGame()
 	{
-		string gameMode = PlayerPrefs.GetString("GameMode");
 		int stockValue = PlayerPrefs.GetInt("StockValue");
 		if(stockValue != 0)
 			playerLives = stockValue;
 		int timeValue = PlayerPrefs.GetInt("TimeValue");
 		if(timeValue != 0)
+		{
 			playTime = timeValue;
+			_timer.StartTimer(playTime);
+			_timer.TimerEnded += EndGame;
+		}
 		spawnTime = PlayerPrefs.GetInt("SpawnTime");
 
 
@@ -70,11 +78,13 @@ public class GameController : MonoBehaviour {
 			Player newPlayerScript = newPlayer.GetComponent<Player>();
 			
 			//add player information
+			newPlayer.name = "Player-" + i;
 			newPlayerScript.SetCharacter(playerCharacter);
 			newPlayerScript.SetKeys(playerHorizontalAxis,playerVerticalAxis,playerActionKey, playerJumpKey);
 			newPlayerScript.GotKilled += PlayerDied;
-			_currentPlayers.Add(newPlayer);
+			_currentPlayers.Add(newPlayerScript);
 			_currentPlayerLives.Add(playerLives);
+			_playerKills.Add(newPlayerScript, 0);
 		}
 		//positioning players
 		for (int i = 0; i < _currentPlayers.Count; i++) 
@@ -107,13 +117,13 @@ public class GameController : MonoBehaviour {
 					CheckSpawnPlayer(playersSpawnTime[i], playersToSpawn[i]);
 				} 
 			}
-			foreach(GameObject player in _currentPlayers)
+			foreach(Player player in _currentPlayers)
 			{
 				if(player.transform.position.y < _levelBorderMinY || player.transform.position.y > _levelBorderMaxY || player.transform.position.x > _levelBorderMaxX || player.transform.position.x < _levelBorderMinX)
 				{
-					player.SetActive(false);
+					player.gameObject.SetActive(false);
 					player.transform.position = new Vector3(0,0,0); //reset pos
-					PlayerDied(player.GetComponent<Player>());
+					PlayerDied(player.GetComponent<Player>(), null);
 				}
 			}
 		}
@@ -128,13 +138,26 @@ public class GameController : MonoBehaviour {
 			_currentSpawnPoints.Add(spawnpoint.transform);
 		}
 	}
-	void PlayerDied(Player player)
+
+	private void PlayerDied(Player player, GameObject attacker)
 	{
-		int playerIndex = _currentPlayers.IndexOf(player.gameObject);
+		int playerIndex = _currentPlayers.IndexOf(player);
 		_currentPlayerLives[playerIndex] -= 1;
+
+		if(attacker != null)
+		{
+			Player playerAttacker = attacker.GetComponent<Player>();
+			_playerKills[playerAttacker]++;
+		}
+
+		if(_suddenDeath)
+		{
+			_currentPlayerLives[playerIndex] = 0;
+		}
+
 		if(_currentPlayerLives[playerIndex] != 0)
 		{
-			_playersToSpawnWithCounter.Add(spawnTime + Time.time, player.gameObject);
+			SetSpawnPlayer(player);
 		} 
 		else 
 		{
@@ -142,7 +165,12 @@ public class GameController : MonoBehaviour {
 		}
 	}
 
-	void CheckPlayersAlive()
+	private void SetSpawnPlayer(Player player)
+	{
+		_playersToSpawnWithCounter.Add(spawnTime + Time.time, player.gameObject);
+	}
+
+	private void CheckPlayersAlive()
 	{
 		int playersAlive = 0;
 		int playerIDWon = 0;
@@ -156,17 +184,62 @@ public class GameController : MonoBehaviour {
 		}
 		if(playersAlive <= 1)
 		{
-			PlayerWon(playerIDWon);
+			PlayerWon(_currentPlayers[playerIDWon]);
 		}
 	}
 
-	void PlayerWon(int playerID)
+	private void EndGame()
+	{
+		int oldPlayerKills = 0;
+		List<Player> playersTied = new List<Player>();
+		Player playerWon = null;
+		foreach(KeyValuePair<Player, int> entry in _playerKills)
+		{
+			if(entry.Value > oldPlayerKills)
+			{
+				oldPlayerKills = entry.Value;
+				playerWon = entry.Key;
+			}
+		}
+		foreach(KeyValuePair<Player, int> entry in _playerKills)
+		{
+			if(entry.Value == oldPlayerKills)
+			{
+				playersTied.Add(entry.Key);
+			}
+		}
+		if(playersTied.Count > 1)
+		{
+			SuddenDeath(playersTied);
+		} 
+		else 
+		{
+			PlayerWon(playerWon);
+		}
+	}
+
+	private void SuddenDeath(List<Player> playersTied)
+	{
+		//TODO: create image sudden death
+		_suddenDeath = true;
+		spawnTime = 10;
+		foreach (var player in _currentPlayers) {
+			player.enabled = false;
+			if(playersTied.Contains(player))
+			{
+				SetSpawnPlayer(player);
+				player.TransformPlayer(PlayerTransformer.SPECIAL_MOD);
+			}
+		}
+	}
+
+	private void PlayerWon(Player player)
 	{
 		//TODO: generate win screen with player that won
-		Debug.Log("Player: " + playerID + " WON!");
+		Debug.Log("Player: " + player.name + " WON!");
 	}
 	
-	void CheckSpawnPlayer(float spawntime, GameObject player)
+	private void CheckSpawnPlayer(float spawntime, GameObject player)
 	{
 		if(spawntime < Time.time)
 		{

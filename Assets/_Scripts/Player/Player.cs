@@ -3,8 +3,8 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 	
-	public delegate void PlayerDelegate(Player player);
-	public event PlayerDelegate GotKilled;
+	public delegate void PlayerGameObjectDelegate(Player player, GameObject attacker);
+	public event PlayerGameObjectDelegate GotKilled;
 
 	//Stats
 	private PlayerTransformer _playerTransformer;
@@ -172,12 +172,12 @@ public class Player : MonoBehaviour {
 	void OnStunKillHit(GameObject attacker, float pushPower){
 		//TODO IF STUNNED THEN CALL DEAD FUNCTION
 		if (_stunTimer != null && _stunTimer.IsRunning ()) {
-			GetKilled();
+			GetKilled(attacker);
 		}
 	}
 	void OnKillHit(GameObject attacker, float pushPower){
 		//TODO CALL DEAD FUNCTION
-		GetKilled ();
+		GetKilled (attacker);
 	}
 
 	void GetStunned(float stunPower){
@@ -191,11 +191,12 @@ public class Player : MonoBehaviour {
 		busyAction = false;
 		_stunTimer.Stop ();
 	}
-	void GetKilled(){
+	void GetKilled(GameObject attacker){
 		// Die
 		this.gameObject.SetActive(false);
 		//TODO: spawn kill animation
-		GotKilled(this);
+		if(GotKilled != null)
+			GotKilled(this, attacker);
 	}
 
 	void StunTimerEnded(){
