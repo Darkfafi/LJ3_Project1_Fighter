@@ -198,18 +198,17 @@ public class PlatformerMovement : MonoBehaviour {
 				LandedOnGround(obj);
 			}
 		} else if (vec == Vector2.left || vec == Vector2.right) {
-			if(!_onGround){
+			if(!_onGround && obj.tag != Tags.PLAYER){
 				//if the object is collideable with the platformer then wallslide is true
 				BoxCollider2D objCol = obj.GetComponent<BoxCollider2D>();
 				if(!Physics2D.GetIgnoreCollision(this.colliderBox, objCol)) {
 					_inWallSlide = true;
 					_doubleJumped = false;
+					_preWall = obj;
+					if(StartedWallSlide != null){
+						StartedWallSlide(obj);
+					}
 				} 
-
-				_preWall = obj;
-				if(StartedWallSlide != null){
-					StartedWallSlide(obj);
-				}
 			}
 		} else if (vec == Vector2.up) { //if you bump your head against a platform that is passable then stop colliding with given platform
 			if(obj.tag == Tags.PASSABLE) {
