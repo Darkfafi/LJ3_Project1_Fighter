@@ -30,12 +30,21 @@ public class GameController : MonoBehaviour {
 
 	private bool _suddenDeath;
 
+	private bool _movingCamera = true;
+
 	public void Start()
 	{
+		CreateLevel ();
 		FindAllSpawnPoints();
 		_timer = gameObject.AddComponent<ComTimer>();
 		InitGame();
 	}
+	private void CreateLevel(){
+		string levelString = PlayerPrefs.GetString ("LevelChosen");
+		GameObject level = Resources.Load("Prefabs/Levels/"+levelString + "Level") as GameObject;
+		Instantiate (level, new Vector3 (0, 0, 0), Quaternion.identity);
+	}
+
 	private void InitGame()
 	{
 		int stockValue = PlayerPrefs.GetInt("StockValue");
@@ -53,6 +62,10 @@ public class GameController : MonoBehaviour {
 
 		//init players
 		InitializePlayers();
+
+		if (_movingCamera) {
+			GameObject.FindGameObjectWithTag(Tags.CAMERA).AddComponent<AllFollowCamera>();
+		}
 	}
 	private void InitializePlayers()
 	{
