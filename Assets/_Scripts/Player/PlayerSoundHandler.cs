@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class PlayerSoundHandler : MonoBehaviour {
-	private AudioList _audioList;
+	private AudioPlayer _audioPlayer;
 
 	private string jumpSoundName;
 	private string runSoundName;
@@ -14,7 +14,7 @@ public class PlayerSoundHandler : MonoBehaviour {
 	private string deathSoundName;
 	// Use this for initialization
 	void Awake () {
-		_audioList = GameObject.FindGameObjectWithTag(Tags.GAMECONTROLLER).GetComponent<AudioList>();
+		_audioPlayer = GameObject.FindGameObjectWithTag(Tags.GAMECONTROLLER).GetComponent<AudioPlayer>();
 	}
 
 	void Start()
@@ -46,36 +46,36 @@ public class PlayerSoundHandler : MonoBehaviour {
 	}
 
 	void PlayDashSound() {
-		_audioList.PlayAudio(dashSoundName);
+		_audioPlayer.PlayAudio(dashSoundName);
 	}
 
 	void PlayClashSound() {
-		_audioList.PlayAudio(clashSoundName);
+		_audioPlayer.PlayAudio(clashSoundName);
 	}
 
 	void PlayDeathSound(Player player, GameObject attacker) {
-		_audioList.PlayAudio(deathSoundName);
+		_audioPlayer.PlayAudio(deathSoundName);
 	}
 
 	void PlayJumpSound () {
-		_audioList.PlayAudio(jumpSoundName);
+		_audioPlayer.PlayAudio(jumpSoundName);
 	}
 
 	void PlayDoubleJumpSound () {
-		_audioList.PlayAudio(doubleJumpSoundName);
+		_audioPlayer.PlayAudio(doubleJumpSoundName);
 	}
 	void PlayRunSound() {
-		_audioList.PlayAudio(runSoundName, true);
+		_audioPlayer.PlayAudio(runSoundName, true, this);
 	}
 	void StopRunSound() {
-		_audioList.StopAudio(runSoundName);
+		_audioPlayer.StopAudio(runSoundName, this);
 	}
 	void PlayTransformSound()
 	{
-		_audioList.PlayAudio(transformSoundName);
+		_audioPlayer.PlayAudio(transformSoundName);
 	}
 	void PlayHitSound()
 	{
-		_audioList.PlayAudio(hitSoundName);
+		_audioPlayer.PlayAudio(hitSoundName);
 	}
 }
