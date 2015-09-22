@@ -165,6 +165,7 @@ GameObject:
   - 4: {fileID: 929558375}
   - 114: {fileID: 929558374}
   - 114: {fileID: 929558376}
+  - 81: {fileID: 929558377}
   m_Layer: 0
   m_Name: GameController (1)
   m_TagString: GameController
@@ -206,7 +207,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5e8d4545a92dd0418a3dc02aecfe72e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allAudio: []
+  allAudio:
+  - {fileID: 8300000, guid: c9c028db4c55c8442a0becc55afc41e6, type: 3}
+--- !u!81 &929558377
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 929558373}
+  m_Enabled: 1
 --- !u!1 &2071495416
 GameObject:
   m_ObjectHideFlags: 0

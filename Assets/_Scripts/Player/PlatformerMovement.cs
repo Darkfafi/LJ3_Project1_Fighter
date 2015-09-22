@@ -64,6 +64,9 @@ public class PlatformerMovement : MonoBehaviour {
 	}
 	public void StopRunning()
 	{
+		if(StoppedRunning != null)
+			StoppedRunning();
+
 		_isRunning = false;
 	}
 	public void StartSliding()
@@ -91,6 +94,10 @@ public class PlatformerMovement : MonoBehaviour {
 			if(StartedRunning != null)
 				StartedRunning();
 			_isRunning = true;
+		} 
+		else if(!_onGround)
+		{
+			StopRunning();
 		}
 
 		if ((touch.IsTouchingSideGetGameObject(new Vector2(directionConst,0)) == null || touch.IsTouchingSideGetGameObject(new Vector2(directionConst,0)).tag == Tags.PLAYER)) {
