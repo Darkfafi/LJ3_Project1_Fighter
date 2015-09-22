@@ -1,0 +1,473 @@
+fileFormatVersion: 2
+guid: 1d12b9366b8219c45be672827c0650b4
+timeCreated: 1442952656
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Skull_0
+    21300002: Skull_1
+    21300004: Skull_2
+    21300006: Skull_3
+    21300008: Skull_4
+    21300010: Skull_5
+    21300012: Skull_6
+    21300014: Skull_7
+    21300016: Skull_8
+    21300018: Skull_9
+    21300020: Skull_10
+    21300022: Skull_11
+    21300024: Skull_12
+    21300026: Skull_13
+    21300028: Skull_14
+    21300030: Skull_15
+    21300032: Skull_16
+    21300034: Skull_17
+    21300036: Skull_18
+    21300038: Skull_19
+    21300040: Skull_20
+    21300042: Skull_21
+    21300044: Skull_22
+    21300046: Skull_23
+    21300048: Skull_24
+    21300050: Skull_25
+    21300052: Skull_26
+    21300054: Skull_27
+    21300056: Skull_28
+    21300058: Skull_29
+    21300060: Skull_30
+    21300062: Skull_31
+    21300064: Skull_32
+    21300066: Skull_33
+    21300068: Skull_34
+    21300070: Skull_35
+    21300072: Skull_36
+    21300074: Skull_37
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Skull_0
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 1781
+        width: 125
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Skull_1
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 1781
+        width: 125
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Skull_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1603
+        width: 125
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Skull_3
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 1603
+        width: 125
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Skull_4
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 1603
+        width: 125
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Skull_5
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 1603
+        width: 125
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Skull_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1425
+        width: 125
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Skull_7
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 1425
+        width: 125
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Skull_8
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 1425
+        width: 125
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Skull_9
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 1425
+        width: 125
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Skull_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1247
+        width: 125
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Skull_11
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 1247
+        width: 125
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Skull_12
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 1247
+        width: 125
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Skull_13
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 1247
+        width: 125
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Skull_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1069
+        width: 125
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Skull_15
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 1069
+        width: 125
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Skull_16
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 1069
+        width: 125
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Skull_17
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 1069
+        width: 125
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Skull_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 891
+        width: 125
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Skull_19
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 891
+        width: 125
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Skull_20
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 891
+        width: 125
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Skull_21
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 891
+        width: 125
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Skull_22
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 713
+        width: 125
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Skull_23
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 713
+        width: 125
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Skull_24
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 713
+        width: 125
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Skull_25
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 713
+        width: 125
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Skull_26
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 535
+        width: 125
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Skull_27
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 535
+        width: 125
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Skull_28
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 535
+        width: 125
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Skull_29
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 535
+        width: 125
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Skull_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 357
+        width: 125
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Skull_31
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 357
+        width: 125
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Skull_32
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 357
+        width: 125
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Skull_33
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 357
+        width: 125
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Skull_34
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 179
+        width: 125
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Skull_35
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 179
+        width: 125
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Skull_36
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 179
+        width: 125
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Skull_37
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 179
+        width: 125
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

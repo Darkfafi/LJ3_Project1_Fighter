@@ -28,6 +28,8 @@ public class Player : MonoBehaviour {
 
 
 	private ComTimer _stunTimer;
+	private FadeInOut _fader;
+	private GameObject _lastKiller;
 	
 	// Input
 	private PlayerInput _myPlayerInput;
@@ -57,6 +59,8 @@ public class Player : MonoBehaviour {
 		gameObject.AddComponent<LandOnTopKill> ();
 		rigidBody = gameObject.GetComponent<Rigidbody2D> ();
 		_playerAnimHandler = gameObject.AddComponent<PlayerAnimationHandler> ();
+
+		_fader = gameObject.AddComponent<FadeInOut> ();
 
 		gameObject.AddComponent<PlayerEffects>();
 		gameObject.AddComponent<PlayerSoundHandler>();
@@ -218,11 +222,21 @@ public class Player : MonoBehaviour {
 		//TODO cannot be attack or can interact
 		HealStun ();
 		busyAction = true;
+		invulnerable = true;
+		_lastKiller = killer;
+		_fader.OnFadeEnd += DeathFadeEnd;
 		_playerAnimHandler.PlayAnimation("Death");
 	}
+
+	void DeathFadeEnd(float valueFade){
+		GetKilled (_lastKiller);
+	}
+
 	void GetKilled(GameObject attacker){
 		// Die
 		this.gameObject.SetActive(false);
+		_fader.OnFadeEnd -= DeathFadeEnd;
+		invulnerable = false;
 		//TODO: Spawn kill animation
 		if (GotKilled != null) {
 			GotKilled (this,attacker);
