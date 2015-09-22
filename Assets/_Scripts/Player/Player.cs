@@ -16,8 +16,9 @@ public class Player : MonoBehaviour {
 	//private PlayerStats _playerStats = new PlayerStats(6f,10f,3f,5f,10f,12f); // <--- Idee
 	private PlayerStats _playerStats = new PlayerStats (5f, 10f, 2f, 5f, 10f, 10f); // set all base stats
 
-	public bool busyAction = false; 
-	
+	public bool busyAction = false;
+	public bool invulnerable = false;
+
 
 	// Combat
 	private BasicStunAttack _basicAttack;
@@ -179,20 +180,22 @@ public class Player : MonoBehaviour {
 	// Hit by attacks (MAYBE CODE IN A DIFFERENT COMPONENT)
 	void OnStunHit(float stunPower, GameObject attacker, float pushPower){
 		//TODO CALL STUN FUNCTION
-		if (!_stunTimer.running) {
+		if (!_stunTimer.running && !invulnerable) {
 			GetStunned(stunPower);
 		}
 	}
 
 	void OnStunKillHit(GameObject attacker, float pushPower){
 		//TODO IF STUNNED THEN CALL DEAD FUNCTION
-		if (_stunTimer.running) {
-			GetKilled(attacker);
+		if (_stunTimer.running && !invulnerable) {
+			StartDeath(attacker);
 		}
 	}
 	void OnKillHit(GameObject attacker, float pushPower){
 		//TODO CALL DEAD FUNCTION
-		GetKilled (attacker);
+		if (!invulnerable) {
+			StartDeath (attacker);
+		}
 	}
 
 	void GetStunned(float stunPower){
@@ -210,6 +213,12 @@ public class Player : MonoBehaviour {
 		if (StopStunned != null) {
 			StopStunned ();
 		}
+	}
+	void StartDeath(GameObject killer){
+		//TODO cannot be attack or can interact
+		HealStun ();
+		busyAction = true;
+		_playerAnimHandler.PlayAnimation("Death");
 	}
 	void GetKilled(GameObject attacker){
 		// Die
