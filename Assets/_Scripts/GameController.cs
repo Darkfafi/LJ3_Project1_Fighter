@@ -39,6 +39,24 @@ public class GameController : MonoBehaviour {
 	}
 	private void InitGame()
 	{
+		GameObject boundsGameObject = GameObject.FindGameObjectWithTag (Tags.SCREEN_BOUND_OBJECT);
+		
+		SpriteRenderer rndr = boundsGameObject.gameObject.GetComponent<SpriteRenderer> ();
+		
+		_levelBorderMaxX = boundsGameObject.transform.position.x + ((rndr.bounds.size.x * boundsGameObject.transform.localScale.x) / 2) + 3;
+		_levelBorderMinX = boundsGameObject.transform.position.x - ((rndr.bounds.size.x * boundsGameObject.transform.localScale.x) / 2) - 3;
+		_levelBorderMaxY = boundsGameObject.transform.position.y + ((rndr.bounds.size.y * boundsGameObject.transform.localScale.y) / 2) + 3;
+		_levelBorderMinY = boundsGameObject.transform.position.y - ((rndr.bounds.size.y * boundsGameObject.transform.localScale.y) / 2) - 3;
+
+		//setting game rules
+		SetGameRules();
+
+		//init players
+		InitializePlayers();
+	}
+
+	private void SetGameRules()
+	{
 		int stockValue = PlayerPrefs.GetInt("StockValue");
 		if(stockValue != 0)
 			playerLives = stockValue;
@@ -51,10 +69,8 @@ public class GameController : MonoBehaviour {
 		}
 		spawnTime = PlayerPrefs.GetInt("SpawnTime");
 
-
-		//init players
-		InitializePlayers();
 	}
+
 	private void InitializePlayers()
 	{
 		//Retrieving game information
