@@ -10,6 +10,7 @@ TagManager:
   - PassAble
   - SpecialItem
   - ScreenBoundObject
+  - FullLevel
   layers:
   - Default
   - TransparentFX

@@ -51,7 +51,7 @@ public class PlayerInput : MonoBehaviour {
 		if(Input.GetAxis(_verticalAxis) < 0)
 		{
 			//send down event
-			aKeyIsPressed = true;
+			//aKeyIsPressed = true; <-- did this else idle would not be called when holding down this button. We need a release key function. Sorry
 			if(DownKeyPressed != null)
 				DownKeyPressed();
 		}

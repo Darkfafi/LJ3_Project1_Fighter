@@ -26,7 +26,7 @@ public class Player : MonoBehaviour {
 	private ClashAble _clashAble;
 
 
-	private Timer _stunTimer;
+	private ComTimer _stunTimer;
 	
 	// Input
 	private PlayerInput _myPlayerInput;
@@ -59,6 +59,11 @@ public class Player : MonoBehaviour {
 
 		gameObject.AddComponent<PlayerEffects>();
 		gameObject.AddComponent<PlayerSoundHandler>();
+
+
+		_stunTimer = gameObject.AddComponent<ComTimer> ();
+
+		_stunTimer.TimerEnded += StunTimerEnded;
 
 		_attackCatcher.OnStunAttackCatch += OnStunHit;
 		_attackCatcher.OnStunKillAttackCatch += OnStunKillHit; // if Jump on my head hit while in stun
@@ -153,7 +158,7 @@ public class Player : MonoBehaviour {
 
 	void FallDown()
 	{
-		if (!busyAction && !_myPlatformerMovement.onGround) {
+		if (!busyAction) {
 			_myPlatformerMovement.MoveVertical (PlatformerMovement.DIR_DOWN, _playerStats.fallSpeed);
 		}
 	}
@@ -174,14 +179,14 @@ public class Player : MonoBehaviour {
 	// Hit by attacks (MAYBE CODE IN A DIFFERENT COMPONENT)
 	void OnStunHit(float stunPower, GameObject attacker, float pushPower){
 		//TODO CALL STUN FUNCTION
-		if (_stunTimer == null || !_stunTimer.IsRunning ()) {
+		if (!_stunTimer.running) {
 			GetStunned(stunPower);
 		}
 	}
 
 	void OnStunKillHit(GameObject attacker, float pushPower){
 		//TODO IF STUNNED THEN CALL DEAD FUNCTION
-		if (_stunTimer != null && _stunTimer.IsRunning ()) {
+		if (_stunTimer.running) {
 			GetKilled(attacker);
 		}
 	}
@@ -192,16 +197,19 @@ public class Player : MonoBehaviour {
 
 	void GetStunned(float stunPower){
 		_playerAnimHandler.PlayAnimation("Stunned");
-		_stunTimer = new Timer ((int)(500 * stunPower));
-		_stunTimer.TimerEnded += StunTimerEnded;
-		_stunTimer.Start ();
-		StartStunned();
+		Debug.Log((int)(0.5f * stunPower));
+		_stunTimer.StartTimer ((int)(0.5f * stunPower));
+		if (StartStunned != null) {
+			StartStunned ();
+		}
 		busyAction = true;
 	}
 	void HealStun(){
 		busyAction = false;
-		StopStunned();
-		_stunTimer.Stop ();
+		_stunTimer.StopTimer();
+		if (StopStunned != null) {
+			StopStunned ();
+		}
 	}
 	void GetKilled(GameObject attacker){
 		// Die

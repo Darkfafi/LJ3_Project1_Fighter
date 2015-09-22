@@ -62,7 +62,8 @@ public class GameController : MonoBehaviour {
 
 		//init players
 		InitializePlayers();
-		
+
+		GameObject.FindGameObjectWithTag (Tags.CAMERA).GetComponent<Camera> ().orthographicSize = 5.4f * GameObject.FindGameObjectWithTag(Tags.CURRENT_LEVEL).transform.localScale.x;
 		if (_movingCamera) {
 			GameObject.FindGameObjectWithTag(Tags.CAMERA).AddComponent<AllFollowCamera>();
 		}

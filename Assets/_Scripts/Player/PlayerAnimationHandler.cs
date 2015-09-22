@@ -14,6 +14,7 @@ public class PlayerAnimationHandler : MonoBehaviour {
 	}
 
 	public void PlayAnimation(string animationName){
+		Debug.Log (animationName);
 		string addOnString = "";
 		if (animationName != "") {
 			if (playerStats.transformed) {

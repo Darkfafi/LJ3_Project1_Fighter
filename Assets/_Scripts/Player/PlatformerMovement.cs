@@ -113,7 +113,9 @@ public class PlatformerMovement : MonoBehaviour {
 
 	public void MoveVertical(int directionConst, float moveSpeed)
 	{
-		transform.Translate (new Vector3 (0,directionConst * moveSpeed,0) * Time.deltaTime);
+		if (!_onGround) {
+			transform.Translate (new Vector3 (0, directionConst * moveSpeed, 0) * Time.deltaTime);
+		}
 		if(directionConst == -1 && _onGround && _preGround.tag == Tags.PASSABLE) {
 			BoxCollider2D preGroundCol = _preGround.GetComponent<BoxCollider2D>();
 			Physics2D.IgnoreCollision(this.colliderBox, preGroundCol, true);

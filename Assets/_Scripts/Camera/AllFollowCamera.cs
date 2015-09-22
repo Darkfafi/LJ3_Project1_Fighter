@@ -35,6 +35,8 @@ public class AllFollowCamera : MonoBehaviour {
 		_originalSizeCam = _camera.orthographicSize;
 		_boundsRepGo = GameObject.FindGameObjectWithTag (Tags.SCREEN_BOUND_OBJECT);
 
+		minimumOrthographicSize = (_camera.orthographicSize * 4.5f / 5.4f);
+
 		rndr = _boundsRepGo.gameObject.GetComponent<SpriteRenderer> ();
 		
 		_boundRightLocation = _boundsRepGo.transform.position.x + ((rndr.bounds.size.x * _boundsRepGo.transform.localScale.x) / 2);

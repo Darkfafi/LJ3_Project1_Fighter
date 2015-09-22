@@ -1469,7 +1469,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &578785644
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1483,10 +1483,10 @@ RectTransform:
   - {fileID: 975629130}
   m_Father: {fileID: 1278906144}
   m_RootOrder: 2
-  m_AnchorMin: {x: 0, y: .5}
-  m_AnchorMax: {x: .5, y: 1}
-  m_AnchoredPosition: {x: .75, y: -135.500031}
-  m_SizeDelta: {x: -.5, y: 3.05175781e-05}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 250, y: -50}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &578785645
 MonoBehaviour:
@@ -2526,10 +2526,10 @@ RectTransform:
   - {fileID: 1919259549}
   m_Father: {fileID: 1278906144}
   m_RootOrder: 3
-  m_AnchorMin: {x: 0, y: .5}
-  m_AnchorMax: {x: .5, y: 1}
-  m_AnchoredPosition: {x: 281.75, y: 0}
-  m_SizeDelta: {x: -.5, y: 3.05175781e-05}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1105726325
 MonoBehaviour:
@@ -2578,7 +2578,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Void
+          m_StringArgument: Air
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -2755,7 +2755,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1166169975
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2769,10 +2769,10 @@ RectTransform:
   - {fileID: 1177225509}
   m_Father: {fileID: 1278906144}
   m_RootOrder: 1
-  m_AnchorMin: {x: 0, y: .5}
-  m_AnchorMax: {x: .5, y: 1}
-  m_AnchoredPosition: {x: 281.75, y: -135.500031}
-  m_SizeDelta: {x: -.5, y: 1.52590001e-05}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 631.5, y: -237}
+  m_SizeDelta: {x: 421, y: 474}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1166169976
 MonoBehaviour:
@@ -3364,6 +3364,7 @@ GameObject:
   - 224: {fileID: 1278906144}
   - 222: {fileID: 1278906146}
   - 114: {fileID: 1278906145}
+  - 114: {fileID: 1278906147}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -3389,8 +3390,8 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -262, y: -193}
+  m_AnchoredPosition: {x: 0, y: -25}
+  m_SizeDelta: {x: -192, y: -189}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1278906145
 MonoBehaviour:
@@ -3419,6 +3420,26 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1278906143}
+--- !u!114 &1278906147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1278906143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -405508275, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
 --- !u!1 &1284937281
 GameObject:
   m_ObjectHideFlags: 0
@@ -4616,10 +4637,10 @@ RectTransform:
   - {fileID: 668704203}
   m_Father: {fileID: 1278906144}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0, y: .5}
-  m_AnchorMax: {x: .5, y: 1}
-  m_AnchoredPosition: {x: .25, y: 0}
-  m_SizeDelta: {x: -.5, y: 3.05175781e-05}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1801519807
 MonoBehaviour:

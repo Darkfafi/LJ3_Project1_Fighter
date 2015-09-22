@@ -11,4 +11,5 @@ public class Tags : MonoBehaviour {
 	public const string ROOMMANAGER = "RoomManager";
 	public const string PASSABLE = "PassAble";
 	public const string SCREEN_BOUND_OBJECT = "ScreenBoundObject";
+	public const string CURRENT_LEVEL = "FullLevel";
 }
