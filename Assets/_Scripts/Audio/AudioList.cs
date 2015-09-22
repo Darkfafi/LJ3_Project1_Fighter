@@ -77,4 +77,14 @@ public class AudioList : MonoBehaviour
 			}
 		}
 	}
+	public void StopAudio(string sound)
+	{
+		foreach (var audioSource in audioSources) 
+		{
+			if(audioSource.isPlaying && audioSource.clip.name == sound)
+			{
+				audioSource.Stop();
+			}
+		}
+	}
 }

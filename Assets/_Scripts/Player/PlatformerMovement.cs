@@ -20,7 +20,9 @@ public class PlatformerMovement : MonoBehaviour {
 	public event GameObjectDelegate EndedWallSlde;
 
 	public event NormDelegate Jumped;
-	public event NormDelegate StartRunning;
+	public event NormDelegate DoubleJumped;
+	public event NormDelegate StartedRunning;
+	public event NormDelegate StoppedRunning;
 
 	// Current state.
 	private bool _inWallSlide = false;
@@ -58,20 +60,18 @@ public class PlatformerMovement : MonoBehaviour {
 		touch.TouchStarted += TouchDetectionStart;
 		touch.TouchEnded += TouchDetectionEnd;
 
-		StartedWallSlide += StartSliding;
-		EndedWallSlde += StopSliding;
 		_oldGravityScale = _rigidbody.gravityScale;
 	}
 	public void StopRunning()
 	{
 		_isRunning = false;
 	}
-	public void StartSliding(GameObject obj)
+	public void StartSliding()
 	{
 		_rigidbody.gravityScale = 0f;
 		_rigidbody.velocity = new Vector2(0,-1);
 	}
-	public void StopSliding(GameObject obj)
+	public void StopSliding()
 	{
 		_rigidbody.gravityScale = _oldGravityScale;
 	}
@@ -81,19 +81,19 @@ public class PlatformerMovement : MonoBehaviour {
 			transform.localScale = new Vector3 (directionConst * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
 			if(_onGround)
 			{
-				if(StartRunning != null)
-					StartRunning();
+				if(StartedRunning != null)
+					StartedRunning();
 			}
 		}
 
 		if(!_isRunning && _onGround)
 		{
-			if(StartRunning != null)
-				StartRunning();
+			if(StartedRunning != null)
+				StartedRunning();
 			_isRunning = true;
 		}
 
-		if (!touch.IsTouchingSide(new Vector2(directionConst,0))) {
+		if ((touch.IsTouchingSideGetGameObject(new Vector2(directionConst,0)) == null || touch.IsTouchingSideGetGameObject(new Vector2(directionConst,0)).tag == Tags.PLAYER)) {
 			transform.Translate (new Vector3 (directionConst * moveSpeed + _rigidbody.velocity.x, 0, 0) * Time.deltaTime);
 			//damping the velocity so you can walljump more times
 			if(_rigidbody.velocity.x != 0 && directionConst == 1)
@@ -142,8 +142,8 @@ public class PlatformerMovement : MonoBehaviour {
 		{
 			_rigidbody.velocity = new Vector2(0,jumpForce/1.5f);
 			_doubleJumped = true;
-			if(Jumped != null){
-				Jumped();
+			if(DoubleJumped != null){
+				DoubleJumped();
 			}
 		}
 	}
@@ -205,6 +205,7 @@ public class PlatformerMovement : MonoBehaviour {
 					_inWallSlide = true;
 					_doubleJumped = false;
 					_preWall = obj;
+					StartSliding();
 					if(StartedWallSlide != null){
 						StartedWallSlide(obj);
 					}
@@ -227,6 +228,7 @@ public class PlatformerMovement : MonoBehaviour {
 			}
 		} else if (vec == Vector2.left || vec == Vector2.right) {
 			_inWallSlide = false;
+			StopSliding();
 			if(EndedWallSlde != null){
 				EndedWallSlde(_preWall);
 			}

@@ -74,21 +74,47 @@ public class RoomManager : MonoBehaviour {
 		if(!controlsInUse)
 		{
 			//add player if the controls are not in use.
-			_controlsInUse.Add(controls);
+			bool controlsAlreadySet = false;
+			for (int i = 0; i < _controlsInUse.Count; i++) {
+				if(_controlsInUse[i] == "")
+				{
+					_controlsInUse[i] = controls;
+					controlsAlreadySet = true;
+					break;
+				}
+			}
+
+			if(!controlsAlreadySet)
+				_controlsInUse.Add(controls);
+
+			int playerID = _controlsInUse.IndexOf(controls);
 			List<string> playerControls = Controls.GetControls(controls);
-			PlayerPrefs.SetString("Horizontal-" + _playerCount, playerControls[0]);
-			PlayerPrefs.SetString("Vertical-" + _playerCount, playerControls[1]);
-			PlayerPrefs.SetString("Action-" + _playerCount, playerControls[2]);
-			PlayerPrefs.SetString("Jump-" + _playerCount, playerControls[3]);
-			ActivatePanel(controls);
+			PlayerPrefs.SetString("Horizontal-" + playerID, playerControls[0]);
+			PlayerPrefs.SetString("Vertical-" + playerID, playerControls[1]);
+			PlayerPrefs.SetString("Action-" + playerID, playerControls[2]);
+			PlayerPrefs.SetString("Jump-" + playerID, playerControls[3]);
+			PlayerPrefs.SetString("Back-" + playerID, playerControls[4]);
+			ActivatePanel(controls, playerID);
 			_playerCount++;
 		}
 	}
-	private void ActivatePanel(string controls)
+	private void ActivatePanel(string controls, int id)
 	{
 		//activate character select panel
-		playerTexts[_playerCount].text = "Player-" + _playerCount;
-		playerPanels[_playerCount].SetActive(true);
-		playerPanels[_playerCount].GetComponent<CharacterSelect>().SetPlayer(_playerCount,controls);
+		playerTexts[id].text = "Player-" + id;
+		playerPanels[id].SetActive(true);
+		playerPanels[id].GetComponent<CharacterSelect>().SetPlayer(id,controls);
+	}
+	public void DeactivatePanel(CharacterSelect charSelect, int playerID)
+	{
+		for (int i = 0; i < playerPanels.Length; i++) {
+			if(playerPanels[i].GetComponent<CharacterSelect>() == charSelect)
+			{
+				playerPanels[i].SetActive(false);
+				playerTexts[i].text = "Press action key";
+			}
+		}
+		_controlsInUse[playerID] = "";
+		_playerCount--;
 	}
 }

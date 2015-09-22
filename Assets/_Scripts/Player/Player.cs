@@ -6,6 +6,10 @@ public class Player : MonoBehaviour {
 	public delegate void PlayerGameObjectDelegate(Player player, GameObject attacker);
 	public event PlayerGameObjectDelegate GotKilled;
 
+	public delegate void NormDelegate();
+	public event NormDelegate StartStunned;
+	public event NormDelegate StopStunned;
+
 	//Stats
 	private PlayerTransformer _playerTransformer;
 
@@ -54,6 +58,7 @@ public class Player : MonoBehaviour {
 		_playerAnimHandler = gameObject.AddComponent<PlayerAnimationHandler> ();
 
 		gameObject.AddComponent<PlayerEffects>();
+		gameObject.AddComponent<PlayerSoundHandler>();
 
 		_attackCatcher.OnStunAttackCatch += OnStunHit;
 		_attackCatcher.OnStunKillAttackCatch += OnStunKillHit; // if Jump on my head hit while in stun
@@ -185,10 +190,12 @@ public class Player : MonoBehaviour {
 		_stunTimer = new Timer ((int)(500 * stunPower));
 		_stunTimer.TimerEnded += StunTimerEnded;
 		_stunTimer.Start ();
+		StartStunned();
 		busyAction = true;
 	}
 	void HealStun(){
 		busyAction = false;
+		StopStunned();
 		_stunTimer.Stop ();
 	}
 	void GetKilled(GameObject attacker){

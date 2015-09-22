@@ -10,6 +10,7 @@ public class CharacterSelect : MonoBehaviour
 
 	private string _verticalAxis;
 	private string _actionKey;
+	private string _backKey;
 
 	private bool _busy;
 	private bool _ready;
@@ -56,9 +57,17 @@ public class CharacterSelect : MonoBehaviour
 			if(Vector3.Distance(_rectTransform.localPosition,newPos) < 0.1f)
 				_busy = false;
 		}
-		if(Input.GetButtonDown(_actionKey))
+		if(Input.GetButtonDown(_actionKey) && !_ready)
 		{
 			ReadyUp();
+		} 
+		else if(Input.GetButtonDown(_backKey) && _ready)
+		{
+			UnReady();
+		} 
+		else if(Input.GetButtonDown(_backKey) && !_ready)
+		{
+			RemoveMe();
 		}
 	}
 	private void CharacterUp()
@@ -83,11 +92,13 @@ public class CharacterSelect : MonoBehaviour
 		PlayerPrefs.SetString("Character-" + _playerID, CharDB.GetCharacterByInt(_characterID));
 		_roomManager.AddPlayerReady(this);
 	}
+
 	private void UnReady()
 	{
 		_ready = false;
 		_roomManager.RemovePlayerReady(this);
 	}
+
 	public void SetPlayer(int playerid,string controls)
 	{
 		_playerID = playerid;
@@ -95,5 +106,13 @@ public class CharacterSelect : MonoBehaviour
 		//HorizontalAxis = playerControls[0];
 		_verticalAxis = playerControls[1];
 		_actionKey = playerControls[2];
+		//jumpkey = playerControls[3];
+		_backKey = playerControls[4];
+	}
+
+	private void RemoveMe()
+	{
+		_characterID = 0;
+		_roomManager.DeactivatePanel(this, _playerID);
 	}
 }
