@@ -76,10 +76,9 @@ public class PlayerEffects : MonoBehaviour {
 	
 	void RemoveWallSlideEffect(GameObject obj)
 	{
-		if(_currentWallSlideEffectFeet != null && _currentWallSlideEffectHands != null)
-		{
-			Destroy(_currentWallSlideEffectHands.gameObject);
-			Destroy(_currentWallSlideEffectFeet.gameObject);
+		if (_currentWallSlideEffectFeet != null && _currentWallSlideEffectHands != null) {
+			Destroy (_currentWallSlideEffectHands.gameObject);
+			Destroy (_currentWallSlideEffectFeet.gameObject);
 		}
 	}
 

@@ -57,8 +57,15 @@ public class RoomManager : MonoBehaviour {
 	private void StartGame()
 	{
 		PlayerPrefs.SetInt("PlayerCount", _playerCount);
-		Application.LoadLevel(1);
+		//Application.LoadLevel(1);
+
+		GotoCharacterLevelSelect (MenuController.LEVEL_SELECT_SCREEN);
 	}
+
+	private void GotoCharacterLevelSelect(string levelKeyConst){
+		GameObject.Find ("CanvasMenu").GetComponent<MenuController> ().GoToScreen(levelKeyConst);
+	}
+
 	private void AddPlayer(string controls)
 	{
 		//check if the controls are already in use.

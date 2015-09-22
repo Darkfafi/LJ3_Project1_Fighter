@@ -75,6 +75,7 @@ public class Player : MonoBehaviour {
 		_myPlayerInput.NoKeyPressed += OnNoKeyPressed;
 
 		_myPlatformerMovement.ReleasedFromGround += ReleasedGround;
+		_myPlatformerMovement.StartedWallSlide += StartWallSlide;
 	}
 
 	// Movement
@@ -86,6 +87,10 @@ public class Player : MonoBehaviour {
 				_playerAnimHandler.PlayAnimation("Run");
 			}
 		}
+	}
+
+	void StartWallSlide(GameObject wallObject){
+		_playerAnimHandler.PlayAnimation("WallSlide");
 	}
 
 	public void SetCharacter(string characterName)
@@ -141,14 +146,14 @@ public class Player : MonoBehaviour {
 	void Update(){
 		if (!busyAction && !_myPlatformerMovement.onGround && !_myPlatformerMovement.inWallSlide) {
 			if (rigidBody.velocity.y < -0.2) {
-				_playerAnimHandler.PlayAnimation ("Fall");
+				playerAnimHandler.PlayAnimation ("Fall");
 			}
 		}
 	}
 
 	void FallDown()
 	{
-		if (!busyAction) {
+		if (!busyAction && !_myPlatformerMovement.onGround) {
 			_myPlatformerMovement.MoveVertical (PlatformerMovement.DIR_DOWN, _playerStats.fallSpeed);
 		}
 	}

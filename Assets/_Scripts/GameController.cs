@@ -30,13 +30,22 @@ public class GameController : MonoBehaviour {
 
 	private bool _suddenDeath;
 
+	private bool _movingCamera = true;
+
 	public void Start()
 	{
+		CreateLevel ();
 		FindAllSpawnPoints();
 		_timer = gameObject.AddComponent<ComTimer>();
 		Physics2D.IgnoreLayerCollision(8,8, true);
 		InitGame();
 	}
+	private void CreateLevel(){
+		string levelString = PlayerPrefs.GetString ("LevelChosen");
+		GameObject level = Resources.Load("Prefabs/Levels/"+levelString + "Level") as GameObject;
+		Instantiate (level, new Vector3 (0, 0, 0), Quaternion.identity);
+	}
+
 	private void InitGame()
 	{
 		GameObject boundsGameObject = GameObject.FindGameObjectWithTag (Tags.SCREEN_BOUND_OBJECT);
@@ -53,6 +62,10 @@ public class GameController : MonoBehaviour {
 
 		//init players
 		InitializePlayers();
+		
+		if (_movingCamera) {
+			GameObject.FindGameObjectWithTag(Tags.CAMERA).AddComponent<AllFollowCamera>();
+		}
 	}
 
 	private void SetGameRules()
@@ -68,7 +81,6 @@ public class GameController : MonoBehaviour {
 			_timer.TimerEnded += EndGame;
 		}
 		spawnTime = PlayerPrefs.GetInt("SpawnTime");
-
 	}
 
 	private void InitializePlayers()
