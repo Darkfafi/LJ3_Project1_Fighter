@@ -2,6 +2,8 @@
 using System.Collections;
 
 public class PlayerTransformer : MonoBehaviour {
+	public delegate void NormDelegate();
+	public event NormDelegate StartedTransformCharacter;
 
 	public const string SPECIAL_MOD = "SuperSaiyajinGoderu!";
 	public const string NORMAL_MOD = "YouAreNoRealSuperSand";
@@ -36,6 +38,10 @@ public class PlayerTransformer : MonoBehaviour {
 			//TODO call global transform back animation.
 			player.playerStats.ModCharacter(false,0f,0f,0f,0f,0f,0f);
 			_transformBackTimer.StopTimer();
+		}
+		if(StartedTransformCharacter != null)
+		{
+			StartedTransformCharacter();
 		}
 	}
 

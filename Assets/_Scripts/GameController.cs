@@ -37,6 +37,7 @@ public class GameController : MonoBehaviour {
 		CreateLevel ();
 		FindAllSpawnPoints();
 		_timer = gameObject.AddComponent<ComTimer>();
+		Physics2D.IgnoreLayerCollision(8,8, true);
 		InitGame();
 	}
 	private void CreateLevel(){
@@ -91,6 +92,7 @@ public class GameController : MonoBehaviour {
 			
 			//add player information
 			newPlayer.name = "Player-" + i;
+			newPlayer.layer = 8;
 			newPlayerScript.SetCharacter(playerCharacter);
 			newPlayerScript.SetKeys(playerHorizontalAxis,playerVerticalAxis,playerActionKey, playerJumpKey);
 			newPlayerScript.GotKilled += PlayerDied;
@@ -98,7 +100,7 @@ public class GameController : MonoBehaviour {
 			_currentPlayerLives.Add(playerLives);
 			_playerKills.Add(newPlayerScript, 0);
 		}
-		//positioning players
+		//positioning players + ignoring each others collision
 		for (int i = 0; i < _currentPlayers.Count; i++) 
 		{
 			_currentPlayers[i].transform.position = _currentSpawnPoints[i].transform.position;
