@@ -5,11 +5,17 @@ public class PauseCanvas : MonoBehaviour {
 	public GameObject _optionsPanel;
 	public GameObject _mainPanel;
 
+	private GameController _gameController;
 	// Use this for initialization
 	void Awake () {
-		GameController gameController = GameObject.FindGameObjectWithTag(Tags.GAMECONTROLLER).GetComponent<GameController>();
-		gameController.PauseGame += ShowMe;
-		gameController.ResumeGame += HideMe;
+		_gameController = GameObject.FindGameObjectWithTag(Tags.GAMECONTROLLER).GetComponent<GameController>();
+		_gameController.PauseGame += ShowMe;
+		_gameController.ResumeGame += HideMe;
+	}
+
+	void Start()
+	{
+		HideMe();
 	}
 	void ShowMe () 
 	{
@@ -17,8 +23,20 @@ public class PauseCanvas : MonoBehaviour {
 		_mainPanel.SetActive(true);
 		_optionsPanel.SetActive(false);
 	}
+
 	void HideMe ()
 	{
 		gameObject.SetActive(false);
+	}
+
+	public void ResumeButtonPressed()
+	{
+		_gameController.SwitchPause();
+		HideMe();
+	}
+
+	public void QuitButtonPressed()
+	{
+		Application.LoadLevel(0);
 	}
 }

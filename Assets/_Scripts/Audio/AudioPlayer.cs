@@ -74,34 +74,39 @@ public class AudioPlayer : MonoBehaviour
 				if(!loop)
 				{
 					audioSource.PlayOneShot(newSound);
-				} else if(loop && playedBy != null){
+				} else if(loop && playedBy != null  && !_audioPlayedByMono.ContainsValue(playedBy)){
 					audioSource.clip = newSound;
 					audioSource.Play();
 					_audioPlayedByMono.Add(audioSource,playedBy);
 				} else {
-					Debug.LogError("Can't play sound: Need to know who it is played by!");
+					Debug.LogError("Can't play sound: Need to know who it is played by or already has a looped sound!");
 				}
 				soundPlayed = true;
+				break;
 			}
 		}
 		if(!soundPlayed)
 		{
-			AudioSource newAudioSource = gameObject.AddComponent<AudioSource>();
-			_audioSources.Add(newAudioSource);
-			newAudioSource.volume = fxVolume;
-			newAudioSource.loop = loop;
-			if(!loop)
-			{
-				newAudioSource.PlayOneShot(newSound);
-			} else if(loop && playedBy != null){
-				newAudioSource.clip = newSound;
-				newAudioSource.Play();
-				_audioPlayedByMono.Add(newAudioSource,playedBy);
-			} else {
-				Debug.LogError("Can't play sound: Need to know who it is played by!");
-			}
+			CreateNewAudioSource(newSound, loop, playedBy);
 		}
+	}
 
+	private void CreateNewAudioSource(AudioClip newSound,bool loop, MonoBehaviour playedBy)
+	{
+		AudioSource newAudioSource = gameObject.AddComponent<AudioSource>();
+		_audioSources.Add(newAudioSource);
+		newAudioSource.volume = fxVolume;
+		newAudioSource.loop = loop;
+		if(!loop)
+		{
+			newAudioSource.PlayOneShot(newSound);
+		} else if(loop && playedBy != null && !_audioPlayedByMono.ContainsValue(playedBy)){
+			newAudioSource.clip = newSound;
+			newAudioSource.Play();
+			_audioPlayedByMono.Add(newAudioSource,playedBy);
+		} else {
+			Debug.LogError("Can't create new sound: Need to know who it is played by or already has a looped sound!");
+		}
 	}
 
 	public void StopAudio(string sound, MonoBehaviour playedBy = null)

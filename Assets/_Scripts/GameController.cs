@@ -127,14 +127,7 @@ public class GameController : MonoBehaviour {
 	{
 		if(Input.GetKeyDown(KeyCode.Escape))
 		{
-			if(isPaused)
-			{
-				isPaused = false;
-				ResumeGame();
-			} else {
-				isPaused = true;
-				PauseGame();
-			}
+			SwitchPause();
 		}
 		if(!isPaused)
 		{
@@ -156,6 +149,20 @@ public class GameController : MonoBehaviour {
 					PlayerDied(player.GetComponent<Player>(), null);
 				}
 			}
+		}
+	}
+
+	public void SwitchPause()
+	{
+		if(isPaused)
+		{
+			isPaused = false;
+			if(ResumeGame != null)
+				ResumeGame();
+		} else {
+			isPaused = true;
+			if(PauseGame != null)
+				PauseGame();
 		}
 	}
 
