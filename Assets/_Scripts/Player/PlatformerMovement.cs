@@ -84,6 +84,7 @@ public class PlatformerMovement : MonoBehaviour {
 			transform.localScale = new Vector3 (directionConst * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
 			if(_onGround)
 			{
+				StopRunning();
 				if(StartedRunning != null)
 					StartedRunning();
 			}
