@@ -9,19 +9,27 @@ public class AttackCather : MonoBehaviour {
 	public event GoFloatDelegate OnStunKillAttackCatch;
 	public event GoFloatDelegate OnKillAttackCatch;
 
-	public void CatchAttack(GameObject objHitBy, float stunPower,float pushPower){
-		if (stunPower < AttackBase.STUN_POWER_KILL_WHILE_STUNNED) {
-			if (OnStunAttackCatch != null) {
-				OnStunAttackCatch (stunPower,objHitBy,pushPower);
+	public bool catcherOn = true;
+
+	public bool CatchAttack(GameObject objHitBy, float stunPower,float pushPower){
+		bool result = false;
+		if (catcherOn) {
+			if (stunPower < AttackBase.STUN_POWER_KILL_WHILE_STUNNED) {
+				if (OnStunAttackCatch != null) {
+					OnStunAttackCatch (stunPower, objHitBy, pushPower);
+				}
+			} else if (stunPower == AttackBase.STUN_POWER_KILL_WHILE_STUNNED) {
+				if (OnStunKillAttackCatch != null) {
+					OnStunKillAttackCatch (objHitBy, pushPower);
+				}
+			} else if (stunPower == AttackBase.STUN_POWER_KILL) {
+				if (OnKillAttackCatch != null) {
+					OnKillAttackCatch (objHitBy, pushPower);
+				}
 			}
-		} else if (stunPower == AttackBase.STUN_POWER_KILL_WHILE_STUNNED) {
-			if (OnStunKillAttackCatch != null) {
-				OnStunKillAttackCatch (objHitBy,pushPower);
-			}
-		} else if (stunPower == AttackBase.STUN_POWER_KILL) {
-			if (OnKillAttackCatch != null) {
-				OnKillAttackCatch (objHitBy,pushPower);
-			}
+			result = true;
 		}
+
+		return result;
 	}
 }

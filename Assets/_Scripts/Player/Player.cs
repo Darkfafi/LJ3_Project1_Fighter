@@ -17,7 +17,6 @@ public class Player : MonoBehaviour {
 	private PlayerStats _playerStats = new PlayerStats (5f, 10f, 2f, 5f, 10f, 10f); // set all base stats
 
 	public bool busyAction = false;
-	public bool invulnerable = false;
 
 
 	// Combat
@@ -184,27 +183,26 @@ public class Player : MonoBehaviour {
 	// Hit by attacks (MAYBE CODE IN A DIFFERENT COMPONENT)
 	void OnStunHit(float stunPower, GameObject attacker, float pushPower){
 		//TODO CALL STUN FUNCTION
-		if (!_stunTimer.running && !invulnerable) {
+		if (!_stunTimer.running) {
 			GetStunned(stunPower);
 		}
 	}
 
 	void OnStunKillHit(GameObject attacker, float pushPower){
 		//TODO IF STUNNED THEN CALL DEAD FUNCTION
-		if (_stunTimer.running && !invulnerable) {
+		if (_stunTimer.running) {
 			StartDeath(attacker);
 		}
 	}
 	void OnKillHit(GameObject attacker, float pushPower){
 		//TODO CALL DEAD FUNCTION
-		if (!invulnerable) {
-			StartDeath (attacker);
-		}
+
+		StartDeath (attacker);
+
 	}
 
 	void GetStunned(float stunPower){
 		_playerAnimHandler.PlayAnimation("Stunned");
-		Debug.Log((int)(0.5f * stunPower));
 		_stunTimer.StartTimer ((int)(0.5f * stunPower));
 		if (StartStunned != null) {
 			StartStunned ();
@@ -222,10 +220,11 @@ public class Player : MonoBehaviour {
 		//TODO cannot be attack or can interact
 		HealStun ();
 		busyAction = true;
-		invulnerable = true;
+		SetInvulnerable (true);
 		_lastKiller = killer;
 		_fader.OnFadeEnd += DeathFadeEnd;
 		_playerAnimHandler.PlayAnimation("Death");
+		_fader.Fade (0,0.008f);
 	}
 
 	void DeathFadeEnd(float valueFade){
@@ -235,8 +234,10 @@ public class Player : MonoBehaviour {
 	void GetKilled(GameObject attacker){
 		// Die
 		this.gameObject.SetActive(false);
+		_fader.SetAlpha (1);
 		_fader.OnFadeEnd -= DeathFadeEnd;
-		invulnerable = false;
+		SetInvulnerable(false);
+		busyAction = false;
 		//TODO: Spawn kill animation
 		if (GotKilled != null) {
 			GotKilled (this,attacker);
@@ -245,6 +246,10 @@ public class Player : MonoBehaviour {
 
 	void StunTimerEnded(){
 		HealStun ();
+	}
+
+	void SetInvulnerable(bool invulnerable){
+		_attackCatcher.catcherOn = !invulnerable;
 	}
 
 	// GETTERS and SETTERS

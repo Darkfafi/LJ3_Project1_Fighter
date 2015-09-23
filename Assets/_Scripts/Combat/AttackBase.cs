@@ -29,10 +29,12 @@ public class AttackBase : MonoBehaviour {
 
 	}
 
-	protected void Hit(GameObject targetObject,float stunPower,float pushPower = 0){
+	protected bool Hit(GameObject targetObject,float stunPower,float pushPower = 0){
+		bool result = false; 
 		if (targetObject.GetComponent<AttackCather> () != null) {
-			targetObject.GetComponent<AttackCather>().CatchAttack(this.gameObject,stunPower,pushPower);
+			result = targetObject.GetComponent<AttackCather>().CatchAttack(this.gameObject,stunPower,pushPower);
 		}
+		return result;
 	}
 
 	public ComTimer cooldownTimer{

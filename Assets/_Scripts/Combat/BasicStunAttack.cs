@@ -62,11 +62,13 @@ public class BasicStunAttack : AttackBase {
 				if(gObject.GetComponent<ClashAble>() != null && gObject.GetComponent<ClashAble>().clashAble){
 					_player.clasher.Clash(gObject,_player.playerStats.pushPower);
 				}else{
-					Hit(gObject,_hitPowerForce);
-					if(gObject.GetComponent<Rigidbody2D>()){
-						gObject.GetComponent<Rigidbody2D>().velocity += gameObject.GetComponent<Rigidbody2D>().velocity.normalized * (_player.playerStats.pushPower * 0.8f);
+					if(Hit(gObject,_hitPowerForce)){
+						if(gObject.GetComponent<Rigidbody2D>()){
+							gObject.GetComponent<Rigidbody2D>().velocity += gameObject.GetComponent<Rigidbody2D>().velocity.normalized * (_player.playerStats.pushPower * 0.8f);
+						}	
+						StopAttacking();
 					}
-					StopAttacking();
+
 				}
 			}
 		} // clash = opposite direction velocity + particle system emitter added with timer.
