@@ -52,6 +52,7 @@ public class GameController : MonoBehaviour {
 		_timer = gameObject.AddComponent<ComTimer>();
 		Physics2D.IgnoreLayerCollision(8,8, true);
 		InitGame();
+		GameObject.Find ("UI").AddComponent<InGameUi> ();
 	}
 	private void CreateLevel(){
 		string levelString = PlayerPrefs.GetString ("LevelChosen");
