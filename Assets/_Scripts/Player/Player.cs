@@ -2,7 +2,10 @@
 using System.Collections;
 
 public class Player : MonoBehaviour {
-	
+
+	public int playerID = 404;
+	public string playerType = "NoType";
+
 	public delegate void PlayerGameObjectDelegate(Player player, GameObject attacker);
 	public event PlayerGameObjectDelegate GotKilled;
 
@@ -237,7 +240,8 @@ public class Player : MonoBehaviour {
 	void GetKilled(GameObject attacker){
 		// Die
 		this.gameObject.SetActive(false);
-		_fader.SetAlpha (1);
+		_fader.SetAlpha (0.5f);
+		_fader.SetAlpha (1,false);
 		_fader.OnFadeEnd -= DeathFadeEnd;
 		SetInvulnerable(false);
 		busyAction = false;

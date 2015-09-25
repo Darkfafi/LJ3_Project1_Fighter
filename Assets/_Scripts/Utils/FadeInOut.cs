@@ -30,34 +30,36 @@ public class FadeInOut : MonoBehaviour {
 		return returnAlpha;
 	}
 
-	public void SetAlpha(float alphaValue){
+	public void SetAlpha(float alphaValue,bool childerenInc = true){
 		Color color = new Color ();
 		if(GetComponent<SpriteRenderer>() != null){
 			color = GetComponent<SpriteRenderer>().color;
 			color.a = alphaValue;
 			GetComponent<SpriteRenderer>().color = color;
-
-			for(int i = 0; i < gameObject.transform.childCount; i++)
-			{
-				GameObject Go = gameObject.transform.GetChild(i).gameObject;
-				if(Go.GetComponent<SpriteRenderer>() != null){
-					color = Go.GetComponent<SpriteRenderer>().color;
-					color.a = alphaValue;
-					Go.GetComponent<SpriteRenderer>().color = color;
+			if(childerenInc){
+				for(int i = 0; i < gameObject.transform.childCount; i++)
+				{
+					GameObject Go = gameObject.transform.GetChild(i).gameObject;
+					if(Go.GetComponent<SpriteRenderer>() != null){
+						color = Go.GetComponent<SpriteRenderer>().color;
+						color.a = alphaValue;
+						Go.GetComponent<SpriteRenderer>().color = color;
+					}
 				}
 			}
 		}else if(GetComponent<CanvasRenderer>() != null){
 			color = GetComponent<CanvasRenderer>().GetColor();
 			color.a = alphaValue;
 			GetComponent<CanvasRenderer>().SetColor(color);
-
-			for(int i = 0; i < gameObject.transform.childCount; i++)
-			{
-				GameObject Go = gameObject.transform.GetChild(i).gameObject;
-				if(Go.GetComponent<CanvasRenderer>() != null){
-					color = Go.GetComponent<CanvasRenderer>().GetColor();
-					color.a = alphaValue;
-					Go.GetComponent<CanvasRenderer>().SetColor(color);
+			if(childerenInc){
+				for(int i = 0; i < gameObject.transform.childCount; i++)
+				{
+					GameObject Go = gameObject.transform.GetChild(i).gameObject;
+					if(Go.GetComponent<CanvasRenderer>() != null){
+						color = Go.GetComponent<CanvasRenderer>().GetColor();
+						color.a = alphaValue;
+						Go.GetComponent<CanvasRenderer>().SetColor(color);
+					}
 				}
 			}
 		}

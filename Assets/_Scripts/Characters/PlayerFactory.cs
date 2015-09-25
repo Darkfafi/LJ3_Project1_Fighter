@@ -36,6 +36,9 @@ public class PlayerFactory {
 
 		player = playerObject.AddComponent<Player> ();
 
+		player.playerType = playerConstString;
+		player.playerID = playerID;
+
 
 		// set animators and special attacks for characters
 		switch(playerConstString)
@@ -61,21 +64,7 @@ public class PlayerFactory {
 		PlayerArrow newPlayerArrow = playerObject.AddComponent<PlayerArrow>();
 		newPlayerArrow.Init();
 
-		switch(playerID)
-		{
-		case 0:
-			newPlayerArrow.SetColor(Color.red);
-			break;
-		case 1:
-			newPlayerArrow.SetColor(Color.blue);
-			break;
-		case 2:
-			newPlayerArrow.SetColor(Color.yellow);
-			break;
-		case 3:
-			newPlayerArrow.SetColor(Color.green);
-			break;
-		}
+		newPlayerArrow.SetColor (CharDB.GetColorByID (playerID));
 
 		anim.runtimeAnimatorController = Resources.Load ("Animators/Players/" + animatorName) as RuntimeAnimatorController;
 

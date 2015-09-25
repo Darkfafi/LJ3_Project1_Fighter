@@ -71,4 +71,24 @@ public class CharDB : MonoBehaviour {
 		}
 		return "";
 	}
+
+	public static Color GetColorByID(int id){
+		Color color = new Color ();
+		switch(id)
+		{
+		case 0:
+			color = Color.red;
+			break;
+		case 1:
+			color = Color.blue;
+			break;
+		case 2:
+			color = Color.yellow;
+			break;
+		case 3:
+			color = Color.green;
+			break;
+		}
+		return color;
+	}
 }
