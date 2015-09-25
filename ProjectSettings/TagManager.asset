@@ -3,43 +3,28 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-    
-tags:
+  tags:
   - SpawnPoint
   - ItemSpawnPoint
   - RoomManager
   - PassAble
   - SpecialItem
   - ScreenBoundObject
-  - FullLevel  
-layers:
-
+  - FullLevel
+  layers:
   - Default
-
   - TransparentFX
-
   - Ignore Raycast
-
-  -
- 
- - Water
-
+  - 
+  - Water
   - UI
-
-  -
-
   - 
-
   - 
-
   - 
-
   - 
-
   - 
-
   - 
-
+  - 
   - 
   - 
   - 
