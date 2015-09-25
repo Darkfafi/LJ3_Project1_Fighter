@@ -65,29 +65,31 @@ public class AudioPlayer : MonoBehaviour
 		{
 			Debug.LogWarning("No sound has been found, check soundname or add it in the list if exists.");
 		} 
-		foreach (var audioSource in _audioSources) 
-		{
-			if(!audioSource.isPlaying)
+		else {
+			foreach (var audioSource in _audioSources) 
 			{
-				audioSource.volume = fxVolume;
-				audioSource.loop = loop;
-				if(!loop)
+				if(!audioSource.isPlaying)
 				{
-					audioSource.PlayOneShot(newSound);
-				} else if(loop && playedBy != null  && !_audioPlayedByMono.ContainsValue(playedBy)){
-					audioSource.clip = newSound;
-					audioSource.Play();
-					_audioPlayedByMono.Add(audioSource,playedBy);
-				} else {
-					Debug.LogWarning("Can't play sound: Need to know who it is played by or already has a looped sound!");
+					audioSource.volume = fxVolume;
+					audioSource.loop = loop;
+					if(!loop)
+					{
+						audioSource.PlayOneShot(newSound);
+					} else if(loop && playedBy != null  && !_audioPlayedByMono.ContainsValue(playedBy)){
+						audioSource.clip = newSound;
+						audioSource.Play();
+						_audioPlayedByMono.Add(audioSource,playedBy);
+					} else {
+						Debug.LogWarning("Can't play sound: Need to know who it is played by or already has a looped sound!");
+					}
+					soundPlayed = true;
+					break;
 				}
-				soundPlayed = true;
-				break;
 			}
-		}
-		if(!soundPlayed)
-		{
-			CreateNewAudioSource(newSound, loop, playedBy);
+			if(!soundPlayed)
+			{
+				CreateNewAudioSource(newSound, loop, playedBy);
+			}
 		}
 	}
 
@@ -116,10 +118,13 @@ public class AudioPlayer : MonoBehaviour
 			if(_audioPlayedByMono.ContainsValue(playedBy))
 			{
 				foreach (var audioSource in _audioSources) {
-					if((_audioPlayedByMono.ContainsKey(audioSource) && audioSource.clip.name == sound) && _audioPlayedByMono[audioSource] == playedBy)
+					if((_audioPlayedByMono.ContainsKey(audioSource) && audioSource.clip.name == sound))
 					{
-						audioSource.Stop();
-						_audioPlayedByMono.Remove(audioSource);
+						if(_audioPlayedByMono[audioSource] == playedBy)
+						{
+							audioSource.Stop();
+							_audioPlayedByMono.Remove(audioSource);
+						}
 					}
 				}
 			}
