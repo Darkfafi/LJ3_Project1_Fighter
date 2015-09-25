@@ -31,8 +31,8 @@ public class TouchDetector2D : MonoBehaviour {
 
 		colliderBox = GetComponent<BoxCollider2D> ();
 		sizeCollider = colliderBox.size;
-		//sizeCollider.x *= transform.localScale.x;
-		//sizeCollider.y *= transform.localScale.y;
+		sizeCollider.x *= transform.localScale.x;
+		sizeCollider.y *= transform.localScale.y;
 		//centerCollider = new Vector2 (sizeCollider.x / 2, sizeCollider.y / 2);
 	}
 
@@ -46,11 +46,11 @@ public class TouchDetector2D : MonoBehaviour {
 			currentDirVector = _sidesToCheck[i];
 			startRay = new Vector2(transform.position.x,transform.position.y);
 			if(i <= 1){
-				dist = sizeCollider.y * transform.localScale.y / 2;
+				dist = sizeCollider.y / 2;
 				dist += dist * 0.1f;
 				startRay.y += dist * currentDirVector.y;
 			}else{
-				dist = sizeCollider.x *  transform.localScale.x / 2;
+				dist = sizeCollider.x / 2;
 				dist += dist * 0.1f;
 				startRay.x += dist * currentDirVector.x;
 			}

@@ -9,6 +9,7 @@ public class Player : MonoBehaviour {
 	public delegate void NormDelegate();
 	public event NormDelegate StartStunned;
 	public event NormDelegate StopStunned;
+	public event NormDelegate StartedDying;
 
 	//Stats
 	private PlayerTransformer _playerTransformer;
@@ -85,8 +86,6 @@ public class Player : MonoBehaviour {
 
 		_myPlatformerMovement.ReleasedFromGround += ReleasedGround;
 		_myPlatformerMovement.StartedWallSlide += StartWallSlide;
-
-		TransformPlayer (PlayerTransformer.SPECIAL_MOD);
 	}
 
 	// Movement
@@ -220,6 +219,8 @@ public class Player : MonoBehaviour {
 	}
 	void StartDeath(GameObject killer){
 		//TODO cannot be attack or can interact
+		if(StartedDying != null)
+			StartedDying();
 		HealStun ();
 		busyAction = true;
 		SetInvulnerable (true);

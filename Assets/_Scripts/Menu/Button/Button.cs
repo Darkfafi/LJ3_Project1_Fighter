@@ -24,7 +24,7 @@ public class Button : MonoBehaviour {
 
 	// Use this for initialization
 	public void Awake () {
-		gameObject.tag = Tags.BUTTON_MENU;
+		//gameObject.tag = Tags.BUTTON_MENU;
 		_buttonImage = gameObject.AddComponent<Image> ();
 		GameObject textFieldGo = new GameObject (); 
 		textFieldGo.transform.SetParent (gameObject.transform);

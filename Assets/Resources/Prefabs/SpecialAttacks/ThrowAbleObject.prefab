@@ -12,7 +12,6 @@ GameObject:
   - 61: {fileID: 6119212}
   - 114: {fileID: 11489154}
   - 50: {fileID: 5079926}
-  - 95: {fileID: 9510712}
   m_Layer: 0
   m_Name: ThrowAbleObject
   m_TagString: Untagged
@@ -61,23 +60,6 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 2.78999996, y: 1.58000004}
---- !u!95 &9510712
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 156796}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7e05abaab25435349aba1291893ecfff, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11489154
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -130,10 +112,6 @@ Prefab:
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 7e05abaab25435349aba1291893ecfff, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 156796}

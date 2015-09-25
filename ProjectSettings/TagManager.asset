@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - SpawnPoint
+  - ItemSpawnPoint
+  - RoomManager
+  - PassAble
+  - SpecialItem
+  - ScreenBoundObject
+  - FullLevel
   layers:
   - Default
   - TransparentFX

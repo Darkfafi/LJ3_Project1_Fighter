@@ -8,7 +8,7 @@ public class MenuButtonsControllerSupport : MonoBehaviour {
 
 	private List<Button> _allButtons = new List<Button>();
 
-
+	/*
 	public void SetButtonsForNewScreen(){
 		_allButtons = new List<Button> ();
 		GameObject[] allFoundButtons = GameObject.FindGameObjectsWithTag (Tags.BUTTON_MENU);
@@ -17,7 +17,7 @@ public class MenuButtonsControllerSupport : MonoBehaviour {
 			_allButtons.Add(allFoundButtons[i].GetComponent<Button>());
 		}
 	}
-
+*/
 	void Update(){
 		//gebruik using controller om te switchen tussen mouse controll of controller controll.
 	}

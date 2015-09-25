@@ -12,5 +12,4 @@ public class Tags : MonoBehaviour {
 	public const string PASSABLE = "PassAble";
 	public const string SCREEN_BOUND_OBJECT = "ScreenBoundObject";
 	public const string CURRENT_LEVEL = "FullLevel";
-	public const string BUTTON_MENU = "ButtonMenu";
 }

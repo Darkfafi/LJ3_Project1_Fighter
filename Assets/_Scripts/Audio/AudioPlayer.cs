@@ -79,7 +79,7 @@ public class AudioPlayer : MonoBehaviour
 					audioSource.Play();
 					_audioPlayedByMono.Add(audioSource,playedBy);
 				} else {
-					Debug.LogError("Can't play sound: Need to know who it is played by or already has a looped sound!");
+					Debug.LogWarning("Can't play sound: Need to know who it is played by or already has a looped sound!");
 				}
 				soundPlayed = true;
 				break;
@@ -105,7 +105,7 @@ public class AudioPlayer : MonoBehaviour
 			newAudioSource.Play();
 			_audioPlayedByMono.Add(newAudioSource,playedBy);
 		} else {
-			Debug.LogError("Can't create new sound: Need to know who it is played by or already has a looped sound!");
+			Debug.LogWarning("Can't create new sound: Need to know who it is played by or already has a looped sound!");
 		}
 	}
 

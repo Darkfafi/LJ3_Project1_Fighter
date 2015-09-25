@@ -1,14 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
 	public static bool isPaused = false;
 	
-	public delegate void pauseGame();
-	public event pauseGame PauseGame;
-	public event pauseGame ResumeGame;
-	
+	public delegate void NormDelegate();
+	public delegate void PlayerKillsDeathsDelegate(Player player, int kills, int deaths);
+
+	public event NormDelegate PauseGame;
+	public event NormDelegate ResumeGame;
+
+	public event PlayerKillsDeathsDelegate win;
+
+	private GameObject _specialItem;
+	private Transform _itemSpawnPoint;
+
+	private GameObject _currentSpecialItem;
+	private int _spawnPercentage;
+	private int _percentageCounter;
+	private int _standardSpawnPercentage;
+
 	private List<Transform> _currentSpawnPoints = new List<Transform>();
 
 	private List<Player> _currentPlayers = new List<Player>();
@@ -67,6 +80,54 @@ public class GameController : MonoBehaviour {
 		if (_movingCamera) {
 			GameObject.FindGameObjectWithTag(Tags.CAMERA).AddComponent<AllFollowCamera>();
 		}
+
+
+		_specialItem = Resources.Load("Prefabs/SpecialItem", typeof(GameObject)) as GameObject;
+		_itemSpawnPoint = GameObject.FindGameObjectWithTag(Tags.ITEMSPAWN).transform;
+		StartCoroutine("CheckSpawnItem");
+
+		win += InvokeBackToMenu;
+	}
+	private void InvokeBackToMenu(Player playerwon, int playerKills, int deaths)
+	{
+		Invoke("BackToMenu", 5);
+	}
+	void BackToMenu()
+	{
+		Application.LoadLevel(0);
+	}
+	IEnumerator CheckSpawnItem () 
+	{
+		_standardSpawnPercentage = 5; //5%
+		_spawnPercentage = _standardSpawnPercentage;
+		_percentageCounter = 0;
+		while(true)
+		{
+			if(_currentSpecialItem == null)
+			{
+				if(Random.Range(0,100) <= _spawnPercentage) //% change to spawn item per second
+				{
+					SpawnItem();
+					_spawnPercentage = _standardSpawnPercentage;
+				}
+				else
+				{
+					_percentageCounter++;
+					if(_percentageCounter == 10)
+					{
+						_spawnPercentage += 5;
+						_percentageCounter = 0;
+					}
+				}
+			} 
+			yield return new WaitForSeconds(1);
+		}
+	}
+	private void SpawnItem()
+	{
+		Vector3 eulerSpawnItemRot = new Vector3(0, 0, Random.Range(0,360)); //randomize the rotation of the item
+		_currentSpecialItem = Instantiate(_specialItem, _itemSpawnPoint.position, Quaternion.identity) as GameObject;
+		_currentSpecialItem.transform.eulerAngles = eulerSpawnItemRot;
 	}
 
 	private void SetGameRules()
@@ -221,7 +282,10 @@ public class GameController : MonoBehaviour {
 		}
 		if(playersAlive <= 1)
 		{
-			PlayerWon(_currentPlayers[playerIDWon]);
+			Player playerWon = _currentPlayers[playerIDWon];
+			int kills = _playerKills[playerWon];
+			int deaths = playerLives - _currentPlayerLives[_currentPlayers.IndexOf(playerWon)];
+			win(playerWon, kills, deaths);
 		}
 	}
 
@@ -251,7 +315,9 @@ public class GameController : MonoBehaviour {
 		} 
 		else 
 		{
-			PlayerWon(playerWon);
+			int deaths = playerLives - _currentPlayerLives[_currentPlayers.IndexOf(playerWon)];
+			int kills = oldPlayerKills;
+			win(playerWon, kills, deaths);
 		}
 	}
 
@@ -269,13 +335,6 @@ public class GameController : MonoBehaviour {
 			}
 		}
 	}
-
-	private void PlayerWon(Player player)
-	{
-		//TODO: generate win screen with player that won
-		Debug.Log("Player: " + player.name + " WON!");
-	}
-	
 	private void CheckSpawnPlayer(float spawntime, GameObject player)
 	{
 		if(spawntime < Time.time)
