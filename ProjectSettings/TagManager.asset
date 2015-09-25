@@ -3,8 +3,43 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
-  layers:
+    
+tags:
+  - SpawnPoint
+  - ItemSpawnPoint
+  - RoomManager
+  - PassAble
+  - SpecialItem
+  - ScreenBoundObject
+  - FullLevel  
+layers:
+
+  - Default
+
+  - TransparentFX
+
+  - Ignore Raycast
+
+  -
+ 
+ - Water
+
+  - UI
+
+  -
+
+  - 
+
+  - 
+
+  - 
+
+  - 
+
+  - 
+
+  - 
+
   - 
   - 
   - 
@@ -24,17 +59,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  m_SortingLayers: []
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
