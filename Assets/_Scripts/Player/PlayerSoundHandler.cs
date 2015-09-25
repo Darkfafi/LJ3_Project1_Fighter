@@ -19,14 +19,14 @@ public class PlayerSoundHandler : MonoBehaviour {
 
 	void Start()
 	{
-		jumpSoundName = "Sound";
-		runSoundName = "Sound";
-		doubleJumpSoundName = "Sound";
+		jumpSoundName = "jump1";
+		runSoundName = "steps";
+		doubleJumpSoundName = "jump1";
 		dashSoundName = "Sound";
 		clashSoundName = "Sound";
-		hitSoundName = "Sound";
+		hitSoundName = "Hit_bod_5";
 		transformSoundName = "Sound";
-		deathSoundName = "Sound";
+		deathSoundName = "death";
 
 		PlatformerMovement myPlatformerMovement = GetComponent<PlatformerMovement>();
 		myPlatformerMovement.Jumped += PlayJumpSound;
