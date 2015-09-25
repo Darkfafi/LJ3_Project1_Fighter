@@ -8,10 +8,10 @@ public class CharacterSelect : MonoBehaviour
 	private RectTransform _rectTransform;
 	private RoomManager _roomManager;
 
-	private string _verticalAxis;
-	private string _actionKey;
-	private string _backKey;
-	private string _jumpKey;
+	private string _verticalAxis = "";
+	private string _actionKey = "";
+	private string _backKey = "";
+	private string _jumpKey = "";
 
 	private bool _busy;
 	private bool _ready;
@@ -55,14 +55,26 @@ public class CharacterSelect : MonoBehaviour
 
 			_rectTransform.localPosition = Vector3.Lerp(_rectTransform.localPosition,newPos, _moveSpeed * Time.deltaTime);
 
-			if(Vector3.Distance(_rectTransform.localPosition,newPos) < 0.1f)
+			if(Vector3.Distance(_rectTransform.localPosition,newPos) < 0.5f)
 				_busy = false;
 		}
-		if(Input.GetButtonDown(_actionKey) && !_ready || Input.GetButtonDown(_jumpKey) && !_ready)
+
+		if(_jumpKey != "")
 		{
-			ReadyUp();
+			if(Input.GetButtonDown(_actionKey) && !_ready || Input.GetButtonDown(_jumpKey) && !_ready)
+			{
+				ReadyUp();
+			} 
 		} 
-		else if(Input.GetButtonDown(_backKey) && _ready)
+		else 
+		{
+			if(Input.GetButtonDown(_actionKey) && !_ready)
+			{
+				ReadyUp();
+			} 
+		}
+
+		if(Input.GetButtonDown(_backKey) && _ready)
 		{
 			UnReady();
 		} 
@@ -73,7 +85,7 @@ public class CharacterSelect : MonoBehaviour
 	}
 	private void CharacterUp()
 	{
-		if(_characterID < 3)
+		if(_characterID < 1)
 		{
 			_characterID++;
 			_busy = true;
@@ -108,7 +120,7 @@ public class CharacterSelect : MonoBehaviour
 		_verticalAxis = playerControls[1];
 		_actionKey = playerControls[2];
 		//keyboard does not need the jump key
-		if(controls != Controls.keyboard01 || controls != Controls.keyboard02)
+		if(controls != Controls.keyboard01 && controls != Controls.keyboard02)
 			_jumpKey = playerControls[3];
 
 		_backKey = playerControls[4];

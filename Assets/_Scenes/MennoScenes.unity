@@ -280,8 +280,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a8f85d6667abe04a974d27730388682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  specialItem: {fileID: 106112, guid: 4491e0225642efe47a054037997b3ae9, type: 2}
-  itemSpawnPoint: {fileID: 0}
 --- !u!81 &1801688855
 AudioListener:
   m_ObjectHideFlags: 0

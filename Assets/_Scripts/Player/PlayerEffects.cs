@@ -11,8 +11,10 @@ public class PlayerEffects : MonoBehaviour {
 	private GameObject _startRunEffect;
 	private GameObject _wallSlideEffect;
 	private GameObject _deathEffect;
+	private GameObject _hitEffect;
 
 	private GameObject _currentStunEffect;
+	private GameObject _currentDashEffect;
 	private GameObject _currentWallSlideEffectFeet;
 	private GameObject _currentWallSlideEffectHands;
 
@@ -23,10 +25,11 @@ public class PlayerEffects : MonoBehaviour {
 		_jumpEffect = Resources.Load(_effectsPath + "FXJumpGround", typeof(GameObject)) as GameObject;
 		_doubleJumpEffect = Resources.Load(_effectsPath + "FXDoubleJump", typeof(GameObject)) as GameObject;
 		_clashEffect = Resources.Load(_effectsPath + "FXHit", typeof(GameObject)) as GameObject;
-		_dashEffect = Resources.Load(_effectsPath + "FXHit", typeof(GameObject)) as GameObject;
+		_dashEffect = Resources.Load(_effectsPath + "FXDash", typeof(GameObject)) as GameObject;
 		_startRunEffect = Resources.Load(_effectsPath + "FXBeginRun", typeof(GameObject)) as GameObject;
-		_wallSlideEffect = Resources.Load(_effectsPath + "FXHit", typeof(GameObject)) as GameObject;
+		_wallSlideEffect = Resources.Load(_effectsPath + "FXWallGlide", typeof(GameObject)) as GameObject;
 		_deathEffect = Resources.Load(_effectsPath + "FXDeath", typeof(GameObject)) as GameObject;
+		_hitEffect = Resources.Load(_effectsPath + "FXHit", typeof(GameObject)) as GameObject;
 
 		PlatformerMovement myPlatformerMovement = GetComponent<PlatformerMovement>();
 		myPlatformerMovement.Jumped += CreateJumpEffect;
@@ -37,6 +40,7 @@ public class PlayerEffects : MonoBehaviour {
 
 		GetComponent<BasicStunAttack>().AttackStarted += CreateDashEffect;
 		GetComponent<ClashAble>().Clashed += CreateClashEffect;
+		GetComponent<AttackCather>().OnStunAttackCatch += CreateHitEffect;
 
 		Player myPlayerScript = GetComponent<Player>();
 		myPlayerScript.StartStunned += CreateStunEffect;
@@ -57,16 +61,26 @@ public class PlayerEffects : MonoBehaviour {
 		}
 		if(_currentWallSlideEffectFeet != null && _currentWallSlideEffectHands != null)
 		{
-			Vector3 feetPosition = this.transform.position + new Vector3(0,-1,0);
-			Vector3 handPosition = this.transform.position + new Vector3(1,0.5f,0);
+			Vector3 feetPosition = this.transform.position + new Vector3(0.75f,-0.75f,0);
+			Vector3 handPosition = this.transform.position + new Vector3(0.75f,1f,0);
 			if(this.transform.localScale.x < 0)
 			{
-				handPosition = this.transform.position + new Vector3(-1,0.5f,0);
+				handPosition = this.transform.position + new Vector3(-0.75f,1f,0);
+				feetPosition = this.transform.position + new Vector3(-0.75f,-0.75f,0);
 			}
 			_currentWallSlideEffectFeet.transform.position = feetPosition;
 			_currentWallSlideEffectHands.transform.position = handPosition;
 		}
+		if(_currentDashEffect != null)
+		{
+			_currentDashEffect.transform.position = this.transform.position;
+		}
 	}
+	void CreateHitEffect(float valueFloat, GameObject Go, float valueFloatSec)
+	{
+		Instantiate(_hitEffect, this.transform.position, Quaternion.identity);
+	}
+
 	void CreateDoubleJumpEffect()
 	{
 		Vector3 feetPosition = this.transform.position + new Vector3(0,-1,0);
@@ -130,11 +144,11 @@ public class PlayerEffects : MonoBehaviour {
 	void CreateDashEffect()
 	{
 		//Placeholder particle system to check if it looks nice
-		GameObject currentDashParticles = Instantiate(_dashEffect, this.transform.position, this.transform.rotation) as GameObject;
+		_currentDashEffect = Instantiate(_dashEffect, this.transform.position, this.transform.rotation) as GameObject;
 		Vector3 newLocalScale = new Vector3(1,1,1);
 		if(this.transform.localScale.x < 0)
 			newLocalScale.x = -1;
-		currentDashParticles.transform.localScale = newLocalScale;
+		_currentDashEffect.transform.localScale = newLocalScale;
 	}
 
 	void CreateClashEffect()

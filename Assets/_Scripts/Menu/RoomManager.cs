@@ -118,7 +118,7 @@ public class RoomManager : MonoBehaviour {
 			if(playerPanels[i].GetComponent<CharacterSelect>() == charSelect)
 			{
 				playerPanels[i].SetActive(false);
-				playerTexts[i].text = "Press action key";
+				playerTexts[i].text = "Press Action Key To Play";
 			}
 		}
 		_controlsInUse[playerID] = "";

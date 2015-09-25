@@ -14,7 +14,8 @@ public class LandOnTopKill : AttackBase {
 	// Update is called once per frame
 	void OnTouch (GameObject objHit, Vector2 touchVector) {
 		if (touchVector == Vector2.down) {
-			Hit(objHit, AttackBase.STUN_POWER_KILL_WHILE_STUNNED);
+			if(Hit(objHit, AttackBase.STUN_POWER_KILL_WHILE_STUNNED))
+				GetComponent<Rigidbody2D>().velocity = new Vector2(0,5);
 		}
 	}
 }
