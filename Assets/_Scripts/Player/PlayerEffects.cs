@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 using System.Collections;
 
 public class PlayerEffects : MonoBehaviour {
@@ -40,10 +41,10 @@ public class PlayerEffects : MonoBehaviour {
 		Player myPlayerScript = GetComponent<Player>();
 		myPlayerScript.StartStunned += CreateStunEffect;
 		myPlayerScript.StopStunned += RemoveStunEffect;
-		myPlayerScript.GotKilled += CreateDeathEffect;
+		myPlayerScript.StartedDying += CreateDeathEffect;
 	}
 
-	void CreateDeathEffect(Player player, GameObject attacker)
+	void CreateDeathEffect()
 	{
 		Instantiate(_deathEffect,this.transform.position,Quaternion.identity);
 	}
