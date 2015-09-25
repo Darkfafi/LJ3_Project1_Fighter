@@ -72,7 +72,7 @@ public class PlatformerMovement : MonoBehaviour {
 	public void StartSliding()
 	{
 		_rigidbody.gravityScale = 0f;
-		_rigidbody.velocity = new Vector2(0,-1);
+		_rigidbody.velocity = new Vector2(0,-1.5f);
 	}
 	public void StopSliding()
 	{
