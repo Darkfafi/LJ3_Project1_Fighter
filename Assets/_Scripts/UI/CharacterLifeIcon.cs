@@ -14,10 +14,11 @@ public class CharacterLifeIcon : MonoBehaviour {
 	private void Awake(){
 		_image = gameObject.AddComponent<Image> ();
 		_image.sprite = _icon;
+		_image.rectTransform.sizeDelta = new Vector2 (120, 100);
 	}
 
 	public Sprite icon{
-		set{_icon = value;}
+		set{_icon = value; _image.sprite = _icon;}
 	}
 	public void SetColor(Color color){
 		_colorIcon = color;
