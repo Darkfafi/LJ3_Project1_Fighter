@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 462284}
   m_Layer: 0
-  m_Name: SpawnPoint-2
+  m_Name: SpawnPoint-4
   m_TagString: SpawnPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -185,6 +185,21 @@ GameObject:
   m_Layer: 0
   m_Name: front bush_island blocks
   m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &144582
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 487726}
+  m_Layer: 0
+  m_Name: SpawnPoint-3
+  m_TagString: SpawnPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -435,6 +450,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &191552
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 450634}
+  m_Layer: 0
+  m_Name: SpawnPoint-2
+  m_TagString: SpawnPoint
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &199402
 GameObject:
   m_ObjectHideFlags: 0
@@ -607,6 +637,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 455362}
   m_RootOrder: 17
+--- !u!4 &450634
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 191552}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.4000001, y: 2.69000006, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 474178}
+  m_RootOrder: 1
 --- !u!4 &455362
 Transform:
   m_ObjectHideFlags: 1
@@ -670,11 +712,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 106776}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.4000001, y: 2.69000006, z: 0}
+  m_LocalPosition: {x: -7.78000021, y: -2.97000003, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 474178}
-  m_RootOrder: 1
+  m_RootOrder: 8
 --- !u!4 &468866
 Transform:
   m_ObjectHideFlags: 1
@@ -730,16 +772,18 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 171794}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -19.1387634, y: 4.65572262, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children:
   - {fileID: 412974}
-  - {fileID: 462284}
+  - {fileID: 450634}
   - {fileID: 455362}
   - {fileID: 477080}
   - {fileID: 459962}
   - {fileID: 431286}
   - {fileID: 472962}
+  - {fileID: 487726}
+  - {fileID: 462284}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &477080
@@ -778,6 +822,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 455362}
   m_RootOrder: 9
+--- !u!4 &487726
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 144582}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.40000057, y: -2.50999999, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 474178}
+  m_RootOrder: 7
 --- !u!4 &488616
 Transform:
   m_ObjectHideFlags: 1

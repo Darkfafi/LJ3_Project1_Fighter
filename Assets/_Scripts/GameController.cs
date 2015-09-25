@@ -14,8 +14,8 @@ public class GameController : MonoBehaviour {
 
 	public event PlayerKillsDeathsDelegate win;
 
-	public GameObject specialItem;
-	public Transform itemSpawnPoint;
+	private GameObject _specialItem;
+	private Transform _itemSpawnPoint;
 
 	private GameObject _currentSpecialItem;
 	private int _spawnPercentage;
@@ -81,7 +81,9 @@ public class GameController : MonoBehaviour {
 			GameObject.FindGameObjectWithTag(Tags.CAMERA).AddComponent<AllFollowCamera>();
 		}
 
-		itemSpawnPoint = GameObject.FindGameObjectWithTag(Tags.ITEMSPAWN).transform;
+
+		_specialItem = Resources.Load("Prefabs/SpecialItem", typeof(GameObject)) as GameObject;
+		_itemSpawnPoint = GameObject.FindGameObjectWithTag(Tags.ITEMSPAWN).transform;
 		StartCoroutine("CheckSpawnItem");
 
 		win += InvokeBackToMenu;
@@ -124,7 +126,7 @@ public class GameController : MonoBehaviour {
 	private void SpawnItem()
 	{
 		Vector3 eulerSpawnItemRot = new Vector3(0, 0, Random.Range(0,360)); //randomize the rotation of the item
-		_currentSpecialItem = Instantiate(specialItem, itemSpawnPoint.position, Quaternion.identity) as GameObject;
+		_currentSpecialItem = Instantiate(_specialItem, _itemSpawnPoint.position, Quaternion.identity) as GameObject;
 		_currentSpecialItem.transform.eulerAngles = eulerSpawnItemRot;
 	}
 

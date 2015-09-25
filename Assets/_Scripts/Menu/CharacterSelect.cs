@@ -11,6 +11,7 @@ public class CharacterSelect : MonoBehaviour
 	private string _verticalAxis;
 	private string _actionKey;
 	private string _backKey;
+	private string _jumpKey;
 
 	private bool _busy;
 	private bool _ready;
@@ -57,7 +58,7 @@ public class CharacterSelect : MonoBehaviour
 			if(Vector3.Distance(_rectTransform.localPosition,newPos) < 0.1f)
 				_busy = false;
 		}
-		if(Input.GetButtonDown(_actionKey) && !_ready)
+		if(Input.GetButtonDown(_actionKey) && !_ready || Input.GetButtonDown(_jumpKey) && !_ready)
 		{
 			ReadyUp();
 		} 
@@ -106,7 +107,10 @@ public class CharacterSelect : MonoBehaviour
 		//HorizontalAxis = playerControls[0];
 		_verticalAxis = playerControls[1];
 		_actionKey = playerControls[2];
-		//jumpkey = playerControls[3];
+		//keyboard does not need the jump key
+		if(controls != Controls.keyboard01 || controls != Controls.keyboard02)
+			_jumpKey = playerControls[3];
+
 		_backKey = playerControls[4];
 	}
 
