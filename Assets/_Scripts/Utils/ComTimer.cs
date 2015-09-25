@@ -10,6 +10,9 @@ public class ComTimer : MonoBehaviour {
 	public event IntDelegate TimerTik;
 	public event VoidDelegate TimerEnded;
 
+	public event VoidDelegate OnPaused;
+	public event VoidDelegate OnResumed;
+
 	private float _timerTimeGiven;
 	private int _repeatAmount;
 	
@@ -36,12 +39,18 @@ public class ComTimer : MonoBehaviour {
 	public void PauseTimer(){
 		_paused = true;
 		_running = false;
+		if (OnPaused != null) {
+			OnPaused();
+		}
 	}
 	public void ResumeTimer(){
 		//cant resume if not paused first
 		if (_paused) {
 			_paused = false;
 			_running = true;
+			if(OnResumed != null){
+				OnResumed();
+			}
 		}
 	}
 
@@ -90,4 +99,31 @@ public class ComTimer : MonoBehaviour {
 	public int timesRepeated{
 		get{return _repeatCounter;}
 	}
+	public float secondsGivenToCount{
+		get{return _timerTimeGiven;}
+	}
+	public int timesGivenToRepeat{
+		get{return _repeatAmount;}
+	}
+
+	public string GetHumanTimeString(){
+		string timeString = "0";
+		float tempTimeLeft = _timerTimeLeft;
+
+		int minCounter = 0;
+
+		while (tempTimeLeft >= 60) {
+			minCounter++;
+			tempTimeLeft -= 60;
+		}
+
+		if (minCounter >= 10) {
+			timeString = minCounter + ":" + Mathf.FloorToInt (tempTimeLeft);
+		} else {
+			timeString += minCounter + ":" + Mathf.FloorToInt(tempTimeLeft);
+		}
+
+		return timeString;
+	}
+
 }

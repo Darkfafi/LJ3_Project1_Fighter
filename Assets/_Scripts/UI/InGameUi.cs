@@ -2,8 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class InGameUi : MonoBehaviour {
-
+public class InGameUI : MonoBehaviour {
+	
 	private List<Player> _allPlayers = new List<Player>();
 
 	void Start(){
@@ -22,6 +22,7 @@ public class InGameUi : MonoBehaviour {
 	private void PlaceUI(){
 		GameObject iconGo;
 		CharacterLifeIcon charIcon;
+		GameObject timer;
 
 		for (int i = 0; i < _allPlayers.Count; i++) {
 
@@ -32,5 +33,10 @@ public class InGameUi : MonoBehaviour {
 			charIcon.SetPlayer(_allPlayers[i]);
 			charIcon.transform.position = new Vector3((-(Screen.width / 100) / 2 + charIcon.width) + ((charIcon.width + 50) * i),charIcon.height / 1.3f,transform.position.z);
 		}
+
+		timer = new GameObject ();
+		timer.transform.SetParent (transform);
+		timer.AddComponent<GameUIClock> ();
+		timer.transform.position = new Vector3 (Screen.width / 2, Screen.height / 1.1f, timer.transform.position.z);
 	}
 }

@@ -54,7 +54,7 @@ public class GameController : MonoBehaviour {
 		_timer = gameObject.AddComponent<ComTimer>();
 		Physics2D.IgnoreLayerCollision(8,8, true);
 		InitGame();
-		GameObject.Find ("UI").AddComponent<InGameUi> ();
+		GameObject.Find ("UI").AddComponent<InGameUI> ();
 	}
 	private void CreateLevel(){
 		string levelString = PlayerPrefs.GetString ("LevelChosen");
@@ -357,5 +357,8 @@ public class GameController : MonoBehaviour {
 
 	public int playerTotalLives{
 		get{return _playerLives;}
+	}
+	public ComTimer gameTimer{
+		get{return _timer;}
 	}
 }
