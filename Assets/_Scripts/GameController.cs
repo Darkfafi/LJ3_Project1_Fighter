@@ -8,11 +8,13 @@ public class GameController : MonoBehaviour {
 	
 	public delegate void NormDelegate();
 	public delegate void PlayerKillsDeathsDelegate(Player player, int kills, int deaths);
+	public delegate void PlayerLivesDelegate(Player player, int lives);
 
 	public event NormDelegate PauseGame;
 	public event NormDelegate ResumeGame;
 
-	public event PlayerKillsDeathsDelegate win;
+	public event PlayerKillsDeathsDelegate Win;
+	public event PlayerLivesDelegate OnDeath;
 
 	private GameObject _specialItem;
 	private Transform _itemSpawnPoint;
@@ -31,7 +33,7 @@ public class GameController : MonoBehaviour {
 	private Dictionary<Player, int> _playerKills = new Dictionary<Player, int>(); //to store the kills made by wich player
 
 	private int spawnTime = 3; //time to spawn player in seconds
-	private int playerLives; //stocks
+	private int _playerLives; //stocks
 	private int playTime; //for when time game mode is added
 
 	private float _levelBorderMinY = -10f;
@@ -87,7 +89,7 @@ public class GameController : MonoBehaviour {
 		_itemSpawnPoint = GameObject.FindGameObjectWithTag(Tags.ITEMSPAWN).transform;
 		StartCoroutine("CheckSpawnItem");
 
-		win += InvokeBackToMenu;
+		Win += InvokeBackToMenu;
 	}
 	private void InvokeBackToMenu(Player playerwon, int playerKills, int deaths)
 	{
@@ -135,7 +137,7 @@ public class GameController : MonoBehaviour {
 	{
 		int stockValue = PlayerPrefs.GetInt("StockValue");
 		if(stockValue != 0)
-			playerLives = stockValue;
+			_playerLives = stockValue;
 		int timeValue = PlayerPrefs.GetInt("TimeValue");
 		if(timeValue != 0)
 		{
@@ -175,7 +177,7 @@ public class GameController : MonoBehaviour {
 			newPlayerScript.SetKeys(playerHorizontalAxis,playerVerticalAxis,playerActionKey, playerJumpKey);
 			newPlayerScript.GotKilled += PlayerDied;
 			_currentPlayers.Add(newPlayerScript);
-			_currentPlayerLives.Add(playerLives);
+			_currentPlayerLives.Add(_playerLives);
 			_playerKills.Add(newPlayerScript, 0);
 		}
 		//positioning players + ignoring each others collision
@@ -242,6 +244,9 @@ public class GameController : MonoBehaviour {
 	{
 		int playerIndex = _currentPlayers.IndexOf(player);
 		_currentPlayerLives[playerIndex] -= 1;
+		if(OnDeath != null){
+			OnDeath(player,_currentPlayerLives[playerIndex]);
+		}
 
 		if(attacker != null)
 		{
@@ -285,8 +290,10 @@ public class GameController : MonoBehaviour {
 		{
 			Player playerWon = _currentPlayers[playerIDWon];
 			int kills = _playerKills[playerWon];
-			int deaths = playerLives - _currentPlayerLives[_currentPlayers.IndexOf(playerWon)];
-			win(playerWon, kills, deaths);
+			int deaths = _playerLives - _currentPlayerLives[_currentPlayers.IndexOf(playerWon)];
+			if(Win != null){
+				Win(playerWon, kills, deaths);
+			}
 		}
 	}
 
@@ -316,9 +323,11 @@ public class GameController : MonoBehaviour {
 		} 
 		else 
 		{
-			int deaths = playerLives - _currentPlayerLives[_currentPlayers.IndexOf(playerWon)];
+			int deaths = _playerLives - _currentPlayerLives[_currentPlayers.IndexOf(playerWon)];
 			int kills = oldPlayerKills;
-			win(playerWon, kills, deaths);
+			if(Win != null){
+				Win(playerWon, kills, deaths);
+			}
 		}
 	}
 
@@ -345,4 +354,8 @@ public class GameController : MonoBehaviour {
 			_playersToSpawnWithCounter.Remove(spawntime);
 		}
 	} 
+
+	public int playerTotalLives{
+		get{return _playerLives;}
+	}
 }

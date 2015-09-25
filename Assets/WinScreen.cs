@@ -10,7 +10,7 @@ public class WinScreen : MonoBehaviour {
 	private float standardY;
 	// Use this for initialization
 	void Start () {
-		GameObject.FindGameObjectWithTag(Tags.GAMECONTROLLER).GetComponent<GameController>().win += ShowWinScreen;
+		GameObject.FindGameObjectWithTag(Tags.GAMECONTROLLER).GetComponent<GameController>().Win += ShowWinScreen;
 		standardY = winScreenPanelTransform.anchoredPosition.y;
 		winScreenPanelTransform.anchoredPosition = new Vector2(winScreenPanelTransform.anchoredPosition.x,-500);
 		this.gameObject.SetActive(false);
