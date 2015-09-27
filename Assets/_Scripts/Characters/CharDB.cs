@@ -21,14 +21,16 @@ public class CharDB : MonoBehaviour {
 		StatsHolder stats = new StatsHolder ();
 		switch(character)
 		{
+			// Parrot
 		case CHARACTER01:
 			stats.movementSpeed = 0f;
-			stats.jumpForce = 0f;
+			stats.jumpForce = 1f;
 			stats.fallSpeed = 0f;
-			stats.stunPower = 0f;
+			stats.stunPower = 2f;
 			stats.pushPower = 0f;
 			stats.dashForce = 0f;
 			break;
+			// Asian Chick
 		case CHARACTER02:
 			stats.movementSpeed = 0f;
 			stats.jumpForce = 0f;

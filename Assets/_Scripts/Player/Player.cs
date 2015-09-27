@@ -89,6 +89,8 @@ public class Player : MonoBehaviour {
 
 		_myPlatformerMovement.ReleasedFromGround += ReleasedGround;
 		_myPlatformerMovement.StartedWallSlide += StartWallSlide;
+
+		TransformPlayer (PlayerTransformer.SPECIAL_MOD);
 	}
 
 	// Movement
@@ -179,8 +181,10 @@ public class Player : MonoBehaviour {
 			}else{
 				currentAttack = _specialAttack;
 			}
-			_playerAnimHandler.PlayAnimation("Attack");
-			currentAttack.Attack(this); //geef stats class, player class of gameobject mee zodat de infor gegeven globaal kan blijven.
+			if(!currentAttack.cooldownTimer.running){
+				_playerAnimHandler.PlayAnimation("Attack");
+				currentAttack.Attack(this); //geef stats class, player class of gameobject mee zodat de infor gegeven globaal kan blijven.
+			}
 		}
 	}
 
