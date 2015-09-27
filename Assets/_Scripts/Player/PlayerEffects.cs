@@ -18,7 +18,7 @@ public class PlayerEffects : MonoBehaviour {
 	private GameObject _currentWallSlideEffectFeet;
 	private GameObject _currentWallSlideEffectHands;
 
-	private Vector3 _heightPositionMod = new Vector3 (0, 1.2f, 0);
+	private Vector3 _heightPositionMod = new Vector3 (0, 1.4f, 0);
 
 	private string _effectsPath = "Prefabs/Effects/";
 	// Use this for initialization
