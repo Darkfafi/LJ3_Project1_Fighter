@@ -23,8 +23,8 @@ public class PlayerSoundHandler : MonoBehaviour {
 		jumpSoundName = "jump1";
 		runSoundName = "steps";
 		doubleJumpSoundName = "jump1";
-		dashSoundName = "Sound";
-		clashSoundName = "Sound";
+		dashSoundName = "dash";
+		clashSoundName = "orb_hit";
 		hitSoundName = "Hit_bod_5";
 		transformSoundName = "Sound";
 		deathSoundName = "death";

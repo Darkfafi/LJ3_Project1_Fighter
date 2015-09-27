@@ -87,6 +87,88 @@ NavMeshSettings:
     cellSize: .166666672
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &250376861
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 22499866, guid: 0618f780eb246444397f4d8314542582, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22499866, guid: 0618f780eb246444397f4d8314542582, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22499866, guid: 0618f780eb246444397f4d8314542582, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22499866, guid: 0618f780eb246444397f4d8314542582, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22499866, guid: 0618f780eb246444397f4d8314542582, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22499866, guid: 0618f780eb246444397f4d8314542582, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22499866, guid: 0618f780eb246444397f4d8314542582, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22499866, guid: 0618f780eb246444397f4d8314542582, type: 2}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 22499866, guid: 0618f780eb246444397f4d8314542582, type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22499866, guid: 0618f780eb246444397f4d8314542582, type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22499866, guid: 0618f780eb246444397f4d8314542582, type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22499866, guid: 0618f780eb246444397f4d8314542582, type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22499866, guid: 0618f780eb246444397f4d8314542582, type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22499866, guid: 0618f780eb246444397f4d8314542582, type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22499866, guid: 0618f780eb246444397f4d8314542582, type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22499866, guid: 0618f780eb246444397f4d8314542582, type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22499866, guid: 0618f780eb246444397f4d8314542582, type: 2}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22499866, guid: 0618f780eb246444397f4d8314542582, type: 2}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 0618f780eb246444397f4d8314542582, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1043435175
 Prefab:
   m_ObjectHideFlags: 0
@@ -321,9 +403,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9886d578112ea90439ce6d4b923716ff, type: 3}
   - {fileID: 8300000, guid: 79b0aca53533646449a4534f30525f31, type: 3}
   - {fileID: 8300000, guid: 1cf65e15da7448942a74f2578f635b6f, type: 3}
-  - {fileID: 8300000, guid: d3bf852ab9d826449a8f893a1d3abcda, type: 3}
-  - {fileID: 8300000, guid: d3bf852ab9d826449a8f893a1d3abcda, type: 3}
-  - {fileID: 8300000, guid: d3bf852ab9d826449a8f893a1d3abcda, type: 3}
+  - {fileID: 8300000, guid: 75341b577c7ff0141b8d26734cd4c98d, type: 3}
+  - {fileID: 8300000, guid: e8a17a10904dadd47bde280553d461f5, type: 3}
+  - {fileID: 8300000, guid: e292d5277239c09429b48223d3ae1f82, type: 3}
   - {fileID: 8300000, guid: d3bf852ab9d826449a8f893a1d3abcda, type: 3}
   - {fileID: 8300000, guid: d3bf852ab9d826449a8f893a1d3abcda, type: 3}
   - {fileID: 8300000, guid: d3bf852ab9d826449a8f893a1d3abcda, type: 3}
