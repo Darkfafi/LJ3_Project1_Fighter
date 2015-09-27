@@ -32,12 +32,12 @@ public class CharDB : MonoBehaviour {
 			break;
 			// Asian Chick
 		case CHARACTER02:
-			stats.movementSpeed = 0f;
-			stats.jumpForce = 0f;
-			stats.fallSpeed = 0f;
-			stats.stunPower = 0f;
-			stats.pushPower = 0f;
-			stats.dashForce = 0f;
+			stats.movementSpeed = 2f;
+			stats.jumpForce = 2f;
+			stats.fallSpeed = 1f;
+			stats.stunPower = 0.5f;
+			stats.pushPower = 0.4f;
+			stats.dashForce = 3f;
 			break;
 		case CHARACTER03:
 			stats.movementSpeed = 0f;
@@ -48,12 +48,12 @@ public class CharDB : MonoBehaviour {
 			stats.dashForce = 0f;
 			break;
 		case CHARACTER04:
-			stats.movementSpeed = 0f;
-			stats.jumpForce = 0f;
-			stats.fallSpeed = 0f;
-			stats.stunPower = 0f;
-			stats.pushPower = 0f;
-			stats.dashForce = 0f;
+			stats.movementSpeed = 2f;
+			stats.jumpForce = 2f;
+			stats.fallSpeed = 1f;
+			stats.stunPower = 0.3f;
+			stats.pushPower = 0.3f;
+			stats.dashForce = 2f;
 			break;
 		}
 		return stats;
