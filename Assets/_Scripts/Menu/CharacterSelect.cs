@@ -33,6 +33,7 @@ public class CharacterSelect : MonoBehaviour
 		_standardY = _rectTransform.localPosition.y;
 		_picHeight = 100;
 		_moveSpeed = 10;
+		_roomManager.UnReadyPlayers += UnReady;
 	}
 
 	void Update()
@@ -124,6 +125,8 @@ public class CharacterSelect : MonoBehaviour
 			_jumpKey = playerControls[3];
 
 		_backKey = playerControls[4];
+
+		Debug.Log(_verticalAxis);
 	}
 
 	private void RemoveMe()

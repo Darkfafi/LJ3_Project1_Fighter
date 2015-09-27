@@ -25,9 +25,25 @@ public class SpecialItemMovement : MonoBehaviour {
 		GetComponent<Rigidbody2D>().velocity = transform.right * _springForce;
 	}
 	void Update() {
-		//if this is out of bounds destroy itself.
-		//TODO: check if there is a better solution
-		if(this.transform.position.x > _levelBorderMaxX || this.transform.position.x < _levelBorderMinX || this.transform.position.y > _levelBorderMaxY || this.transform.position.y < _levelBorderMinY)
-			Destroy(this.gameObject);
+		if(this.transform.position.x > _levelBorderMaxX)
+		{
+			Vector3 newPos = new Vector3(_levelBorderMinX + 1,this.transform.position.y,this.transform.position.z);
+			this.transform.position = newPos;
+		} 
+		else if (this.transform.position.x < _levelBorderMinX) 
+		{
+			Vector3 newPos = new Vector3(_levelBorderMaxX - 1,this.transform.position.y,this.transform.position.z);
+			this.transform.position = newPos;
+		}
+		else if( this.transform.position.y > _levelBorderMaxY)
+		{
+			Vector3 newPos = new Vector3(this.transform.position.x,_levelBorderMinY + 1,this.transform.position.z);
+			this.transform.position = newPos;
+		}
+		else if (this.transform.position.y < _levelBorderMinY)
+		{
+			Vector3 newPos = new Vector3(this.transform.position.x,_levelBorderMaxY - 1,this.transform.position.z);
+			this.transform.position = newPos;
+		}
 	}
 }

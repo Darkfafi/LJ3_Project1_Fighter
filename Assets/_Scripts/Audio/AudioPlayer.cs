@@ -133,9 +133,12 @@ public class AudioPlayer : MonoBehaviour
 		{
 			Debug.LogWarning("Did not get playedby value: dupplicate sounds will be stopped!");
 			foreach (var audioSource in _audioSources) {
-				if(audioSource.clip.name == sound)
+				if(audioSource.clip != null)
 				{
-					audioSource.Stop();
+					if(audioSource.clip.name == sound)
+					{
+						audioSource.Stop();
+					}
 				}
 			}
 		}

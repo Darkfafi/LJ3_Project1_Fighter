@@ -12,6 +12,7 @@ public class PlayerSoundHandler : MonoBehaviour {
 	private string hitSoundName;
 	private string transformSoundName;
 	private string deathSoundName;
+	private string wallGlideSoundName;
 	// Use this for initialization
 	void Awake () {
 		_audioPlayer = GameObject.FindGameObjectWithTag(Tags.GAMECONTROLLER).GetComponent<AudioPlayer>();
@@ -27,15 +28,18 @@ public class PlayerSoundHandler : MonoBehaviour {
 		hitSoundName = "Hit_bod_5";
 		transformSoundName = "Sound";
 		deathSoundName = "death";
+		wallGlideSoundName = "glide_wall";
 
 		PlatformerMovement myPlatformerMovement = GetComponent<PlatformerMovement>();
 		myPlatformerMovement.Jumped += PlayJumpSound;
 		myPlatformerMovement.DoubleJumped += PlayDoubleJumpSound;
 		myPlatformerMovement.StartedRunning += PlayRunSound;
 		myPlatformerMovement.StoppedRunning += StopRunSound;
+		myPlatformerMovement.StartedWallSlide += PlayWallGlideSound;
+		myPlatformerMovement.EndedWallSlide += StopWallGlideSound;
 
 		Player myPlayerScript = GetComponent<Player>();
-		myPlayerScript.GotKilled += PlayDeathSound;
+		myPlayerScript.StartedDying += PlayDeathSound;
 		myPlayerScript.StartStunned += PlayHitSound;
 
 		GetComponent<ClashAble>().Clashed += PlayClashSound;
@@ -43,6 +47,16 @@ public class PlayerSoundHandler : MonoBehaviour {
 		GetComponent<BasicStunAttack>().AttackStarted += PlayDashSound;
 
 		GetComponent<PlayerTransformer>().StartedTransformCharacter += PlayTransformSound;
+	}
+
+	void PlayWallGlideSound(GameObject obj)
+	{
+		_audioPlayer.PlayAudio(wallGlideSoundName, true, this);
+	}
+
+	void StopWallGlideSound(GameObject obj)
+	{
+		_audioPlayer.StopAudio(wallGlideSoundName, this);
 	}
 
 	void PlayDashSound() {
@@ -53,7 +67,7 @@ public class PlayerSoundHandler : MonoBehaviour {
 		_audioPlayer.PlayAudio(clashSoundName);
 	}
 
-	void PlayDeathSound(Player player, GameObject attacker) {
+	void PlayDeathSound() {
 		_audioPlayer.PlayAudio(deathSoundName);
 	}
 
