@@ -77,6 +77,9 @@ public class GameController : MonoBehaviour {
 		case 3:
 			Debug.Log ("FIGHT");
 			isPaused = false;
+			if(PlayerPrefs.GetInt("TimeValue") != 0){
+				_timer.StartTimer(playTime);
+			}
 			break;
 		}
 	}
@@ -167,7 +170,6 @@ public class GameController : MonoBehaviour {
 		if(timeValue != 0)
 		{
 			playTime = timeValue * 60;
-			_timer.StartTimer(playTime);
 			_timer.TimerEnded += EndGame;
 		}
 		spawnTime = PlayerPrefs.GetInt("SpawnTime");

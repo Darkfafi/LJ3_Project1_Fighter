@@ -15,7 +15,7 @@ public class LandOnTopKill : AttackBase {
 	void OnTouch (GameObject objHit, Vector2 touchVector) {
 		if (touchVector == Vector2.down) {
 			if(Hit(objHit, AttackBase.STUN_POWER_KILL_WHILE_STUNNED))
-				GetComponent<Rigidbody2D>().velocity = new Vector2(0,5);
+				GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Abs(gameObject.transform.localScale.x) / gameObject.transform.localScale.x * 2,5);
 		}
 	}
 }

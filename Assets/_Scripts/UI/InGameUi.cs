@@ -33,7 +33,6 @@ public class InGameUI : MonoBehaviour {
 			charIcon.SetPlayer(_allPlayers[i]);
 			charIcon.transform.position = new Vector3((-(Screen.width / 100) / 2 + charIcon.width) + ((charIcon.width + 50) * i),charIcon.height / 1.3f,transform.position.z);
 		}
-
 		timer = new GameObject ();
 		timer.transform.SetParent (transform);
 		timer.AddComponent<GameUIClock> ();

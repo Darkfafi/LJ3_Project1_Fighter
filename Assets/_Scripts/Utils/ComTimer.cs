@@ -120,9 +120,15 @@ public class ComTimer : MonoBehaviour {
 		}
 
 		if (minCounter >= 10) {
-			timeString = minCounter + ":" + Mathf.FloorToInt (tempTimeLeft);
+			timeString = minCounter + ":";
 		} else {
-			timeString += minCounter + ":" + Mathf.FloorToInt(tempTimeLeft);
+			timeString += minCounter + ":";
+		}
+
+		if (tempTimeLeft >= 10) {
+			timeString += Mathf.FloorToInt (tempTimeLeft);
+		} else {
+			timeString += "0" + Mathf.FloorToInt (tempTimeLeft);
 		}
 
 		return timeString;
