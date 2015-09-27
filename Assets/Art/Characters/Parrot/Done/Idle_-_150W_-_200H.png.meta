@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 62c4217c423c1ec43b117cfeb9f067ec
-timeCreated: 1442490660
+timeCreated: 1443352683
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -87,330 +87,330 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1100
-        width: 150
-        height: 200
-      alignment: 0
+        y: 1098
+        width: 151
+        height: 202
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_-_150W_-_200H_1
       rect:
         serializedVersion: 2
         x: 151
-        y: 1100
-        width: 150
-        height: 200
-      alignment: 0
+        y: 1098
+        width: 151
+        height: 202
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_-_150W_-_200H_2
       rect:
         serializedVersion: 2
         x: 302
-        y: 1100
-        width: 150
-        height: 200
-      alignment: 0
+        y: 1098
+        width: 151
+        height: 202
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_-_150W_-_200H_3
       rect:
         serializedVersion: 2
         x: 453
-        y: 1100
-        width: 150
-        height: 200
-      alignment: 0
+        y: 1098
+        width: 151
+        height: 202
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_-_150W_-_200H_4
       rect:
         serializedVersion: 2
         x: 604
-        y: 1100
-        width: 150
-        height: 200
-      alignment: 0
+        y: 1098
+        width: 151
+        height: 202
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_-_150W_-_200H_5
       rect:
         serializedVersion: 2
         x: 755
-        y: 1100
-        width: 150
-        height: 200
-      alignment: 0
+        y: 1098
+        width: 151
+        height: 202
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_-_150W_-_200H_6
       rect:
         serializedVersion: 2
         x: 0
-        y: 898
-        width: 150
-        height: 200
-      alignment: 0
+        y: 896
+        width: 151
+        height: 202
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_-_150W_-_200H_7
       rect:
         serializedVersion: 2
         x: 151
-        y: 898
-        width: 150
-        height: 200
-      alignment: 0
+        y: 896
+        width: 151
+        height: 202
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_-_150W_-_200H_8
       rect:
         serializedVersion: 2
         x: 302
-        y: 898
-        width: 150
-        height: 200
-      alignment: 0
+        y: 896
+        width: 151
+        height: 202
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_-_150W_-_200H_9
       rect:
         serializedVersion: 2
         x: 453
-        y: 898
-        width: 150
-        height: 200
-      alignment: 0
+        y: 896
+        width: 151
+        height: 202
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_-_150W_-_200H_10
       rect:
         serializedVersion: 2
         x: 604
-        y: 898
-        width: 150
-        height: 200
-      alignment: 0
+        y: 896
+        width: 151
+        height: 202
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_-_150W_-_200H_11
       rect:
         serializedVersion: 2
         x: 755
-        y: 898
-        width: 150
-        height: 200
-      alignment: 0
+        y: 896
+        width: 151
+        height: 202
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_-_150W_-_200H_12
       rect:
         serializedVersion: 2
         x: 0
-        y: 696
-        width: 150
-        height: 200
-      alignment: 0
+        y: 694
+        width: 151
+        height: 202
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_-_150W_-_200H_13
       rect:
         serializedVersion: 2
         x: 151
-        y: 696
-        width: 150
-        height: 200
-      alignment: 0
+        y: 694
+        width: 151
+        height: 202
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_-_150W_-_200H_14
       rect:
         serializedVersion: 2
         x: 302
-        y: 696
-        width: 150
-        height: 200
-      alignment: 0
+        y: 694
+        width: 151
+        height: 202
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_-_150W_-_200H_15
       rect:
         serializedVersion: 2
         x: 453
-        y: 696
-        width: 150
-        height: 200
-      alignment: 0
+        y: 694
+        width: 151
+        height: 202
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_-_150W_-_200H_16
       rect:
         serializedVersion: 2
         x: 604
-        y: 696
-        width: 150
-        height: 200
-      alignment: 0
+        y: 694
+        width: 151
+        height: 202
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_-_150W_-_200H_17
       rect:
         serializedVersion: 2
         x: 755
-        y: 696
-        width: 150
-        height: 200
-      alignment: 0
+        y: 694
+        width: 151
+        height: 202
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_-_150W_-_200H_18
       rect:
         serializedVersion: 2
         x: 0
-        y: 494
-        width: 150
-        height: 200
-      alignment: 0
+        y: 492
+        width: 151
+        height: 202
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_-_150W_-_200H_19
       rect:
         serializedVersion: 2
         x: 151
-        y: 494
-        width: 150
-        height: 200
-      alignment: 0
+        y: 492
+        width: 151
+        height: 202
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_-_150W_-_200H_20
       rect:
         serializedVersion: 2
         x: 302
-        y: 494
-        width: 150
-        height: 200
-      alignment: 0
+        y: 492
+        width: 151
+        height: 202
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_-_150W_-_200H_21
       rect:
         serializedVersion: 2
         x: 453
-        y: 494
-        width: 150
-        height: 200
-      alignment: 0
+        y: 492
+        width: 151
+        height: 202
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_-_150W_-_200H_22
       rect:
         serializedVersion: 2
         x: 604
-        y: 494
-        width: 150
-        height: 200
-      alignment: 0
+        y: 492
+        width: 151
+        height: 202
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_-_150W_-_200H_23
       rect:
         serializedVersion: 2
         x: 755
-        y: 494
-        width: 150
-        height: 200
-      alignment: 0
+        y: 492
+        width: 151
+        height: 202
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_-_150W_-_200H_24
       rect:
         serializedVersion: 2
         x: 0
-        y: 292
-        width: 150
-        height: 200
-      alignment: 0
+        y: 290
+        width: 151
+        height: 202
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_-_150W_-_200H_25
       rect:
         serializedVersion: 2
         x: 151
-        y: 292
-        width: 150
-        height: 200
-      alignment: 0
+        y: 290
+        width: 151
+        height: 202
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_-_150W_-_200H_26
       rect:
         serializedVersion: 2
         x: 302
-        y: 292
-        width: 150
-        height: 200
-      alignment: 0
+        y: 290
+        width: 151
+        height: 202
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_-_150W_-_200H_27
       rect:
         serializedVersion: 2
         x: 453
-        y: 292
-        width: 150
-        height: 200
-      alignment: 0
+        y: 290
+        width: 151
+        height: 202
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_-_150W_-_200H_28
       rect:
         serializedVersion: 2
         x: 604
-        y: 292
-        width: 150
-        height: 200
-      alignment: 0
+        y: 290
+        width: 151
+        height: 202
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_-_150W_-_200H_29
       rect:
         serializedVersion: 2
         x: 755
-        y: 292
-        width: 150
-        height: 200
-      alignment: 0
+        y: 290
+        width: 151
+        height: 202
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_-_150W_-_200H_30
       rect:
         serializedVersion: 2
         x: 0
-        y: 90
-        width: 150
-        height: 200
-      alignment: 0
+        y: 88
+        width: 151
+        height: 202
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_-_150W_-_200H_31
       rect:
         serializedVersion: 2
         x: 151
-        y: 90
-        width: 150
-        height: 200
-      alignment: 0
+        y: 88
+        width: 151
+        height: 202
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_-_150W_-_200H_32
       rect:
         serializedVersion: 2
         x: 302
-        y: 90
-        width: 150
-        height: 200
-      alignment: 0
+        y: 88
+        width: 151
+        height: 202
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 

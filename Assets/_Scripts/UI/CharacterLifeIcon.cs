@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class CharacterLifeIcon : MonoBehaviour {
-
+		
 	private Image _image;
 
 	private List<GameObject> _allLives = new List<GameObject> ();

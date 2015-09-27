@@ -31,7 +31,7 @@ public class PlayerFactory {
 
 		boxCollider = playerObject.AddComponent<BoxCollider2D> ();
 
-		boxCollider.offset = new Vector2 (-0.01f, -0.06f);
+		boxCollider.offset = new Vector2 (-0.01f, 0.94f);
 		boxCollider.size = new Vector2 (0.74f, 1.86f);
 
 		player = playerObject.AddComponent<Player> ();

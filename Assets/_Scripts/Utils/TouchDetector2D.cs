@@ -44,7 +44,7 @@ public class TouchDetector2D : MonoBehaviour {
 		Vector2 startRay;
 		for (int i = 0; i < _sidesToCheck.Length; i++) {
 			currentDirVector = _sidesToCheck[i];
-			startRay = new Vector2(transform.position.x,transform.position.y);
+			startRay = new Vector2(transform.position.x,transform.position.y + sizeCollider.y / 2);
 			if(i <= 1){
 				dist = sizeCollider.y / 2;
 				dist += dist * 0.1f;
