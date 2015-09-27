@@ -18,11 +18,11 @@ public class ThrowRangedSpecialAttack : SpecialAttack {
 	protected override void OnAttack (Player player)
 	{
 		_player = player;
+		_player.busyAction = true;
 		Vector3 spawnPos = new Vector3 (transform.position.x, transform.position.y + 1.5f, transform.position.z);
 		_throwAbleObject = Instantiate ((GameObject)Resources.Load ("Prefabs/SpecialAttacks/ThrowAbleObject"), spawnPos, Quaternion.identity) as GameObject;
 		int dir = (int)(Mathf.Abs (gameObject.transform.localScale.x) / gameObject.transform.localScale.x);
-		_throwAbleObject.GetComponent<ThrowObject> ().SetStats (gameObject, dir, _throwStrength, player.playerStats.stunPower, player.playerStats.pushPower);
-		_player.busyAction = true;
+		_throwAbleObject.GetComponent<ThrowObject> ().SetStats (gameObject, dir, _throwStrength, player.playerStats.stunPower, player.playerStats.pushPower);	 
 		base.OnAttack (player);
 	}
 

@@ -11,6 +11,10 @@ public class ThrowObject : MonoBehaviour {
 	private float _speed = 0;
 	private float _stunPower = 0;
 	private float _pushPower = 0;
+	
+	void Start(){
+		Destroy (this.gameObject, 8f);
+	}
 
 	public void SetStats(GameObject thrower,int throwDirection,float projectileSpeed,float stunPower, float pushPower){
 		_thrower = thrower;
@@ -26,7 +30,7 @@ public class ThrowObject : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
-		if (other.gameObject != _thrower) {
+		if (other.gameObject != _thrower && other.gameObject.tag != Tags.PASSABLE) {
 			if(other.gameObject.GetComponent<AttackCather> () != null){
 				other.gameObject.GetComponent<AttackCather>().CatchAttack(_thrower,_stunPower,_pushPower);
 			}

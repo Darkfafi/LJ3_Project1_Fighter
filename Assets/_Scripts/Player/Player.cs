@@ -103,7 +103,9 @@ public class Player : MonoBehaviour {
 	}
 
 	void StartWallSlide(GameObject wallObject){
-		_playerAnimHandler.PlayAnimation("WallSlide");
+		if (!busyAction) {
+			_playerAnimHandler.PlayAnimation ("WallSlide");
+		}
 	}
 
 	public void SetCharacter(string characterName)
@@ -234,11 +236,9 @@ public class Player : MonoBehaviour {
 		_playerAnimHandler.PlayAnimation("Death");
 		_fader.Fade (0,0.008f);
 	}
-
 	void DeathFadeEnd(float valueFade){
 		GetKilled (_lastKiller);
 	}
-
 	void GetKilled(GameObject attacker){
 		// Die
 		this.gameObject.SetActive(false);
