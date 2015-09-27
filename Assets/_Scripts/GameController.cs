@@ -55,7 +55,32 @@ public class GameController : MonoBehaviour {
 		Physics2D.IgnoreLayerCollision(8,8, true);
 		InitGame();
 		GameObject.Find ("UI").AddComponent<InGameUI> ();
+		isPaused = true;
+		CountDown ();
 	}
+
+	private void CountDown(){
+		ComTimer comTimer = gameObject.AddComponent<ComTimer> ();
+		comTimer.TimerTik += EndCountDown;
+		comTimer.StartTimer (1, 3);
+		Destroy (comTimer, 5);
+	}
+
+	private void EndCountDown(int amountOfRepeats){
+		switch (amountOfRepeats) {
+		case 1:
+			Debug.Log ("READY");
+			break;
+		case 2:
+			Debug.Log ("SET");
+			break;
+		case 3:
+			Debug.Log ("FIGHT");
+			isPaused = false;
+			break;
+		}
+	}
+
 	private void CreateLevel(){
 		string levelString = PlayerPrefs.GetString ("LevelChosen");
 		GameObject level = Resources.Load("Prefabs/Levels/"+levelString + "Level") as GameObject;

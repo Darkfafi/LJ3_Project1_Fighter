@@ -73,15 +73,17 @@ public class ComTimer : MonoBehaviour {
 			_timerTimeLeft -= Time.deltaTime;
 			if(_timerTimeLeft <= 0){
 				_timerTimeLeft = 0;
-				_repeatCounter ++;
 				if(TimerTik != null){
 					TimerTik(_repeatCounter);
 				}
-				if(_repeatCounter > _repeatAmount){
+				if(_repeatCounter == _repeatAmount){
 					if(TimerEnded != null){
 						TimerEnded();
 						StopTimer();
 					}
+				}else{
+					_timerTimeLeft = _timerTimeGiven;
+					_repeatCounter ++;
 				}
 			}
 		}

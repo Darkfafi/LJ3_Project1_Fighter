@@ -25,7 +25,9 @@ public class CharacterLifeIcon : MonoBehaviour {
 
 	void PlayerDied(Player player, int lives){
 		if (player == _player) {
-			UpdateStocks(lives);
+			if(lives >= 0){
+				UpdateStocks(lives);
+			}
 		}
 	}
 
