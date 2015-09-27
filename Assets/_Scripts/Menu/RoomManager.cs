@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class RoomManager : MonoBehaviour {
+	public delegate void NormDelegate();
+	public event NormDelegate UnReadyPlayers;
+
 	public GameObject[] playerPanels = new GameObject[0];
 	public Text[] playerTexts = new Text[0];
 	private List<string> _controlsInUse = new List<string>();
@@ -58,7 +61,7 @@ public class RoomManager : MonoBehaviour {
 	{
 		PlayerPrefs.SetInt("PlayerCount", _playerCount);
 		//Application.LoadLevel(1);
-
+		UnReadyPlayers();
 		GotoCharacterLevelSelect (MenuController.LEVEL_SELECT_SCREEN);
 	}
 

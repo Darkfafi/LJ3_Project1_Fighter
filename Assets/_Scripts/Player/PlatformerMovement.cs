@@ -17,7 +17,7 @@ public class PlatformerMovement : MonoBehaviour {
 	public event GameObjectDelegate ReleasedFromGround;
 
 	public event GameObjectDelegate StartedWallSlide;
-	public event GameObjectDelegate EndedWallSlde;
+	public event GameObjectDelegate EndedWallSlide;
 
 	public event NormDelegate Jumped;
 	public event NormDelegate DoubleJumped;
@@ -62,6 +62,17 @@ public class PlatformerMovement : MonoBehaviour {
 
 		_oldGravityScale = _rigidbody.gravityScale;
 	}
+
+	void Update()
+	{
+		if(inWallSlide && _rigidbody.velocity.y > -1)
+		{
+			_rigidbody.velocity -= new Vector2(0,0.3f);
+		} else if(_inWallSlide && _rigidbody.velocity.y < -1)
+		{
+			_rigidbody.velocity = new Vector2(0, -1);
+		}
+	}
 	public void StopRunning()
 	{
 		if(StoppedRunning != null)
@@ -72,7 +83,7 @@ public class PlatformerMovement : MonoBehaviour {
 	public void StartSliding()
 	{
 		_rigidbody.gravityScale = 0f;
-		_rigidbody.velocity = new Vector2(0,-1);
+		//_rigidbody.velocity = new Vector2(0,-1);
 	}
 	public void StopSliding()
 	{
@@ -82,12 +93,6 @@ public class PlatformerMovement : MonoBehaviour {
 
 		if (transform.localScale.x != directionConst * Mathf.Abs(transform.localScale.x)) {
 			transform.localScale = new Vector3 (directionConst * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
-			if(_onGround)
-			{
-				StopRunning();
-				if(StartedRunning != null)
-					StartedRunning();
-			}
 		}
 
 		if(!_isRunning && _onGround)
@@ -197,9 +202,14 @@ public class PlatformerMovement : MonoBehaviour {
 			}
 
 			BoxCollider2D objCol = obj.GetComponent<BoxCollider2D>();
-			if(!Physics2D.GetIgnoreCollision(this.colliderBox, objCol)) {
+			if(!Physics2D.GetIgnoreCollision(this.colliderBox, objCol) && obj.tag != Tags.PLAYER) {
 				_onGround = true;
 				_doubleJumped = false;
+
+				_inWallSlide = false;
+				StopSliding();
+				if(EndedWallSlide != null)
+					EndedWallSlide(_preWall);
 			} 
 
 			_preGround = obj;
@@ -208,7 +218,7 @@ public class PlatformerMovement : MonoBehaviour {
 				LandedOnGround(obj);
 			}
 		} else if (vec == Vector2.left || vec == Vector2.right) {
-			if(!_onGround && obj.tag != Tags.PLAYER){
+			if(!_onGround && obj.tag != Tags.PLAYER && obj.tag != Tags.SPECIAL_ITEM){
 				//if the object is collideable with the platformer then wallslide is true
 				BoxCollider2D objCol = obj.GetComponent<BoxCollider2D>();
 				if(!Physics2D.GetIgnoreCollision(this.colliderBox, objCol)) {
@@ -239,8 +249,8 @@ public class PlatformerMovement : MonoBehaviour {
 		} else if (vec == Vector2.left || vec == Vector2.right) {
 			_inWallSlide = false;
 			StopSliding();
-			if(EndedWallSlde != null){
-				EndedWallSlde(_preWall);
+			if(EndedWallSlide != null){
+				EndedWallSlide(_preWall);
 			}
 		}  else if(vec == Vector2.up) {
 			if(_preGround != null) {

@@ -14,7 +14,7 @@ GameObject:
   - 50: {fileID: 5028758}
   - 114: {fileID: 11429462}
   - 95: {fileID: 9526190}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SpecialItem
   m_TagString: SpecialItem
   m_Icon: {fileID: 0}
@@ -30,7 +30,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 407812}
   - 212: {fileID: 21252830}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: New Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,6 +230,10 @@ Prefab:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 9f4c246000ff0f2479bad8a743803fb3, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 106112}

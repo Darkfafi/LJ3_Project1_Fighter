@@ -24,7 +24,7 @@ public class PlayerEffects : MonoBehaviour {
 		_stunEffect = Resources.Load(_effectsPath + "FXStun", typeof(GameObject)) as GameObject;
 		_jumpEffect = Resources.Load(_effectsPath + "FXJumpGround", typeof(GameObject)) as GameObject;
 		_doubleJumpEffect = Resources.Load(_effectsPath + "FXDoubleJump", typeof(GameObject)) as GameObject;
-		_clashEffect = Resources.Load(_effectsPath + "FXHit", typeof(GameObject)) as GameObject;
+		_clashEffect = Resources.Load(_effectsPath + "FXImpact", typeof(GameObject)) as GameObject;
 		_dashEffect = Resources.Load(_effectsPath + "FXDash", typeof(GameObject)) as GameObject;
 		_startRunEffect = Resources.Load(_effectsPath + "FXBeginRun", typeof(GameObject)) as GameObject;
 		_wallSlideEffect = Resources.Load(_effectsPath + "FXWallGlide", typeof(GameObject)) as GameObject;
@@ -36,7 +36,7 @@ public class PlayerEffects : MonoBehaviour {
 		myPlatformerMovement.DoubleJumped += CreateDoubleJumpEffect;
 		myPlatformerMovement.StartedRunning += CreateStartRunEffect;
 		myPlatformerMovement.StartedWallSlide += CreateWallSlideEffect;
-		myPlatformerMovement.EndedWallSlde += RemoveWallSlideEffect;
+		myPlatformerMovement.EndedWallSlide += RemoveWallSlideEffect;
 
 		GetComponent<BasicStunAttack>().AttackStarted += CreateDashEffect;
 		GetComponent<ClashAble>().Clashed += CreateClashEffect;
@@ -121,7 +121,6 @@ public class PlayerEffects : MonoBehaviour {
 
 	void CreateJumpEffect () 
 	{
-		//Placeholder particle system to check if it looks nice
 		Vector3 feetPosition = this.transform.position + new Vector3(0,-1,0);
 		GameObject currentJumpParticles = Instantiate(_jumpEffect, feetPosition, this.transform.rotation) as GameObject;
 		Vector3 newLocalScale = new Vector3(1,1,1);
@@ -132,7 +131,6 @@ public class PlayerEffects : MonoBehaviour {
 
 	void CreateStartRunEffect()
 	{
-		//Placeholder particle system to check if it looks nice
 		Vector3 feetPosition = this.transform.position + new Vector3(0,-1,0);
 		GameObject currentStartRunParticles = Instantiate(_startRunEffect, feetPosition, this.transform.rotation) as GameObject;
 		Vector3 newLocalScale = new Vector3(1,1,1);
@@ -143,7 +141,6 @@ public class PlayerEffects : MonoBehaviour {
 
 	void CreateDashEffect()
 	{
-		//Placeholder particle system to check if it looks nice
 		_currentDashEffect = Instantiate(_dashEffect, this.transform.position, this.transform.rotation) as GameObject;
 		Vector3 newLocalScale = new Vector3(1,1,1);
 		if(this.transform.localScale.x < 0)
@@ -153,7 +150,6 @@ public class PlayerEffects : MonoBehaviour {
 
 	void CreateClashEffect()
 	{
-		//Placeholder particle system to check if it looks nice
 		GameObject currentClashParticles = Instantiate(_clashEffect, this.transform.position, this.transform.rotation) as GameObject;
 		Vector3 newLocalScale = new Vector3(1,1,1);
 		if(this.transform.localScale.x < 0)

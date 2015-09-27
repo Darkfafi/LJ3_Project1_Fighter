@@ -8,9 +8,11 @@ public class SpecialItem : MonoBehaviour {
 	public PhysicsMaterial2D bouncyMaterial;
 
 	private float _hitsTillBreak;
+	private float _timeTillDestroy;
 	// Use this for initialization
 	void Start () {
 		GetComponent<AttackCather>().OnStunAttackCatch += GetHit;
+		_timeTillDestroy = 25f;
 		_hitsTillBreak = Random.Range(1,4);
 		StartBall += AddCollider;
 		Invoke("Begin", 3f);
@@ -18,6 +20,7 @@ public class SpecialItem : MonoBehaviour {
 	void Begin()
 	{
 		StartBall();
+		Destroy(this.gameObject, _timeTillDestroy);
 	}
 	void AddCollider()
 	{
