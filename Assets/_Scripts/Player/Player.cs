@@ -89,8 +89,6 @@ public class Player : MonoBehaviour {
 
 		_myPlatformerMovement.ReleasedFromGround += ReleasedGround;
 		_myPlatformerMovement.StartedWallSlide += StartWallSlide;
-
-		TransformPlayer (PlayerTransformer.SPECIAL_MOD);
 	}
 
 	// Movement

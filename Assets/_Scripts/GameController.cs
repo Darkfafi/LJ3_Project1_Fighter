@@ -57,7 +57,7 @@ public class GameController : MonoBehaviour {
 		Physics2D.IgnoreLayerCollision(8,8, true);
 		InitGame();
 		GameObject.Find ("UI").AddComponent<InGameUI> ();
-		SetPause(true,false,true);
+		SetPause(false,false,true);
 		CountDown ();
 	}
 

@@ -18,6 +18,8 @@ public class PlayerEffects : MonoBehaviour {
 	private GameObject _currentWallSlideEffectFeet;
 	private GameObject _currentWallSlideEffectHands;
 
+	private Vector3 _heightPositionMod = new Vector3 (0, 1.2f, 0);
+
 	private string _effectsPath = "Prefabs/Effects/";
 	// Use this for initialization
 	void Start () {
@@ -50,14 +52,14 @@ public class PlayerEffects : MonoBehaviour {
 
 	void CreateDeathEffect()
 	{
-		Instantiate(_deathEffect,this.transform.position,Quaternion.identity);
+		Instantiate(_deathEffect,this.transform.position+ _heightPositionMod,Quaternion.identity);
 	}
 
 	void Update()
 	{
 		if(_currentStunEffect != null)
 		{
-			_currentStunEffect.transform.position = this.transform.position;
+			_currentStunEffect.transform.position = this.transform.position + _heightPositionMod;
 		}
 		if(_currentWallSlideEffectFeet != null && _currentWallSlideEffectHands != null)
 		{
@@ -68,27 +70,27 @@ public class PlayerEffects : MonoBehaviour {
 				handPosition = this.transform.position + new Vector3(-0.75f,1f,0);
 				feetPosition = this.transform.position + new Vector3(-0.75f,-0.75f,0);
 			}
-			_currentWallSlideEffectFeet.transform.position = feetPosition;
-			_currentWallSlideEffectHands.transform.position = handPosition;
+			_currentWallSlideEffectFeet.transform.position = feetPosition + _heightPositionMod;
+			_currentWallSlideEffectHands.transform.position = handPosition + _heightPositionMod;
 		}
 		if(_currentDashEffect != null)
 		{
-			_currentDashEffect.transform.position = this.transform.position;
+			_currentDashEffect.transform.position = this.transform.position + _heightPositionMod;
 		}
 	}
 	void CreateHitEffect(float valueFloat, GameObject Go, float valueFloatSec)
 	{
-		Instantiate(_hitEffect, this.transform.position, Quaternion.identity);
+		Instantiate(_hitEffect, this.transform.position + _heightPositionMod, Quaternion.identity);
 	}
 
 	void CreateDoubleJumpEffect()
 	{
 		Vector3 feetPosition = this.transform.position + new Vector3(0,-1,0);
-		Instantiate(_doubleJumpEffect, feetPosition, Quaternion.identity);
+		Instantiate(_doubleJumpEffect, feetPosition + _heightPositionMod, Quaternion.identity);
 	}
 	void CreateStunEffect()
 	{
-		_currentStunEffect = Instantiate(_stunEffect, this.transform.position,Quaternion.identity) as GameObject;
+		_currentStunEffect = Instantiate(_stunEffect, this.transform.position + _heightPositionMod,Quaternion.identity) as GameObject;
 	}
 
 	void RemoveStunEffect()
@@ -100,8 +102,8 @@ public class PlayerEffects : MonoBehaviour {
 	{
 		Vector3 feetPosition = this.transform.position + new Vector3(0,-1,0);
 		Vector3 handPosition = this.transform.position + new Vector3(1,0.5f,0);
-		_currentWallSlideEffectFeet = Instantiate(_wallSlideEffect, feetPosition, Quaternion.identity) as GameObject;
-		_currentWallSlideEffectHands = Instantiate(_wallSlideEffect, handPosition, Quaternion.identity) as GameObject;
+		_currentWallSlideEffectFeet = Instantiate(_wallSlideEffect, feetPosition + _heightPositionMod, Quaternion.identity) as GameObject;
+		_currentWallSlideEffectHands = Instantiate(_wallSlideEffect, handPosition + _heightPositionMod, Quaternion.identity) as GameObject;
 		Vector3 newLocalScale = new Vector3(1,1,1);
 		if(this.transform.localScale.x < 0)
 		{
@@ -122,7 +124,7 @@ public class PlayerEffects : MonoBehaviour {
 	void CreateJumpEffect () 
 	{
 		Vector3 feetPosition = this.transform.position + new Vector3(0,-1,0);
-		GameObject currentJumpParticles = Instantiate(_jumpEffect, feetPosition, this.transform.rotation) as GameObject;
+		GameObject currentJumpParticles = Instantiate(_jumpEffect, feetPosition + _heightPositionMod, this.transform.rotation) as GameObject;
 		Vector3 newLocalScale = new Vector3(1,1,1);
 		if(this.transform.localScale.x > 0)
 			newLocalScale.x = -1;
@@ -132,7 +134,7 @@ public class PlayerEffects : MonoBehaviour {
 	void CreateStartRunEffect()
 	{
 		Vector3 feetPosition = this.transform.position + new Vector3(0,-1,0);
-		GameObject currentStartRunParticles = Instantiate(_startRunEffect, feetPosition, this.transform.rotation) as GameObject;
+		GameObject currentStartRunParticles = Instantiate(_startRunEffect, feetPosition + _heightPositionMod, this.transform.rotation) as GameObject;
 		Vector3 newLocalScale = new Vector3(1,1,1);
 		if(this.transform.localScale.x < 0)
 			newLocalScale.x = -1;
@@ -141,7 +143,7 @@ public class PlayerEffects : MonoBehaviour {
 
 	void CreateDashEffect()
 	{
-		_currentDashEffect = Instantiate(_dashEffect, this.transform.position, this.transform.rotation) as GameObject;
+		_currentDashEffect = Instantiate(_dashEffect, this.transform.position + _heightPositionMod, this.transform.rotation) as GameObject;
 		Vector3 newLocalScale = new Vector3(1,1,1);
 		if(this.transform.localScale.x < 0)
 			newLocalScale.x = -1;
@@ -150,7 +152,7 @@ public class PlayerEffects : MonoBehaviour {
 
 	void CreateClashEffect()
 	{
-		GameObject currentClashParticles = Instantiate(_clashEffect, this.transform.position, this.transform.rotation) as GameObject;
+		GameObject currentClashParticles = Instantiate(_clashEffect, this.transform.position + _heightPositionMod, this.transform.rotation) as GameObject;
 		Vector3 newLocalScale = new Vector3(1,1,1);
 		if(this.transform.localScale.x < 0)
 			newLocalScale.x = -1;
