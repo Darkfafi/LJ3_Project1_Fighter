@@ -1,0 +1,935 @@
+fileFormatVersion: 2
+guid: 8ee6a5ba7d6068645b096a17f091e16a
+timeCreated: 1443356409
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Stunned_0
+    21300002: Stunned_1
+    21300004: Stunned_2
+    21300006: Stunned_3
+    21300008: Stunned_4
+    21300010: Stunned_5
+    21300012: Stunned_6
+    21300014: Stunned_7
+    21300016: Stunned_8
+    21300018: Stunned_9
+    21300020: Stunned_10
+    21300022: Stunned_11
+    21300024: Stunned_12
+    21300026: Stunned_13
+    21300028: Stunned_14
+    21300030: Stunned_15
+    21300032: Stunned_16
+    21300034: Stunned_17
+    21300036: Stunned_18
+    21300038: Stunned_19
+    21300040: Stunned_20
+    21300042: Stunned_21
+    21300044: Stunned_22
+    21300046: Stunned_23
+    21300048: Stunned_24
+    21300050: Stunned_25
+    21300052: Stunned_26
+    21300054: Stunned_27
+    21300056: Stunned_28
+    21300058: Stunned_29
+    21300060: Stunned_30
+    21300062: Stunned_31
+    21300064: Stunned_32
+    21300066: Stunned_33
+    21300068: Stunned_34
+    21300070: Stunned_35
+    21300072: Stunned_36
+    21300074: Stunned_37
+    21300076: Stunned_38
+    21300078: Stunned_39
+    21300080: Stunned_40
+    21300082: Stunned_41
+    21300084: Stunned_42
+    21300086: Stunned_43
+    21300088: Stunned_44
+    21300090: Stunned_45
+    21300092: Stunned_46
+    21300094: Stunned_47
+    21300096: Stunned_48
+    21300098: Stunned_49
+    21300100: Stunned_50
+    21300102: Stunned_51
+    21300104: Stunned_52
+    21300106: Stunned_53
+    21300108: Stunned_54
+    21300110: Stunned_55
+    21300112: Stunned_56
+    21300114: Stunned_57
+    21300116: Stunned_58
+    21300118: Stunned_59
+    21300120: Stunned_60
+    21300122: Stunned_61
+    21300124: Stunned_62
+    21300126: Stunned_63
+    21300128: Stunned_64
+    21300130: Stunned_65
+    21300132: Stunned_66
+    21300134: Stunned_67
+    21300136: Stunned_68
+    21300138: Stunned_69
+    21300140: Stunned_70
+    21300142: Stunned_71
+    21300144: Stunned_72
+    21300146: Stunned_73
+    21300148: Stunned_74
+    21300150: Stunned_75
+    21300152: Stunned_76
+    21300154: Stunned_77
+    21300156: Stunned_78
+    21300158: Stunned_79
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Stunned_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 725
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_1
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 725
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_2
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 725
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_3
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 725
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_4
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 725
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_5
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 725
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_6
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 725
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_7
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 725
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_8
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 725
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_9
+      rect:
+        serializedVersion: 2
+        x: 1008
+        y: 725
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_10
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 725
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_11
+      rect:
+        serializedVersion: 2
+        x: 1232
+        y: 725
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_12
+      rect:
+        serializedVersion: 2
+        x: 1344
+        y: 725
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_13
+      rect:
+        serializedVersion: 2
+        x: 1456
+        y: 725
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_14
+      rect:
+        serializedVersion: 2
+        x: 1568
+        y: 725
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_15
+      rect:
+        serializedVersion: 2
+        x: 1680
+        y: 725
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 544
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_17
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 544
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_18
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 544
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_19
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 544
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_20
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 544
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_21
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 544
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_22
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 544
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_23
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 544
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_24
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 544
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_25
+      rect:
+        serializedVersion: 2
+        x: 1008
+        y: 544
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_26
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 544
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_27
+      rect:
+        serializedVersion: 2
+        x: 1232
+        y: 544
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_28
+      rect:
+        serializedVersion: 2
+        x: 1344
+        y: 544
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_29
+      rect:
+        serializedVersion: 2
+        x: 1456
+        y: 544
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_30
+      rect:
+        serializedVersion: 2
+        x: 1568
+        y: 544
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_31
+      rect:
+        serializedVersion: 2
+        x: 1680
+        y: 544
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 363
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_33
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 363
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_34
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 363
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_35
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 363
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_36
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 363
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_37
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 363
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_38
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 363
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_39
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 363
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_40
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 363
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_41
+      rect:
+        serializedVersion: 2
+        x: 1008
+        y: 363
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_42
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 363
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_43
+      rect:
+        serializedVersion: 2
+        x: 1232
+        y: 363
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_44
+      rect:
+        serializedVersion: 2
+        x: 1344
+        y: 363
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_45
+      rect:
+        serializedVersion: 2
+        x: 1456
+        y: 363
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_46
+      rect:
+        serializedVersion: 2
+        x: 1568
+        y: 363
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_47
+      rect:
+        serializedVersion: 2
+        x: 1680
+        y: 363
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_48
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 182
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_49
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 182
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_50
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 182
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_51
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 182
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_52
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 182
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_53
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 182
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_54
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 182
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_55
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 182
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_56
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 182
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_57
+      rect:
+        serializedVersion: 2
+        x: 1008
+        y: 182
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_58
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 182
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_59
+      rect:
+        serializedVersion: 2
+        x: 1232
+        y: 182
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_60
+      rect:
+        serializedVersion: 2
+        x: 1344
+        y: 182
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_61
+      rect:
+        serializedVersion: 2
+        x: 1456
+        y: 182
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_62
+      rect:
+        serializedVersion: 2
+        x: 1568
+        y: 182
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_63
+      rect:
+        serializedVersion: 2
+        x: 1680
+        y: 182
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_64
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_65
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 1
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_66
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 1
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_67
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 1
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_68
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 1
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_69
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 1
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_70
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 1
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_71
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 1
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_72
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 1
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_73
+      rect:
+        serializedVersion: 2
+        x: 1008
+        y: 1
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_74
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 1
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_75
+      rect:
+        serializedVersion: 2
+        x: 1232
+        y: 1
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_76
+      rect:
+        serializedVersion: 2
+        x: 1344
+        y: 1
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_77
+      rect:
+        serializedVersion: 2
+        x: 1456
+        y: 1
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_78
+      rect:
+        serializedVersion: 2
+        x: 1568
+        y: 1
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stunned_79
+      rect:
+        serializedVersion: 2
+        x: 1680
+        y: 1
+        width: 112
+        height: 181
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

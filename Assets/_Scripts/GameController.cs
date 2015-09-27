@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
-	public static bool isPaused = false;
-	
+	private static bool _isPaused = false;
+	private static bool _physicsPaused = false;
+	private static bool _lockedPause = false;
+
 	public delegate void NormDelegate();
 	public delegate void PlayerKillsDeathsDelegate(Player player, int kills, int deaths);
 	public delegate void PlayerLivesDelegate(Player player, int lives);
@@ -55,7 +57,7 @@ public class GameController : MonoBehaviour {
 		Physics2D.IgnoreLayerCollision(8,8, true);
 		InitGame();
 		GameObject.Find ("UI").AddComponent<InGameUI> ();
-		isPaused = true;
+		SetPause(true,false,true);
 		CountDown ();
 	}
 
@@ -76,7 +78,7 @@ public class GameController : MonoBehaviour {
 			break;
 		case 3:
 			Debug.Log ("FIGHT");
-			isPaused = false;
+			SetPause(false);
 			if(PlayerPrefs.GetInt("TimeValue") != 0){
 				_timer.StartTimer(playTime);
 			}
@@ -216,11 +218,11 @@ public class GameController : MonoBehaviour {
 
 	void Update()
 	{
-		if(Input.GetKeyDown(KeyCode.Escape))
+		if(Input.GetKeyDown(KeyCode.Escape) && !_lockedPause)
 		{
 			SwitchPause();
 		}
-		if(!isPaused)
+		if(!_isPaused)
 		{
 			if(_playersToSpawnWithCounter.Count > 0)
 			{
@@ -245,13 +247,13 @@ public class GameController : MonoBehaviour {
 
 	public void SwitchPause()
 	{
-		if(isPaused)
+		if(_isPaused)
 		{
-			isPaused = false;
+			SetPause(false);
 			if(ResumeGame != null)
 				ResumeGame();
 		} else {
-			isPaused = true;
+			SetPause(true);
 			if(PauseGame != null)
 				PauseGame();
 		}
@@ -382,10 +384,24 @@ public class GameController : MonoBehaviour {
 		}
 	} 
 
+	public static void SetPause(bool value,bool pausePhysics = true,bool lockedPause = false){
+		_isPaused = value;
+		_physicsPaused = pausePhysics;
+		_lockedPause = lockedPause;
+	}
+
+	public static bool isPaused{
+		get{return _isPaused;}
+	}
+
+	public static bool physicsPaused{
+		get{return _physicsPaused;}
+	}
+
 	public int playerTotalLives{
 		get{return _playerLives;}
 	}
-	public ComTimer gameTimer{
-		get{return _timer;}
+	public ComTimer gameTimer {
+		get{ return _timer;}
 	}
 }

@@ -48,7 +48,7 @@ public class PlayerFactory {
 			playerObject.AddComponent<ThrowRangedSpecialAttack>();
 			break;
 		case CharDB.CHARACTER02:
-			animatorName = "BirdAnimator";
+			animatorName = "AsianChickAnimator";
 			playerObject.AddComponent<SpecialBasicAttack>();
 			break;
 		case CharDB.CHARACTER03:
