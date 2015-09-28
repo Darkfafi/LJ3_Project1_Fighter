@@ -31,7 +31,7 @@ public class GameController : MonoBehaviour {
 	private List<Player> _currentPlayers = new List<Player>();
 	private List<int> _currentPlayerLives = new List<int>();
 
-	private Dictionary<float, GameObject> _playersToSpawnWithCounter = new Dictionary<float, GameObject>();
+	private Dictionary<GameObject, float> _playersToSpawnWithCounter = new Dictionary<GameObject, float>();
 	private Dictionary<Player, int> _playerKills = new Dictionary<Player, int>(); //to store the kills made by wich player
 
 	private int spawnTime = 3; //time to spawn player in seconds
@@ -123,6 +123,11 @@ public class GameController : MonoBehaviour {
 	}
 	private void InvokeBackToMenu(Player playerwon, int playerKills, int deaths)
 	{
+		foreach(Player player in _currentPlayers)
+		{
+			player.gameObject.SetActive(false);
+		}
+		_playersToSpawnWithCounter.Clear();
 		Invoke("BackToMenu", 5);
 	}
 	void BackToMenu()
@@ -227,19 +232,22 @@ public class GameController : MonoBehaviour {
 			if(_playersToSpawnWithCounter.Count > 0)
 			{
 				//create arrays of _playertospawnwithcounter so we are not itterating
-				List<float> playersSpawnTime = new List<float>(_playersToSpawnWithCounter.Keys);
-				List<GameObject> playersToSpawn = new List<GameObject>(_playersToSpawnWithCounter.Values);
+				List<float> playersSpawnTime = new List<float>(_playersToSpawnWithCounter.Values);
+				List<GameObject> playersToSpawn = new List<GameObject>(_playersToSpawnWithCounter.Keys);
 				for (int i = 0; i < playersToSpawn.Count; i++) {
 					CheckSpawnPlayer(playersSpawnTime[i], playersToSpawn[i]);
 				} 
 			}
 			foreach(Player player in _currentPlayers)
 			{
-				if(player.transform.position.y < _levelBorderMinY || player.transform.position.y > _levelBorderMaxY || player.transform.position.x > _levelBorderMaxX || player.transform.position.x < _levelBorderMinX)
+				if(player.gameObject.activeInHierarchy)
 				{
-					player.gameObject.SetActive(false);
-					player.transform.position = new Vector3(0,0,0); //reset pos
-					PlayerDied(player.GetComponent<Player>(), null);
+					if(player.transform.position.y < _levelBorderMinY || player.transform.position.y > _levelBorderMaxY || player.transform.position.x > _levelBorderMaxX || player.transform.position.x < _levelBorderMinX)
+					{
+						player.gameObject.SetActive(false);
+						player.transform.position = new Vector3(0,0,0); //reset pos
+						PlayerDied(player.GetComponent<Player>(), null);
+					}
 				}
 			}
 		}
@@ -300,7 +308,8 @@ public class GameController : MonoBehaviour {
 
 	private void SetSpawnPlayer(Player player)
 	{
-		_playersToSpawnWithCounter.Add(spawnTime + Time.time, player.gameObject);
+		if(!_playersToSpawnWithCounter.ContainsKey(player.gameObject))
+			_playersToSpawnWithCounter.Add(player.gameObject, spawnTime + Time.time);
 	}
 
 	private void CheckPlayersAlive()
@@ -343,7 +352,8 @@ public class GameController : MonoBehaviour {
 		{
 			if(entry.Value == oldPlayerKills)
 			{
-				playersTied.Add(entry.Key);
+				if(!playersTied.Contains(entry.Key))
+					playersTied.Add(entry.Key);
 			}
 		}
 		if(playersTied.Count > 1)
@@ -365,12 +375,13 @@ public class GameController : MonoBehaviour {
 		//TODO: create image sudden death
 		_suddenDeath = true;
 		spawnTime = 10;
-		foreach (var player in _currentPlayers) {
-			player.enabled = false;
+		foreach (Player player in _currentPlayers) {
 			if(playersTied.Contains(player))
 			{
-				SetSpawnPlayer(player);
+				player.gameObject.transform.position = _currentSpawnPoints[playersTied.IndexOf(player)].position;
 				player.TransformPlayer(PlayerTransformer.SPECIAL_MOD);
+			} else {
+				player.gameObject.SetActive(false);
 			}
 		}
 	}
@@ -380,7 +391,7 @@ public class GameController : MonoBehaviour {
 		{
 			player.transform.position = _currentSpawnPoints[Random.Range(0,_currentSpawnPoints.Count)].position;
 			player.SetActive(true);
-			_playersToSpawnWithCounter.Remove(spawntime);
+			_playersToSpawnWithCounter.Remove(player);
 		}
 	} 
 

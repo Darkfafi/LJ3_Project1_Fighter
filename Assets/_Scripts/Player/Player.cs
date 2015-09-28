@@ -62,6 +62,7 @@ public class Player : MonoBehaviour {
 		gameObject.AddComponent<LandOnTopKill> ();
 		rigidBody = gameObject.GetComponent<Rigidbody2D> ();
 		_playerAnimHandler = gameObject.AddComponent<PlayerAnimationHandler> ();
+		gameObject.AddComponent<RigidbodyUtil2D>();
 
 		_fader = gameObject.AddComponent<FadeInOut> ();
 
