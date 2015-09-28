@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class SpecialAttack : AttackBase {
-
+	
 	protected int _useCounter;
 	protected int _maxTimesUse = 0;
 
@@ -16,7 +16,9 @@ public class SpecialAttack : AttackBase {
 	}
 
 	protected void EndTransform(){
-		_useCounter = 0;
 		gameObject.GetComponent<Player> ().TransformPlayer (PlayerTransformer.NORMAL_MOD);
+	}
+	public void UseCounterReset(){
+		_useCounter = 0;
 	}
 }

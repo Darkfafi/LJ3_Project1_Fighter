@@ -129,6 +129,7 @@ public class Player : MonoBehaviour {
 	}
 
 	public void TransformPlayer(string playerTransformerConst){
+		_specialAttack.UseCounterReset ();
 		_playerTransformer.TransformCharacter (this,playerTransformerConst);
 	}
 
