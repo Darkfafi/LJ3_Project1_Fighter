@@ -47,11 +47,11 @@ public class TouchDetector2D : MonoBehaviour {
 			startRay = new Vector2(transform.position.x,transform.position.y + sizeCollider.y / 2);
 			if(i <= 1){
 				dist = sizeCollider.y / 2;
-				dist += dist * 0.1f;
+				dist += dist * 0.12f;
 				startRay.y += dist * currentDirVector.y;
 			}else{
 				dist = sizeCollider.x / 2;
-				dist += dist * 0.1f;
+				dist += dist * 0.12f;
 				startRay.x += dist * currentDirVector.x;
 			}
 			hit = Physics2D.Raycast(startRay,currentDirVector,0.01f);

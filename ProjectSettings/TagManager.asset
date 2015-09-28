@@ -12,6 +12,7 @@ TagManager:
   - ScreenBoundObject
   - FullLevel
   - PauseCanvas
+  - Envirement
   layers:
   - Default
   - TransparentFX

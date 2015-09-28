@@ -15,7 +15,9 @@ public class CharacterLifeIcon : MonoBehaviour {
 
 	private void Awake(){
 		_image = gameObject.AddComponent<Image> ();
-		_image.rectTransform.sizeDelta = new Vector2 (95,90);
+		//sizeDelta = new Vector2 (95,90);
+		_image.rectTransform.SetSizeWithCurrentAnchors (RectTransform.Axis.Horizontal, 95);
+		_image.rectTransform.SetSizeWithCurrentAnchors (RectTransform.Axis.Vertical, 90);
 
 		gController = GameObject.FindGameObjectWithTag (Tags.GAMECONTROLLER).GetComponent<GameController> ();
 		gController.OnDeath += PlayerDied;

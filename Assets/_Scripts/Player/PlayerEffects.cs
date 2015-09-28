@@ -143,9 +143,10 @@ public class PlayerEffects : MonoBehaviour {
 
 	void CreateDashEffect()
 	{
+		//new Vector3((Mathf.Abs(transform.localScale.x) / transform.localScale.x) * 2,0,0)
 		_currentDashEffect = Instantiate(_dashEffect, this.transform.position + _heightPositionMod, this.transform.rotation) as GameObject;
 		Vector3 newLocalScale = new Vector3(1,1,1);
-		if(this.transform.localScale.x < 0)
+		if(this.transform.localScale.x > 0)
 			newLocalScale.x = -1;
 		_currentDashEffect.transform.localScale = newLocalScale;
 	}

@@ -13,4 +13,5 @@ public class Tags : MonoBehaviour {
 	public const string SCREEN_BOUND_OBJECT = "ScreenBoundObject";
 	public const string CURRENT_LEVEL = "FullLevel";
 	public const string SPECIAL_ITEM = "SpecialItem";
+	public const string ENVIREMENT = "Envirement";
 }
