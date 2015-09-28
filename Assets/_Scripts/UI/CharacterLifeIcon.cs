@@ -32,9 +32,6 @@ public class CharacterLifeIcon : MonoBehaviour {
 	}
 
 	private void UpdateStocks(int amountOfStocks){
-		GameObject stockObject;
-		Texture2D texture;
-		Image imageStock;
 
 		for (int i = 0; i < _allLives.Length; i++) {
 			_allLives[i].SetActive(false);

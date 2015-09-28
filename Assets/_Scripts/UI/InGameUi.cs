@@ -20,10 +20,7 @@ public class InGameUI : MonoBehaviour {
 	}
 
 	private void PlaceUI(){
-		GameObject iconGo;
-		CharacterLifeIcon charIcon;
 		GameObject timer;
-
 		GameObject[] allIcons = GameObject.FindGameObjectsWithTag (Tags.PLAYER_LIFE_ICON);
 
 		for (int i = 0; i < allIcons.Length; i++) {

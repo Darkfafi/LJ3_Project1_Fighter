@@ -15,8 +15,6 @@ public class AttackBase : MonoBehaviour {
 		_attackCooldownTimer = gameObject.AddComponent<ComTimer> ();
 		_attackCooldownTimer.TimerEnded += EndCooldownTimer;
 	}
-
-
 	public void Attack(Player player,float newCooldown = (STUN_POWER_KILL + STUN_POWER_KILL_WHILE_STUNNED)){
 		if (!_attackCooldownTimer.running) {
 			OnAttack(player);

@@ -53,6 +53,7 @@ public class GameController : MonoBehaviour {
 
 	public void Awake()
 	{
+		Time.timeScale = 1;
 		CreateLevel ();
 		FindAllSpawnPoints();
 		_timer = gameObject.AddComponent<ComTimer>();
@@ -407,6 +408,11 @@ public class GameController : MonoBehaviour {
 		_isPaused = value;
 		_physicsPaused = pausePhysics;
 		_lockedPause = lockedPause;
+		if (value) {
+			Time.timeScale = 0;
+		} else {
+			Time.timeScale = 1;
+		}
 	}
 
 	public static bool isPaused{
