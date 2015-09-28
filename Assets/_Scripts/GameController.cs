@@ -280,6 +280,7 @@ public class GameController : MonoBehaviour {
 	private void PlayerDied(Player player, GameObject attacker)
 	{
 		int playerIndex = _currentPlayers.IndexOf(player);
+		player.TransformPlayer(PlayerTransformer.NORMAL_MOD);
 		_currentPlayerLives[playerIndex] -= 1;
 		if(OnDeath != null){
 			OnDeath(player,_currentPlayerLives[playerIndex]);

@@ -8,6 +8,7 @@ public class RoomManager : MonoBehaviour {
 	public event NormDelegate UnReadyPlayers;
 
 	public GameObject[] playerPanels = new GameObject[0];
+	public GameObject[] characterPanels = new GameObject[0];
 	public Text[] playerTexts = new Text[0];
 	private List<string> _controlsInUse = new List<string>();
 	private List<CharacterSelect> _playersReady = new List<CharacterSelect>();
@@ -111,8 +112,8 @@ public class RoomManager : MonoBehaviour {
 	private void ActivatePanel(string controls, int id)
 	{
 		//activate character select panel
-		playerTexts[id].text = "Player-" + id;
-		playerPanels[id].SetActive(true);
+		characterPanels[id].GetComponent<CharacterSelectAnim>().StartAnimation();
+		playerTexts[id].text = "";
 		playerPanels[id].GetComponent<CharacterSelect>().SetPlayer(id,controls);
 	}
 	public void DeactivatePanel(CharacterSelect charSelect, int playerID)
@@ -120,7 +121,7 @@ public class RoomManager : MonoBehaviour {
 		for (int i = 0; i < playerPanels.Length; i++) {
 			if(playerPanels[i].GetComponent<CharacterSelect>() == charSelect)
 			{
-				playerPanels[i].SetActive(false);
+				characterPanels[i].GetComponent<CharacterSelectAnim>().HideCharacterSelect();
 				playerTexts[i].text = "Press Action Key To Play";
 			}
 		}

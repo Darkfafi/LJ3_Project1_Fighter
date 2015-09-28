@@ -10,6 +10,16 @@ public class GameRules : MonoBehaviour {
 	public Text spawnTimeText;
 	public Text timeValueText;
 
+	void Awake()
+	{
+		stockSlider.value = PlayerPrefs.GetInt("StockValue");
+		stockValueText.text =  PlayerPrefs.GetInt("StockValue").ToString();
+		timeSlider.value = PlayerPrefs.GetInt("TimeValue");
+		timeValueText.text = PlayerPrefs.GetInt("TimeValue").ToString();
+		spawnTimeSlider.value = PlayerPrefs.GetInt("SpawnTime");
+		spawnTimeText.text = PlayerPrefs.GetInt("SpawnTime").ToString();
+	}
+
 	public void OnStockSliderChange()
 	{
 		int stockValue = (int)stockSlider.value;

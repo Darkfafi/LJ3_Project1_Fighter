@@ -23,13 +23,40 @@ public class CharacterSelect : MonoBehaviour
 	private float _standardY;
 	private float _moveSpeed;
 
+	private List<GameObject> _myChildren = new List<GameObject>();
+
 	void Awake()
 	{
 		_rectTransform = GetComponent<RectTransform>();
 		_roomManager = GameObject.FindGameObjectWithTag(Tags.ROOMMANAGER).GetComponent<RoomManager>();
+		for (int i = 0; i < transform.childCount; i++) {
+			_myChildren.Add(transform.GetChild(i).gameObject);
+		}
 	}
+
+	void FadeAllOtherCharacters()
+	{
+		for (int i = 0; i < _myChildren.Count; i++) {
+			if(i != _characterID)
+			{
+				_myChildren[i].GetComponent<FadeInOut>().SetAlpha(0);
+			}
+		}
+	}
+
+	void ColorCurrentCharacter(Color color)
+	{
+		_myChildren[_characterID].GetComponent<Image>().color = color;
+	}
+
+	private void OnEnable()
+	{
+		FadeAllOtherCharacters();
+	}
+
 	void Start()
 	{
+		FadeAllOtherCharacters();
 		_standardY = _rectTransform.localPosition.y;
 		_picHeight = 100;
 		_moveSpeed = 10;
@@ -90,6 +117,8 @@ public class CharacterSelect : MonoBehaviour
 		{
 			_characterID++;
 			_busy = true;
+			_myChildren[_characterID-1].GetComponent<FadeInOut>().Fade(0, 0.1f);
+			_myChildren[_characterID].GetComponent<FadeInOut>().Fade(1, 0.1f);
 		}
 	}
 	private void CharacterDown()
@@ -98,11 +127,14 @@ public class CharacterSelect : MonoBehaviour
 		{
 			_characterID--;
 			_busy = true;
+			_myChildren[_characterID+1].GetComponent<FadeInOut>().Fade(0, 0.1f);
+			_myChildren[_characterID].GetComponent<FadeInOut>().Fade(1, 0.1f);
 		}
 	}
 	private void ReadyUp()
 	{
 		_ready = true;
+		ColorCurrentCharacter(CharDB.GetColorByID(_playerID));
 		PlayerPrefs.SetString("Character-" + _playerID, CharDB.GetCharacterByInt(_characterID));
 		_roomManager.AddPlayerReady(this);
 	}
@@ -110,6 +142,7 @@ public class CharacterSelect : MonoBehaviour
 	private void UnReady()
 	{
 		_ready = false;
+		ColorCurrentCharacter(Color.white);
 		_roomManager.RemovePlayerReady(this);
 	}
 
@@ -125,13 +158,19 @@ public class CharacterSelect : MonoBehaviour
 			_jumpKey = playerControls[3];
 
 		_backKey = playerControls[4];
-
-		Debug.Log(_verticalAxis);
 	}
 
 	private void RemoveMe()
 	{
 		_characterID = 0;
+		FadeAllOtherCharacters();
 		_roomManager.DeactivatePanel(this, _playerID);
+	}
+
+	public bool isReady
+	{
+		get{
+			return _ready;
+		}
 	}
 }
