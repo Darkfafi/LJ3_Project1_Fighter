@@ -8,7 +8,7 @@ public class AttackBase : MonoBehaviour {
 	public const int STUN_POWER_KILL = 9000; //KILLS ENEMIES STUNNED OR NOT STUNNED.
 	public const int STUN_POWER_KILL_WHILE_STUNNED = 5000; // ONLY KILLS ENEMIES THAT ARE ALREADY STUNNED
 
-	protected int _coolDownTime = 1;
+	protected float _coolDownTime = 1;
 	protected ComTimer _attackCooldownTimer;
 
 	void Awake(){
@@ -17,10 +17,14 @@ public class AttackBase : MonoBehaviour {
 	}
 
 
-	public void Attack(Player player){
+	public void Attack(Player player,float newCooldown = (STUN_POWER_KILL + STUN_POWER_KILL_WHILE_STUNNED)){
 		if (!_attackCooldownTimer.running) {
 			OnAttack(player);
-			_attackCooldownTimer.StartTimer(_coolDownTime);
+			if(newCooldown != (STUN_POWER_KILL + STUN_POWER_KILL_WHILE_STUNNED)){
+				_attackCooldownTimer.StartTimer(newCooldown);
+			}else{
+				_attackCooldownTimer.StartTimer(_coolDownTime);
+			}
 		}
 	}
 	protected virtual void OnAttack(Player player){
