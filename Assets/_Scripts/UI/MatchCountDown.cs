@@ -11,17 +11,11 @@ public class MatchCountDown : MonoBehaviour {
 		GameController gController = GameObject.FindGameObjectWithTag (Tags.GAMECONTROLLER).GetComponent<GameController>();
 		gController.CountDownTik += CountDownTik;
 
-		_textFieldObject = new GameObject ();
+		_textFieldObject = GameObject.Find("UICountDown");//Instantiate(Resources.Load("Prefabs/UI/UICountDown") as GameObject,new Vector3(0,0,0),Quaternion.identity) as GameObject;
 
-		_textFieldObject.transform.SetParent (gameObject.transform);
-		_textfield = _textFieldObject.AddComponent<Text> ();
-
-		_textFieldObject.transform.position = new Vector3 ((Screen.width / 2) - _textfield.rectTransform.rect.width, (Screen.height / 2) - _textfield.rectTransform.rect.height, 1);
-
-		_textfield.rectTransform.sizeDelta = new Vector2 (117, 60);
-		_textfield.font = Resources.Load ("Fonts/Ailerons") as Font;
+		//_textFieldObject.transform.SetParent (gameObject.transform,true);
+		_textfield = _textFieldObject.GetComponent<Text> ();	
 		_textfield.alignment = TextAnchor.MiddleCenter;
-		_textfield.fontSize = 50;
 	}
 
 	void CountDownTik (int counts) {

@@ -13,6 +13,7 @@ TagManager:
   - FullLevel
   - PauseCanvas
   - Envirement
+  - PlayerLifeIcon
   layers:
   - Default
   - TransparentFX

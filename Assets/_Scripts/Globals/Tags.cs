@@ -14,4 +14,5 @@ public class Tags : MonoBehaviour {
 	public const string CURRENT_LEVEL = "FullLevel";
 	public const string SPECIAL_ITEM = "SpecialItem";
 	public const string ENVIREMENT = "Envirement";
+	public const string PLAYER_LIFE_ICON = "PlayerLifeIcon";
 }

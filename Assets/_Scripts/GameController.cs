@@ -51,7 +51,7 @@ public class GameController : MonoBehaviour {
 
 	private bool _movingCamera = true;
 
-	public void Start()
+	public void Awake()
 	{
 		CreateLevel ();
 		FindAllSpawnPoints();

@@ -7,21 +7,19 @@ public class CharacterLifeIcon : MonoBehaviour {
 		
 	private Image _image;
 
-	private List<GameObject> _allLives = new List<GameObject> ();
+	[SerializeField] private GameObject[] _allLives;
 
 	private Player _player;
 	private GameController gController;
 
 
-	private void Awake(){
-		_image = gameObject.AddComponent<Image> ();
-		//sizeDelta = new Vector2 (95,90);
-		_image.rectTransform.SetSizeWithCurrentAnchors (RectTransform.Axis.Horizontal, 95);
-		_image.rectTransform.SetSizeWithCurrentAnchors (RectTransform.Axis.Vertical, 90);
+	private void Start(){
+		_image = gameObject.GetComponent<Image> ();
 
 		gController = GameObject.FindGameObjectWithTag (Tags.GAMECONTROLLER).GetComponent<GameController> ();
 		gController.OnDeath += PlayerDied;
 		transform.localScale = new Vector3 (0.8f, 0.8f, 1);
+
 		UpdateStocks (gController.playerTotalLives);
 	}
 
@@ -37,24 +35,17 @@ public class CharacterLifeIcon : MonoBehaviour {
 		GameObject stockObject;
 		Texture2D texture;
 		Image imageStock;
-		while (_allLives.Count != amountOfStocks) {
-			if (_allLives.Count > amountOfStocks) {
-				Destroy(_allLives[_allLives.Count - 1]);
-				_allLives.RemoveAt(_allLives.Count - 1);
-			} else if (_allLives.Count < amountOfStocks) {
-				// create a stock
-				stockObject = new GameObject();
-				stockObject.transform.SetParent(transform);
-				texture = Resources.Load("UI/stock") as Texture2D;
-				imageStock = stockObject.AddComponent<Image>();
-				imageStock.sprite = Sprite.Create(texture,new Rect(0,0,texture.width,texture.height),new Vector2(0.5f,0.5f));
 
-				imageStock.rectTransform.sizeDelta = new Vector2(20,20);
-				imageStock.color = Color.white;
+		for (int i = 0; i < _allLives.Length; i++) {
+			_allLives[i].SetActive(false);
+		}
+		for (int i = 0; i < amountOfStocks; i++) {
+			_allLives[i].SetActive(true);
+		}
 
-				stockObject.transform.position = new Vector3(_image.rectTransform.rect.width / 1.7f, _image.rectTransform.rect.height / 2 - (imageStock.rectTransform.rect.height * _allLives.Count),stockObject.transform.position.z);
-				_allLives.Add(stockObject);
-			}
+		if (amountOfStocks == 0) {
+			transform.localScale = new Vector3 (0.6f, 0.6f, 1);
+			_image.color = new Color(0.8f,0.8f,0.8f,0.5f);
 		}
 	}
 
