@@ -31,9 +31,10 @@ public class InGameUI : MonoBehaviour {
 			iconGo.transform.SetParent (transform);
 			charIcon = iconGo.AddComponent<CharacterLifeIcon> ();
 			charIcon.SetPlayer(_allPlayers[i]);
-			Debug.Log(charIcon.width);
+			//Debug.Log(charIcon.width);
 			charIcon.transform.position = new Vector3((-(Screen.width / 100) / 2 + charIcon.width) + ((charIcon.width + 50) * i),charIcon.height / 1.3f,transform.position.z);
 		}
+		gameObject.AddComponent<MatchCountDown> ();
 		timer = new GameObject ();
 		timer.transform.SetParent (transform);
 		timer.AddComponent<GameUIClock> ();

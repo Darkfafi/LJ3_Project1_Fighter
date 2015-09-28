@@ -197,9 +197,9 @@ public class Player : MonoBehaviour {
 	// Hit by attacks (MAYBE CODE IN A DIFFERENT COMPONENT)
 	void OnStunHit(float stunPower, GameObject attacker, float pushPower){
 		//Without the if statement you can stun stunned players to increase the stun time
-		//if (!_stunTimer.running) {
-		GetStunned(stunPower);
-		//}
+		if (!_stunTimer.running) {
+			GetStunned(stunPower);
+		}
 	}
 
 	void OnStunKillHit(GameObject attacker, float pushPower){

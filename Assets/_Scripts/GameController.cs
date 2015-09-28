@@ -11,9 +11,11 @@ public class GameController : MonoBehaviour {
 	public delegate void NormDelegate();
 	public delegate void PlayerKillsDeathsDelegate(Player player, int kills, int deaths);
 	public delegate void PlayerLivesDelegate(Player player, int lives);
+	public delegate void IntDelegate(int value);
 
 	public event NormDelegate PauseGame;
 	public event NormDelegate ResumeGame;
+	public event IntDelegate CountDownTik;
 
 	public event PlayerKillsDeathsDelegate Win;
 	public event PlayerLivesDelegate OnDeath;
@@ -69,6 +71,9 @@ public class GameController : MonoBehaviour {
 	}
 
 	private void EndCountDown(int amountOfRepeats){
+		if (CountDownTik != null) {
+			CountDownTik (amountOfRepeats);
+		}
 		switch (amountOfRepeats) {
 		case 1:
 			Debug.Log ("READY");

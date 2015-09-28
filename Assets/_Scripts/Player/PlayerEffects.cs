@@ -90,6 +90,9 @@ public class PlayerEffects : MonoBehaviour {
 	}
 	void CreateStunEffect()
 	{
+		if (_currentStunEffect != null) {
+			RemoveStunEffect();
+		}
 		_currentStunEffect = Instantiate(_stunEffect, this.transform.position + _heightPositionMod,Quaternion.identity) as GameObject;
 	}
 
@@ -100,6 +103,10 @@ public class PlayerEffects : MonoBehaviour {
 
 	void CreateWallSlideEffect(GameObject obj)
 	{
+		if (_currentWallSlideEffectFeet != null && _currentWallSlideEffectHands != null) {
+			RemoveWallSlideEffect(obj);
+		}
+
 		Vector3 feetPosition = this.transform.position + new Vector3(0,-1,0);
 		Vector3 handPosition = this.transform.position + new Vector3(1,0.5f,0);
 		_currentWallSlideEffectFeet = Instantiate(_wallSlideEffect, feetPosition + _heightPositionMod, Quaternion.identity) as GameObject;
