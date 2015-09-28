@@ -57,7 +57,7 @@ public class TouchDetector2D : MonoBehaviour {
 			hit = Physics2D.Raycast(startRay,currentDirVector,0.01f);
 		
 			if(hit.collider != null && hit.collider.gameObject != this.gameObject){
-				if(!_sidesTouched[currentDirVector]){
+				if(!_sidesTouched[currentDirVector] || _sidesTouched[currentDirVector] != hit.collider.gameObject){ // last check changed
 					if(TouchStarted != null){
 						TouchStarted(hit.collider.gameObject,currentDirVector);
 						objectTouched = hit.collider.gameObject;

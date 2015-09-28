@@ -3,6 +3,8 @@ using System.Collections;
 
 public class AttackBase : MonoBehaviour {
 
+	protected const string IN_ATTACK = "InAttack";
+
 	public const int STUN_POWER_KILL = 9000; //KILLS ENEMIES STUNNED OR NOT STUNNED.
 	public const int STUN_POWER_KILL_WHILE_STUNNED = 5000; // ONLY KILLS ENEMIES THAT ARE ALREADY STUNNED
 

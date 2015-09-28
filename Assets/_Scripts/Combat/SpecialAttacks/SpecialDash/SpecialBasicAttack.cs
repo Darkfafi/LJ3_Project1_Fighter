@@ -18,3 +18,4 @@ public class SpecialBasicAttack : SpecialAttack {
 		base.OnAttack (player);
 	} 
 }
+// :D <3

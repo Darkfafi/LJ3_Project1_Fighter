@@ -58,6 +58,7 @@ public class PlatformerMovement : MonoBehaviour {
 	void Start(){
 		touch = gameObject.GetComponent<TouchDetector2D> ();
 		touch.TouchStarted += TouchDetectionStart;
+		touch.OnTouch += InTouch;
 		touch.TouchEnded += TouchDetectionEnd;
 
 		_oldGravityScale = _rigidbody.gravityScale;
@@ -239,6 +240,10 @@ public class PlatformerMovement : MonoBehaviour {
 				_prePlatform = obj;
 			}
 		}
+	}
+
+	void InTouch(GameObject go, Vector2 dirVector){
+
 	}
 
 	void TouchDetectionEnd(GameObject obj, Vector2 vec){
