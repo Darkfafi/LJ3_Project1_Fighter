@@ -59,7 +59,8 @@ public class GameController : MonoBehaviour {
 		Physics2D.IgnoreLayerCollision(8,8, true);
 		InitGame();
 		GameObject.Find ("UI").AddComponent<InGameUI> ();
-		SetPause(true,false,true);
+		//SetPause(true,false,true);
+		PlayerWait (true);
 		CountDown ();
 	}
 
@@ -74,20 +75,11 @@ public class GameController : MonoBehaviour {
 		if (CountDownTik != null) {
 			CountDownTik (amountOfRepeats);
 		}
-		switch (amountOfRepeats) {
-		case 1:
-			Debug.Log ("READY");
-			break;
-		case 2:
-			Debug.Log ("SET");
-			break;
-		case 3:
-			Debug.Log ("FIGHT");
-			SetPause(false);
+		if(amountOfRepeats == 3) {
+			PlayerWait(false);
 			if(PlayerPrefs.GetInt("TimeValue") != 0){
 				_timer.StartTimer(playTime);
 			}
-			break;
 		}
 	}
 
@@ -400,6 +392,16 @@ public class GameController : MonoBehaviour {
 			_playersToSpawnWithCounter.Remove(player);
 		}
 	} 
+
+	private void PlayerWait(bool wait){
+		for (int i = 0; i < _currentPlayers.Count; i++) {
+			if(wait){
+				_currentPlayers[i].AddBusyAction("WaitForGameController");
+			}else{
+				_currentPlayers[i].RemoveBusyAction("WaitForGameController");
+			}
+		}
+	}
 
 	public static void SetPause(bool value,bool pausePhysics = true,bool lockedPause = false){
 		_isPaused = value;
