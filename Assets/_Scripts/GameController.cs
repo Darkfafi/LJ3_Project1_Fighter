@@ -203,7 +203,7 @@ public class GameController : MonoBehaviour {
 			Player newPlayerScript = newPlayer.GetComponent<Player>();
 			
 			//add player information
-			newPlayer.name = "Player-" + i;
+			newPlayer.name = "Player " + (i + 1);
 			newPlayer.layer = 8;
 			newPlayerScript.SetCharacter(playerCharacter);
 			newPlayerScript.SetKeys(playerHorizontalAxis,playerVerticalAxis,playerActionKey, playerJumpKey);
@@ -390,6 +390,8 @@ public class GameController : MonoBehaviour {
 		{
 			player.transform.position = _currentSpawnPoints[Random.Range(0,_currentSpawnPoints.Count)].position;
 			player.SetActive(true);
+			player.GetComponent<Player>().ActivateIdleProtection(3); // Gives protection/
+			player.GetComponent<Player>().ResetBusyAction(); // Removes stun effects and other busy actions.
 			_playersToSpawnWithCounter.Remove(player);
 		}
 	} 

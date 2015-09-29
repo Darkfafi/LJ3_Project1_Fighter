@@ -37,7 +37,8 @@ public class Player : MonoBehaviour {
 	private ComTimer _stunTimer;
 	private FadeInOut _fader;
 	private GameObject _lastKiller;
-	
+	private ComTimer _spawnInvulnerableTimer;
+
 	// Input
 	private PlayerInput _myPlayerInput;
 	private string _horizontalAxis = "HorizontalPlayer1";
@@ -194,30 +195,24 @@ public class Player : MonoBehaviour {
 		}
 	}
 
-	// Hit by attacks (MAYBE CODE IN A DIFFERENT COMPONENT)
 	void OnStunHit(float stunPower, GameObject attacker, float pushPower){
-		//Without the if statement you can stun stunned players to increase the stun time
 		if (!_stunTimer.running) {
 			GetStunned(stunPower);
 		}
 	}
 
 	void OnStunKillHit(GameObject attacker, float pushPower){
-		//TODO IF STUNNED THEN CALL DEAD FUNCTION
 		if (_stunTimer.running) {
 			StartDeath(attacker);
 		}
 	}
 	void OnKillHit(GameObject attacker, float pushPower){
-		//TODO CALL DEAD FUNCTION
-
 		StartDeath (attacker);
-
 	}
 
 	void GetStunned(float stunPower){
 		_playerAnimHandler.PlayAnimation("Stunned");
-		_stunTimer.StartTimer ((int)(0.5f * stunPower));
+		_stunTimer.StartTimer ((int)(0.45f * stunPower));
 		if (StartStunned != null) {
 			StartStunned ();
 		}
@@ -225,7 +220,6 @@ public class Player : MonoBehaviour {
 		AddBusyAction (IN_STUNNED);
 	}
 	void HealStun(){
-		//busyAction = false;
 		RemoveBusyAction (IN_STUNNED);
 		_stunTimer.StopTimer();
 		if (StopStunned != null) {
@@ -233,11 +227,9 @@ public class Player : MonoBehaviour {
 		}
 	}
 	void StartDeath(GameObject killer){
-		//TODO cannot be attack or can interact
 		if(StartedDying != null)
 			StartedDying();
 		HealStun ();
-		//busyAction = true;
 		AddBusyAction (IN_DEATH);
 		SetInvulnerable (true);
 		_lastKiller = killer;
@@ -250,15 +242,12 @@ public class Player : MonoBehaviour {
 		GetKilled (_lastKiller);
 	}
 	void GetKilled(GameObject attacker){
-		// Die
 		this.gameObject.SetActive(false);
 		_fader.SetAlpha (0.5f);
 		_fader.SetAlpha (1,false);
 		_fader.OnFadeEnd -= DeathFadeEnd;
 		SetInvulnerable(false);
-		//busyAction = false;
 		ResetBusyAction ();
-		//TODO: Spawn kill animation
 		if (GotKilled != null) {
 			GotKilled (this,attacker);
 		}
@@ -270,6 +259,44 @@ public class Player : MonoBehaviour {
 
 	public void SetInvulnerable(bool invulnerable){
 		_attackCatcher.catcherOn = !invulnerable;
+	}
+
+	// Spawn Protection (called by game controller)
+
+	public void ActivateIdleProtection(int timeProtectedInFullSeconds){
+		SetInvulnerable (true);
+
+		_spawnInvulnerableTimer = gameObject.AddComponent<ComTimer> ();
+		_spawnInvulnerableTimer.StartTimer (0.2f,(timeProtectedInFullSeconds * 5));
+		_spawnInvulnerableTimer.TimerTik += ProtectionTik;
+
+		_myPlayerInput.ActionKeyPressed += EndProtection;
+	}
+
+	private void ProtectionTik(int repeat){
+
+		Color color1 = new Color(1,1,1,0.8f);
+		Color color2 = new Color(0.8f,0.8f,0.8f,0.8f);
+
+		SpriteRenderer rend = gameObject.GetComponent<SpriteRenderer> ();
+		if (repeat == _spawnInvulnerableTimer.timesGivenToRepeat) {
+			rend.color = new Color(1,1,1);
+			EndProtection ();
+		} else {
+			if(rend.color != color1){
+				rend.color = color1;
+			}else{
+				rend.color = color2;
+			}
+		}
+	}
+
+	private void EndProtection(){
+		SetInvulnerable (false);
+		_spawnInvulnerableTimer.TimerTik -= ProtectionTik;
+		_myPlayerInput.ActionKeyPressed -= EndProtection;
+
+		Destroy (_spawnInvulnerableTimer);
 	}
 
 	// GETTERS and SETTERS

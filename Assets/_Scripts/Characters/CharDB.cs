@@ -26,7 +26,7 @@ public class CharDB : MonoBehaviour {
 			stats.movementSpeed = 0f;
 			stats.jumpForce = 1f;
 			stats.fallSpeed = 0f;
-			stats.stunPower = 2f;
+			stats.stunPower = 1f;
 			stats.pushPower = 0f;
 			stats.dashForce = 0f;
 			break;

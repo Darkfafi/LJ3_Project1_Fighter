@@ -64,10 +64,10 @@ public class PlayerEffects : MonoBehaviour {
 		if(_currentWallSlideEffectFeet != null)// && _currentWallSlideEffectHands != null)
 		{
 			Vector3 feetPosition = this.transform.position + new Vector3(0.75f,-0.75f,0);
-			Vector3 handPosition = this.transform.position + new Vector3(0.75f,1f,0);
+			//Vector3 handPosition = this.transform.position + new Vector3(0.75f,1f,0);
 			if(this.transform.localScale.x < 0)
 			{
-				handPosition = this.transform.position + new Vector3(-0.75f,1f,0);
+				//handPosition = this.transform.position + new Vector3(-0.75f,1f,0);
 				feetPosition = this.transform.position + new Vector3(-0.75f,-0.75f,0);
 			}
 			_currentWallSlideEffectFeet.transform.position = feetPosition + _heightPositionMod;

@@ -40,7 +40,7 @@ public class CharacterSelectAnim : MonoBehaviour {
 	public void HideCharacterSelect()
 	{
 		_myAnimator.SetTrigger("Hide");
-		float animLength = _myAnimator.runtimeAnimatorController.animationClips[1].length;
+		//float animLength = _myAnimator.runtimeAnimatorController.animationClips[1].length;
 
 		foreach(GameObject child in _myChildren)
 		{

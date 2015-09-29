@@ -36,7 +36,7 @@ public class ItemSpawner : MonoBehaviour {
 					_percentageCounter++;
 					if(_percentageCounter == 10)
 					{
-						_spawnPercentage += 5;
+						_spawnPercentage += 1;
 						_percentageCounter = 0;
 					}
 				}
