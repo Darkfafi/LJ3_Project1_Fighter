@@ -280,7 +280,6 @@ public class Player : MonoBehaviour {
 
 		SpriteRenderer rend = gameObject.GetComponent<SpriteRenderer> ();
 		if (repeat == _spawnInvulnerableTimer.timesGivenToRepeat) {
-			rend.color = new Color(1,1,1);
 			EndProtection ();
 		} else {
 			if(rend.color != color1){
@@ -293,6 +292,7 @@ public class Player : MonoBehaviour {
 
 	private void EndProtection(){
 		SetInvulnerable (false);
+		gameObject.GetComponent<SpriteRenderer> ().color = new Color(1,1,1);
 		_spawnInvulnerableTimer.TimerTik -= ProtectionTik;
 		_myPlayerInput.ActionKeyPressed -= EndProtection;
 
