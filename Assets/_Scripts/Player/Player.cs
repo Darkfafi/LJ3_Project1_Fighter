@@ -268,7 +268,7 @@ public class Player : MonoBehaviour {
 		HealStun ();
 	}
 
-	void SetInvulnerable(bool invulnerable){
+	public void SetInvulnerable(bool invulnerable){
 		_attackCatcher.catcherOn = !invulnerable;
 	}
 
