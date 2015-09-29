@@ -1114,6 +1114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainAudioSlider: {fileID: 11445800}
   fxAudioSlider: {fileID: 11463504}
+  inGame: 1
 --- !u!114 &11495198
 MonoBehaviour:
   m_ObjectHideFlags: 1

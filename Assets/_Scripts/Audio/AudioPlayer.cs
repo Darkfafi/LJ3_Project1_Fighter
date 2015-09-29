@@ -7,8 +7,8 @@ public class AudioPlayer : MonoBehaviour
 {
 	public AudioClip[] allAudio = new AudioClip[0];
 
-	public static float fxVolume = 1;
-	public static float backgroundVolume = 1;
+	private float _fxVolume = 1;
+	private float _backgroundVolume = 1;
 
 	private List<AudioClip> _audioList = new List<AudioClip> ();
 	private List<AudioSource> _audioSources = new List<AudioSource>();
@@ -18,6 +18,34 @@ public class AudioPlayer : MonoBehaviour
 	void Awake()
 	{
 		Lists ();
+	}
+
+	void Start()
+	{
+		fxVolume = PlayerPrefs.GetFloat("fxVolume");
+		backgroundVolume = PlayerPrefs.GetFloat("backgroundVolume");
+	}
+
+	public float fxVolume
+	{
+		set {
+			_fxVolume = value;
+			OnChangeVolume();
+		}
+		get {
+			return _fxVolume;
+		}
+	}
+
+	public float backgroundVolume
+	{
+		set {
+			_backgroundVolume = value;
+			OnChangeVolume();
+		}
+		get {
+			return _backgroundVolume;
+		}
 	}
 
 	public void Lists()
@@ -46,7 +74,20 @@ public class AudioPlayer : MonoBehaviour
 		newAudioSource.clip = newMusic;
 		newAudioSource.volume = backgroundVolume;
 		newAudioSource.loop = true;
+		_audioPlayedByMono.Add(newAudioSource, this);
 		newAudioSource.Play();
+	}
+	public void OnChangeVolume()
+	{
+		foreach(KeyValuePair<AudioSource, MonoBehaviour> entry in _audioPlayedByMono)
+		{
+			if(entry.Value == this)
+			{
+				entry.Key.volume = backgroundVolume;
+			} else {
+				entry.Key.volume = fxVolume;
+			}
+		}
 	}
 
 	public void PlayAudio(string audioname, bool loop = false, MonoBehaviour playedBy = null)
