@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Player : MonoBehaviour {
 
@@ -20,8 +21,11 @@ public class Player : MonoBehaviour {
 	//private PlayerStats _playerStats = new PlayerStats(6f,10f,3f,5f,10f,12f); // <--- Idee
 	private PlayerStats _playerStats = new PlayerStats (5f, 10f, 2f, 5f, 10f, 10f); // set all base stats
 
-	public bool busyAction = false;
+	private List<string> _busyAction = new List<string>();
 
+	private const string IN_STUNNED = "InStunned";
+	private const string IN_DEATH = "InDeath";
+ 
 
 	// Combat
 	private BasicStunAttack _basicAttack;
@@ -125,6 +129,7 @@ public class Player : MonoBehaviour {
 	}
 
 	public void TransformPlayer(string playerTransformerConst){
+		_specialAttack.UseCounterReset ();
 		_playerTransformer.TransformCharacter (this,playerTransformerConst);
 	}
 
@@ -191,7 +196,7 @@ public class Player : MonoBehaviour {
 
 	// Hit by attacks (MAYBE CODE IN A DIFFERENT COMPONENT)
 	void OnStunHit(float stunPower, GameObject attacker, float pushPower){
-		//TODO CALL STUN FUNCTION
+		//Without the if statement you can stun stunned players to increase the stun time
 		if (!_stunTimer.running) {
 			GetStunned(stunPower);
 		}
@@ -216,11 +221,12 @@ public class Player : MonoBehaviour {
 		if (StartStunned != null) {
 			StartStunned ();
 		}
-		busyAction = true;
 		_myPlatformerMovement.StopSliding();
+		AddBusyAction (IN_STUNNED);
 	}
 	void HealStun(){
-		busyAction = false;
+		//busyAction = false;
+		RemoveBusyAction (IN_STUNNED);
 		_stunTimer.StopTimer();
 		if (StopStunned != null) {
 			StopStunned ();
@@ -231,7 +237,8 @@ public class Player : MonoBehaviour {
 		if(StartedDying != null)
 			StartedDying();
 		HealStun ();
-		busyAction = true;
+		//busyAction = true;
+		AddBusyAction (IN_DEATH);
 		SetInvulnerable (true);
 		_lastKiller = killer;
 		_fader.OnFadeEnd += DeathFadeEnd;
@@ -249,7 +256,8 @@ public class Player : MonoBehaviour {
 		_fader.SetAlpha (1,false);
 		_fader.OnFadeEnd -= DeathFadeEnd;
 		SetInvulnerable(false);
-		busyAction = false;
+		//busyAction = false;
+		ResetBusyAction ();
 		//TODO: Spawn kill animation
 		if (GotKilled != null) {
 			GotKilled (this,attacker);
@@ -309,5 +317,21 @@ public class Player : MonoBehaviour {
 		set {
 			_jumpKey = value;
 		}
+	}
+	public bool busyAction{
+		get{return _busyAction.Count > 0;}
+	}
+	public void AddBusyAction(string actionString){
+		if (!_busyAction.Contains (actionString)) {
+			_busyAction.Add(actionString);
+		}
+	}
+	public void RemoveBusyAction(string actionString){
+		if (_busyAction.Contains (actionString)) {
+			_busyAction.Remove(actionString);
+		}
+	}
+	public void ResetBusyAction(){
+		_busyAction.Clear ();
 	}
 }

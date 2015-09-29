@@ -58,6 +58,7 @@ public class PlatformerMovement : MonoBehaviour {
 	void Start(){
 		touch = gameObject.GetComponent<TouchDetector2D> ();
 		touch.TouchStarted += TouchDetectionStart;
+		touch.OnTouch += InTouch;
 		touch.TouchEnded += TouchDetectionEnd;
 
 		_oldGravityScale = _rigidbody.gravityScale;
@@ -97,16 +98,17 @@ public class PlatformerMovement : MonoBehaviour {
 
 		if(!_isRunning && _onGround)
 		{
-			if(StartedRunning != null)
+			if(StartedRunning != null){
 				StartedRunning();
-			_isRunning = true;
+				_isRunning = true; // changed
+			}
 		} 
 		else if(!_onGround)
 		{
 			StopRunning();
 		}
 
-		if ((touch.IsTouchingSideGetGameObject(new Vector2(directionConst,0)) == null || touch.IsTouchingSideGetGameObject(new Vector2(directionConst,0)).tag == Tags.PLAYER)) {
+		if ((touch.IsTouchingSideGetGameObject(new Vector2(directionConst,0)) == null || touch.IsTouchingSideGetGameObject(new Vector2(directionConst,0)).tag != Tags.ENVIREMENT)) {
 			transform.Translate (new Vector3 (directionConst * moveSpeed + _rigidbody.velocity.x, 0, 0) * Time.deltaTime);
 			//damping the velocity so you can walljump more times
 			if(_rigidbody.velocity.x != 0 && directionConst == 1)
@@ -202,7 +204,7 @@ public class PlatformerMovement : MonoBehaviour {
 			}
 
 			BoxCollider2D objCol = obj.GetComponent<BoxCollider2D>();
-			if(!Physics2D.GetIgnoreCollision(this.colliderBox, objCol) && obj.tag != Tags.PLAYER) {
+			if(!Physics2D.GetIgnoreCollision(this.colliderBox, objCol) && (obj.tag == Tags.ENVIREMENT || obj.tag == Tags.PASSABLE)) {
 				_onGround = true;
 				_doubleJumped = false;
 
@@ -218,7 +220,7 @@ public class PlatformerMovement : MonoBehaviour {
 				LandedOnGround(obj);
 			}
 		} else if (vec == Vector2.left || vec == Vector2.right) {
-			if(!_onGround && obj.tag != Tags.PLAYER && obj.tag != Tags.SPECIAL_ITEM){
+			if(!_onGround && obj.tag == Tags.ENVIREMENT){
 				//if the object is collideable with the platformer then wallslide is true
 				BoxCollider2D objCol = obj.GetComponent<BoxCollider2D>();
 				if(!Physics2D.GetIgnoreCollision(this.colliderBox, objCol)) {
@@ -238,6 +240,10 @@ public class PlatformerMovement : MonoBehaviour {
 				_prePlatform = obj;
 			}
 		}
+	}
+
+	void InTouch(GameObject go, Vector2 dirVector){
+
 	}
 
 	void TouchDetectionEnd(GameObject obj, Vector2 vec){

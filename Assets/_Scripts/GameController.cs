@@ -11,9 +11,11 @@ public class GameController : MonoBehaviour {
 	public delegate void NormDelegate();
 	public delegate void PlayerKillsDeathsDelegate(Player player, int kills, int deaths);
 	public delegate void PlayerLivesDelegate(Player player, int lives);
+	public delegate void IntDelegate(int value);
 
 	public event NormDelegate PauseGame;
 	public event NormDelegate ResumeGame;
+	public event IntDelegate CountDownTik;
 
 	public event PlayerKillsDeathsDelegate Win;
 	public event PlayerLivesDelegate OnDeath;
@@ -49,15 +51,17 @@ public class GameController : MonoBehaviour {
 
 	private bool _movingCamera = true;
 
-	public void Start()
+	public void Awake()
 	{
+		Time.timeScale = 1;
 		CreateLevel ();
 		FindAllSpawnPoints();
 		_timer = gameObject.AddComponent<ComTimer>();
 		Physics2D.IgnoreLayerCollision(8,8, true);
 		InitGame();
 		GameObject.Find ("UI").AddComponent<InGameUI> ();
-		SetPause(true,false,true);
+		//SetPause(true,false,true);
+		PlayerWait (true);
 		CountDown ();
 	}
 
@@ -69,20 +73,14 @@ public class GameController : MonoBehaviour {
 	}
 
 	private void EndCountDown(int amountOfRepeats){
-		switch (amountOfRepeats) {
-		case 1:
-			Debug.Log ("READY");
-			break;
-		case 2:
-			Debug.Log ("SET");
-			break;
-		case 3:
-			Debug.Log ("FIGHT");
-			SetPause(false);
+		if (CountDownTik != null) {
+			CountDownTik (amountOfRepeats);
+		}
+		if(amountOfRepeats == 3) {
+			PlayerWait(false);
 			if(PlayerPrefs.GetInt("TimeValue") != 0){
 				_timer.StartTimer(playTime);
 			}
-			break;
 		}
 	}
 
@@ -396,10 +394,25 @@ public class GameController : MonoBehaviour {
 		}
 	} 
 
+	private void PlayerWait(bool wait){
+		for (int i = 0; i < _currentPlayers.Count; i++) {
+			if(wait){
+				_currentPlayers[i].AddBusyAction("WaitForGameController");
+			}else{
+				_currentPlayers[i].RemoveBusyAction("WaitForGameController");
+			}
+		}
+	}
+
 	public static void SetPause(bool value,bool pausePhysics = true,bool lockedPause = false){
 		_isPaused = value;
 		_physicsPaused = pausePhysics;
 		_lockedPause = lockedPause;
+		if (value) {
+			Time.timeScale = 0;
+		} else {
+			Time.timeScale = 1;
+		}
 	}
 
 	public static bool isPaused{

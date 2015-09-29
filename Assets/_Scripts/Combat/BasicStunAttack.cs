@@ -91,11 +91,12 @@ public class BasicStunAttack : AttackBase {
 	}
 
 	void SetAttacking(bool value){
-		_player.busyAction = value;
 		_player.clasher.clashAble = value;
 		if (value == true) {
+			_player.AddBusyAction(IN_ATTACK);
 			_inAttackTimer.StartTimer(_slideDuritation);
 		} else if(_inAttackTimer.running) {
+			_player.RemoveBusyAction(IN_ATTACK);
 			_inAttackTimer.StopTimer();
 		}
 	}

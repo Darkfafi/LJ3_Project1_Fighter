@@ -13,6 +13,7 @@ public class MenuController : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake() {
+		Time.timeScale = 1;
 		AddScreen("MenuScreen",MENU_SCREEN,true);
 		AddScreen("GameRulesSelectScreen",RULES_SCREEN);
 		AddScreen("CharacterSelectScreen",CHARACTER_SELECT_SCREEN);
