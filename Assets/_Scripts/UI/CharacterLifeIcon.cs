@@ -13,7 +13,7 @@ public class CharacterLifeIcon : MonoBehaviour {
 	private GameController gController;
 
 
-	private void Start(){
+	public void CreateIconStart(){
 		_image = gameObject.GetComponent<Image> ();
 
 		gController = GameObject.FindGameObjectWithTag (Tags.GAMECONTROLLER).GetComponent<GameController> ();

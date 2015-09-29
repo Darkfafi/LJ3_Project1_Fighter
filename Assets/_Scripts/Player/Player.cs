@@ -221,7 +221,7 @@ public class Player : MonoBehaviour {
 		if (StartStunned != null) {
 			StartStunned ();
 		}
-		//busyAction = true;
+		_myPlatformerMovement.StopSliding();
 		AddBusyAction (IN_STUNNED);
 	}
 	void HealStun(){
@@ -244,6 +244,7 @@ public class Player : MonoBehaviour {
 		_fader.OnFadeEnd += DeathFadeEnd;
 		_playerAnimHandler.PlayAnimation("Death");
 		_fader.Fade (0,0.008f);
+		_myPlatformerMovement.StopSliding();
 	}
 	void DeathFadeEnd(float valueFade){
 		GetKilled (_lastKiller);

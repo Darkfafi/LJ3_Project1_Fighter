@@ -8,6 +8,7 @@ public class MenuController : MonoBehaviour {
 	public const string RULES_SCREEN = "RULELESCREEN";
 	public const string CHARACTER_SELECT_SCREEN = "CHARARASCREEN";
 	public const string LEVEL_SELECT_SCREEN = "LEVEVESCREEN";
+	public const string OPTIONS_SCREEN = "OPTIONSSCREEN";
 
 	private Dictionary<string,GameObject> _allScreens = new Dictionary<string, GameObject>();
 
@@ -18,6 +19,7 @@ public class MenuController : MonoBehaviour {
 		AddScreen("GameRulesSelectScreen",RULES_SCREEN);
 		AddScreen("CharacterSelectScreen",CHARACTER_SELECT_SCREEN);
 		AddScreen("LevelSelectScreen",LEVEL_SELECT_SCREEN);
+		AddScreen("OptionsScreen",OPTIONS_SCREEN);
 	}
 	
 	public void GoToScreen(string keyName){

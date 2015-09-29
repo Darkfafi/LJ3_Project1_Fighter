@@ -87,6 +87,30 @@ NavMeshSettings:
     cellSize: .166666672
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &298017220 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 162068, guid: 0618f780eb246444397f4d8314542582, type: 2}
+  m_PrefabInternal: {fileID: 769734793}
+--- !u!114 &298017225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 298017220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b15a4941cdf772e47984d456080b9062, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allIcons:
+  - {fileID: 531354109}
+  - {fileID: 1406595225}
+  - {fileID: 328329074}
+  - {fileID: 547969310}
+--- !u!1 &328329074 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 150284, guid: 0618f780eb246444397f4d8314542582, type: 2}
+  m_PrefabInternal: {fileID: 769734793}
 --- !u!1001 &356444609
 Prefab:
   m_ObjectHideFlags: 0
@@ -169,6 +193,14 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bb36eb6440208234aa8284f95aef0971, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &531354109 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 143736, guid: 0618f780eb246444397f4d8314542582, type: 2}
+  m_PrefabInternal: {fileID: 769734793}
+--- !u!1 &547969310 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 184388, guid: 0618f780eb246444397f4d8314542582, type: 2}
+  m_PrefabInternal: {fileID: 769734793}
 --- !u!1001 &769734793
 Prefab:
   m_ObjectHideFlags: 0
@@ -384,6 +416,10 @@ AudioListener:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 929558373}
   m_Enabled: 1
+--- !u!1 &1406595225 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 140608, guid: 0618f780eb246444397f4d8314542582, type: 2}
+  m_PrefabInternal: {fileID: 769734793}
 --- !u!1 &1744515501
 GameObject:
   m_ObjectHideFlags: 0
