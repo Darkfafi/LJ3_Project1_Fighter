@@ -14,7 +14,10 @@ public class MenuController : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake() {
-		Time.timeScale = 1;
+		if (Time.timeScale != 1) {
+			Time.timeScale = 1;
+		}
+
 		AddScreen("MenuScreen",MENU_SCREEN,true);
 		AddScreen("GameRulesSelectScreen",RULES_SCREEN);
 		AddScreen("CharacterSelectScreen",CHARACTER_SELECT_SCREEN);
@@ -34,5 +37,9 @@ public class MenuController : MonoBehaviour {
 		GameObject screen = GameObject.Find(gameObjectName);
 		screen.SetActive(setActive);
 		_allScreens.Add (keyName, screen);
+	}
+
+	public void ExitGame(){
+		Application.Quit ();
 	}
 }
