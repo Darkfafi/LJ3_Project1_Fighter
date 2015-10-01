@@ -5,6 +5,7 @@ public class SpecialBasicAttack : SpecialAttack {
 
 	BasicStunAttack _basicAttack;
 
+
 	// Use this for initialization
 	void Start () {	
 		_basicAttack = gameObject.GetComponent<BasicStunAttack> ();
