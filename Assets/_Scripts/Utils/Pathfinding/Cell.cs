@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Cell {
+public class Cell : MonoBehaviour{
 
 	public float g = 0; // dist score to start point
 	public float h = 0; // dist score to end point
