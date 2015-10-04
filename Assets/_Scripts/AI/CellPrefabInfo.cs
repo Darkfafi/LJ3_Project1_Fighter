@@ -14,16 +14,32 @@ public class CellPrefabInfo : MonoBehaviour {
 	
 	void Start(){
 		//send raycast to check if its above a wall
-		RaycastHit2D hit = Physics2D.Raycast (transform.position, Vector2.up, 0.01f);
+		RaycastHit2D hit = Physics2D.Raycast (transform.position, Vector2.down, 0.1f); // vector down or up... check what is better in tests.
 
 		if (hit.collider != null) {
-			if(hit.collider.gameObject.tag == Tags.ENVIREMENT){
-				Debug.Log("ddfg");
-				GetComponent<SpriteRenderer>().color = Color.red;
+			if (hit.collider.gameObject.tag == Tags.ENVIREMENT) {
+				//TODO GROUND OBJECT: Create logic!
+				GetComponent<SpriteRenderer> ().color = Color.red;
 				_isWall = true;
+			} else if (hit.collider.gameObject.tag == Tags.PASSABLE) {
+				//TODO PASSABLE OBJECT: Create logic!
+				GetComponent<SpriteRenderer> ().color = Color.yellow; 
 			}
 		}
 
+
+		if (_isWall) {
+			RaycastHit2D hitLeft = Physics2D.Raycast (new Vector2(transform.position.x - _cellSize.x,transform.position.y - 0.1f), Vector2.left, _cellSize.x / 2); 
+			RaycastHit2D hitRight = Physics2D.Raycast (new Vector2(transform.position.x + _cellSize.x,transform.position.y - 0.1f), Vector2.right, _cellSize.x / 2);
+
+			if((hitLeft.collider == null && hitRight.collider == null) 
+			   || (hitLeft.collider != null && hitLeft.collider.gameObject.tag == Tags.ENVIREMENT && hitRight.collider == null) 
+			   || (hitLeft.collider == null  && hitRight.collider != null && hitRight.collider.gameObject.tag == Tags.ENVIREMENT)
+			   || ((hitLeft.collider != null && hitLeft.collider.tag != Tags.ENVIREMENT) &&(hitRight.collider != null && hitRight.collider.tag != Tags.ENVIREMENT))){
+				//TODO Wall (Wall Jumpable) OBJECT: Create logic! 
+				GetComponent<SpriteRenderer> ().color = Color.blue;
+			}
+		}
 	}
 	
 

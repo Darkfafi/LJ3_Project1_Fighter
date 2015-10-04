@@ -17,7 +17,6 @@ public class AIMovement : MonoBehaviour {
 
 	public void SetLevelGrid(Grid grid){
 		_grid = grid;
-		Debug.Log (_grid.GetCell (2, 2));
 		Debug.Log (AStar.Search (_grid, _grid.WorldPosToCellPos (transform.position), _grid.GetCell (2, 2).position).Count);
 	}
 }
