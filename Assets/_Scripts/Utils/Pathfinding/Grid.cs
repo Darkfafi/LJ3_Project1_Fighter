@@ -5,20 +5,31 @@ using System.Collections.Generic;
 public class Grid {
 
 	private List<List<Cell>> _grid;
+	private List<Cell> _allCells;
 	private int _width;
 	private int _height;
 
-	public Grid(int width, int height){
-		_width = width;
-		_height = height;
+	public Grid(List<List<GameObject>> prefabGridList){
+		Cell currentCell;
+		CellPrefabInfo currentCellInfo;
+
 		_grid = new List<List<Cell>> ();
+		_allCells = new List<Cell> ();
+		for (int xRow = 0; xRow < prefabGridList.Count; xRow++) {
 
-		for (int xRow = 0; xRow < _width; xRow++) {
+			_grid.Add(new List<Cell>());
 
-			_grid[xRow] = new List<Cell>();
+			for(int yRow = 0; yRow < prefabGridList[xRow].Count; yRow++){
+				currentCellInfo = prefabGridList[xRow][yRow].GetComponent<CellPrefabInfo>();
+				currentCell = new Cell(xRow,yRow);
 
-			for(int yRow = 0; yRow < _height; yRow++){
-				_grid[xRow][yRow] = new Cell(xRow,yRow);
+				currentCell.worldPosition = new Vector2(currentCellInfo.gameObject.transform.position.x,currentCellInfo.gameObject.transform.position.y);
+				currentCell.isWall = currentCellInfo.isWall;
+				currentCell.cellSize = currentCellInfo.cellSize;
+				currentCellInfo.linkedCells.Add(currentCell); // for if it happens to change into a wall then all AIs will be updated.
+
+				_grid[xRow].Add(currentCell);
+				_allCells.Add(currentCell);
 			}
 		}
 	}
@@ -30,6 +41,10 @@ public class Grid {
 		}
 
 		return cellToReturn;
+	}
+
+	public List<Cell> allCells{
+		get{ return _allCells;}
 	}
 
 	public void Reset(){
@@ -47,5 +62,21 @@ public class Grid {
 				currentCell.parent = null;
 			}
 		}
+	}
+
+	public Vector2 WorldPosToCellPos(Vector2 position){
+		Vector2 vector = new Vector2(0,0);
+		for(int i = 0; i < _allCells.Count; i++) {
+			Cell cell = _allCells[i];
+			if(cell.worldPosition.x - (cell.cellSize.x / 2) < position.x 
+			   && cell.worldPosition.x + (cell.cellSize.x / 2) > position.x 
+			   && cell.worldPosition.y - (cell.cellSize.y / 2) < position.y 
+			   && cell.worldPosition.y + (cell.cellSize.y / 2) > position.y)
+			{
+				vector = cell.position;
+				break;
+			}
+		}
+		return vector;
 	}
 }

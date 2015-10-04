@@ -4,7 +4,7 @@ using System.Collections;
 public class AIPlayer : MonoBehaviour {
 
 	//Level knowledge
-	Vector2 levelBounds;
+	private AISystemManager _AISystem;
 
 	//Pathfinding
 	private Grid _grid;
@@ -14,18 +14,20 @@ public class AIPlayer : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Vector3 tempBounds;
 
-		tempBounds = GameObject.FindGameObjectWithTag (Tags.SCREEN_BOUND_OBJECT).GetComponent<SpriteRenderer>().bounds.size;
-		levelBounds = new Vector2 (tempBounds.x, tempBounds.y);
+		_AISystem = GameObject.FindGameObjectWithTag (Tags.GAMECONTROLLER).GetComponent<AISystemManager> ();
 
-		_grid = new Grid ((int)(levelBounds.x / 5), (int)(levelBounds.y / 5));
+		_grid = new Grid (_AISystem.prefabGridList);
 
 		_movement = gameObject.AddComponent<AIMovement> ();
+		_movement.SetLevelGrid (_grid);
 	}
 
 
 	public Grid grid{
 		get{return _grid;}
+	}
+	public AISystemManager AISystem{
+		get{return _AISystem;}
 	}
 }

@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Cell : MonoBehaviour{
+public class Cell{
 
 	public float g = 0; // dist score to start point
 	public float h = 0; // dist score to end point
@@ -17,13 +17,24 @@ public class Cell : MonoBehaviour{
 	public List<Cell> neighbors;
 
 	private Vector2 _position;
+	private Vector2 _worldPosition;
+	private Vector2 _cellSize;
 
 	public Cell(int x, int y){
 		_position = new Vector2(x,y);
 	}
 
+	public Vector2 worldPosition{
+		get{return _worldPosition;}
+		set{_worldPosition = value;}
+	}
+
 	public Vector2 position{
 		get{return _position;}
+	}
+	public Vector2 cellSize{
+		get{return _cellSize;}
+		set{_cellSize = value;}
 	}
 
 	public string ToString(){
