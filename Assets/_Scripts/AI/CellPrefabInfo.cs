@@ -14,7 +14,7 @@ public class CellPrefabInfo : MonoBehaviour {
 	
 	void Start(){
 		//send raycast to check if its above a wall
-		RaycastHit2D hit = Physics2D.Raycast (transform.position, Vector2.down, 0.1f); // vector down or up... check what is better in tests.
+		RaycastHit2D hit = Physics2D.Raycast (transform.position, Vector2.down, 0.15f); // vector down or up... check what is better in tests.
 
 		if (hit.collider != null) {
 			if (hit.collider.gameObject.tag == Tags.ENVIREMENT) {
@@ -29,8 +29,8 @@ public class CellPrefabInfo : MonoBehaviour {
 
 
 		if (_isWall) {
-			RaycastHit2D hitLeft = Physics2D.Raycast (new Vector2(transform.position.x - _cellSize.x,transform.position.y - 0.1f), Vector2.left, _cellSize.x / 2); 
-			RaycastHit2D hitRight = Physics2D.Raycast (new Vector2(transform.position.x + _cellSize.x,transform.position.y - 0.1f), Vector2.right, _cellSize.x / 2);
+			RaycastHit2D hitLeft = Physics2D.Raycast (new Vector2(transform.position.x - _cellSize.x,transform.position.y - 0.15f), Vector2.left, _cellSize.x / 2); 
+			RaycastHit2D hitRight = Physics2D.Raycast (new Vector2(transform.position.x + _cellSize.x,transform.position.y - 0.15f), Vector2.right, _cellSize.x / 2);
 
 			if((hitLeft.collider == null && hitRight.collider == null) 
 			   || (hitLeft.collider != null && hitLeft.collider.gameObject.tag == Tags.ENVIREMENT && hitRight.collider == null) 
