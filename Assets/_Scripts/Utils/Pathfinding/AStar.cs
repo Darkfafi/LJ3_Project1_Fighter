@@ -56,7 +56,7 @@ public class AStar{
 			for(int i = 0; i < l; i++){
 				neighbor = neighbors[i];
 
-				if(neighbor.isClosed || currentCell.isWall){
+				if(neighbor.isClosed || currentCell.isBlocked){
 					continue; // ignore cell
 				}
 
@@ -64,6 +64,31 @@ public class AStar{
 					gScore = currentCell.g + diagonalScore;
 				}else{
 					gScore = currentCell.g + horizontalScore;
+				} 
+
+
+				if(currentCell.j > 0 && !neighbor.isGround && !neighbor.isPassableGround){
+					neighbor.j += currentCell.j + 1;
+				}else{
+					neighbor.j = 0;
+				}
+
+				if(GetNonDiagonalDirection(currentCell,neighbor) == Vector2.up){
+					if(currentCell.j == 0){
+						neighbor.j += 2;
+					}else if(currentCell.j % 2 == 0){
+						currentCell.j += 2;
+					}else{
+						currentCell.j += 1;
+					}
+
+					if(neighbor.j > 4){ //TODO calculated max jump height in tiles (pixels from jump height)
+						continue;
+					}
+				}else if(GetNonDiagonalDirection(currentCell,neighbor) != Vector2.down){
+					if(currentCell.j == 0 && !neighbor.isGround && !neighbor.isPassableGround && !neighbor.isWall){
+						continue;
+					}
 				}
 
 				gScoreIsBest = false;
@@ -82,7 +107,7 @@ public class AStar{
 				if(gScoreIsBest){
 					neighbor.parent = currentCell;
 					neighbor.g = gScore;
-					neighbor.f = neighbor.g + neighbor.h;
+					neighbor.f = neighbor.g + neighbor.h + neighbor.j;
 				}
 			}
 		}
@@ -118,7 +143,7 @@ public class AStar{
 		if (grid.GetCell (x, y + 1) != null) {
 			neighbors.Add(grid.GetCell (x, y + 1));
 		}
-
+		/*
 		// check voor diagonale cellen
 		if(grid.GetCell(x-1, y-1) != null) {
 			neighbors.Add(grid.GetCell(x-1, y-1));
@@ -131,7 +156,7 @@ public class AStar{
 		}
 		if(grid.GetCell(x-1, y+1) != null) {
 			neighbors.Add(grid.GetCell(x-1, y+1));
-		}
+		}*/
 		return neighbors;
 	}
 
@@ -148,5 +173,23 @@ public class AStar{
 			return true;
 		}
 		return false;
+	}
+
+	private static Vector2 GetNonDiagonalDirection(Cell center, Cell neighbor){
+		Vector2 dir = new Vector2 (0, 0);
+		if (center.position.x != neighbor.position.x && center.position.y == neighbor.position.y) {
+			if (neighbor.position.x < center.position.x) {
+				dir = Vector2.left;
+			} else if (neighbor.position.x > center.position.x) {
+				dir = Vector2.right;
+			}
+		} else if (center.position.x == neighbor.position.x && center.position.y != neighbor.position.y) {
+			if (neighbor.position.y < center.position.y) {
+				dir = Vector2.down;
+			} else if (neighbor.position.y > center.worldPosition.y) {
+				dir = Vector2.up;
+			}
+		}
+		return dir;
 	}
 }

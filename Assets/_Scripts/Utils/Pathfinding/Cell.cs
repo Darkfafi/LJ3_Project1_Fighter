@@ -6,9 +6,13 @@ public class Cell{
 
 	public float g = 0; // dist score to start point
 	public float h = 0; // dist score to end point
+	public float j = 0; // jump cost.
 	public float f = 0; // g + h (start distance + end distance (from this point))
 
-	public bool isWall = false; //Is this cell able to be crossed.
+	public bool isBlocked = false; //Is this cell able to be crossed.
+	public bool isGround = false;
+	public bool isPassableGround = false;
+	public bool isWall = false;
 
 	public bool isOpen = false; 
 	public bool isClosed = false;
@@ -19,6 +23,8 @@ public class Cell{
 	private Vector2 _position;
 	private Vector2 _worldPosition;
 	private Vector2 _cellSize;
+
+	public CellPrefabInfo infoCell;
 
 	public Cell(int x, int y){
 		_position = new Vector2(x,y);

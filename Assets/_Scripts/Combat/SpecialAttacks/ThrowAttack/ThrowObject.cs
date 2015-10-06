@@ -25,7 +25,6 @@ public class ThrowObject : MonoBehaviour {
 	}
 
 	void Update(){
-		Debug.Log(_speed +" | "+ _direction);
 		transform.Translate(new Vector3 (_speed * _direction, 0,0) * Time.deltaTime);
 	}
 

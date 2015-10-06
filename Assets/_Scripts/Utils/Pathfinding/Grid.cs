@@ -24,7 +24,14 @@ public class Grid {
 				currentCell = new Cell(xRow,yRow);
 
 				currentCell.worldPosition = new Vector2(currentCellInfo.gameObject.transform.position.x,currentCellInfo.gameObject.transform.position.y);
+
+				currentCell.isBlocked = currentCellInfo.isBlocked;
+				currentCell.isGround = currentCellInfo.isGround;
+				currentCell.isPassableGround = currentCellInfo.isPassableGround;
 				currentCell.isWall = currentCellInfo.isWall;
+
+				currentCell.infoCell = currentCellInfo;
+
 				currentCell.cellSize = currentCellInfo.cellSize;
 				currentCellInfo.linkedCells.Add(currentCell); // for if it happens to change into a wall then all AIs will be updated.
 
@@ -36,8 +43,10 @@ public class Grid {
 
 	public Cell GetCell(int x, int y){
 		Cell cellToReturn = null;
-		if (_grid[x] != null && _grid [x][y] != null) {
-			cellToReturn = _grid[x][y];
+		if(x >= 0 && y >= 0 && x < _grid.Count && y < _grid[x].Count){
+			if (_grid[x] != null && _grid [x][y] != null) {
+				cellToReturn = _grid[x][y];
+			}
 		}
 
 		return cellToReturn;
@@ -57,6 +66,7 @@ public class Grid {
 				currentCell.f = 0;
 				currentCell.g = 0;
 				currentCell.h = 0;
+				currentCell.j = 0;
 				currentCell.isClosed = false;
 				currentCell.isOpen = false;
 				currentCell.parent = null;
