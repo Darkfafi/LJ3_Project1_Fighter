@@ -19,6 +19,10 @@ public class AStar{
 		bool gScoreIsBest;
 		List<Cell> neighbors;
 
+		int maxJumpHeight = 10;
+		int maxDubbleJumpHeight = 2;
+
+		int currentMaxJumpHeight = maxJumpHeight;
 
 		openList.Add (grid.GetCell ((int)start.x, (int)start.y));
 
@@ -49,6 +53,10 @@ public class AStar{
 				currentCell.neighbors = GetNeighbors(grid,currentCell);
 			}
 
+			if(currentCell.j >= maxJumpHeight && currentMaxJumpHeight == maxJumpHeight){
+				currentMaxJumpHeight += maxDubbleJumpHeight;
+			}
+
 			neighbors = currentCell.neighbors;
 
 			int l = neighbors.Count;
@@ -68,28 +76,41 @@ public class AStar{
 
 
 				if(currentCell.j > 0 && !neighbor.isGround && !neighbor.isPassableGround){
-					neighbor.j += currentCell.j + 1;
+					neighbor.j = currentCell.j + 1;
 				}else{
 					neighbor.j = 0;
 				}
 
 				if(GetNonDiagonalDirection(currentCell,neighbor) == Vector2.up){
+					neighbor.infoCell.GetComponent<SpriteRenderer>().color = Color.cyan;
 					if(currentCell.j == 0){
-						neighbor.j += 2;
-					}else if(currentCell.j % 2 == 0){
-						currentCell.j += 2;
-					}else{
-						currentCell.j += 1;
+						neighbor.j = 2;
+					}else if(currentCell.j % 2 != 0){
+						neighbor.j = currentCell.j + 1;
 					}
+					/*else{
+						neighbor.j = currentCell.j + 1;
+					}*/
 
-					if(neighbor.j > 4){ //TODO calculated max jump height in tiles (pixels from jump height)
+					if(neighbor.j > currentMaxJumpHeight){ //TODO calculated max jump height in tiles (pixels from jump height)
+						neighbor.infoCell.GetComponent<SpriteRenderer>().color = Color.cyan;
 						continue;
 					}
 				}else if(GetNonDiagonalDirection(currentCell,neighbor) != Vector2.down){
 					if(currentCell.j == 0 && !neighbor.isGround && !neighbor.isPassableGround && !neighbor.isWall){
 						continue;
 					}
+					if(currentCell.j > 0 && currentCell.j / 2 != Mathf.RoundToInt(currentCell.j / 2)){
+						continue;
+					}
+				}else{
+					/*
+					if(!currentCell.isPassableGround && neighbor.j > currentMaxJumpHeight && neighbor.j != 0){
+						continue;
+					}*/
 				}
+
+				gScore += currentCell.j;
 
 				gScoreIsBest = false;
 
@@ -100,14 +121,14 @@ public class AStar{
 
 					openList.Add(neighbor);
 					neighbor.isOpen = true;
-				}else if(gScore < neighbor.g){
+				}else if(gScore < neighbor.g + neighbor.j){
 					gScoreIsBest = true;
 				}
 
 				if(gScoreIsBest){
 					neighbor.parent = currentCell;
 					neighbor.g = gScore;
-					neighbor.f = neighbor.g + neighbor.h + neighbor.j;
+					neighbor.f = neighbor.g + neighbor.h;
 				}
 			}
 		}

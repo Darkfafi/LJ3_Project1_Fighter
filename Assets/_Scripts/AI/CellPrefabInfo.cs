@@ -37,7 +37,7 @@ public class CellPrefabInfo : MonoBehaviour {
 		} else {
 
 			//send raycast to check if its above a blocked area.
-			hitDown = Physics2D.Raycast (transform.position, Vector2.down, 0.35f); // vector down or up... check what is better in tests.
+			hitDown = Physics2D.Raycast (new Vector2(transform.position.x,transform.position.y - _cellSize.y / 2), Vector2.down, 0.15f); // vector down or up... check what is better in tests.
 
 			if (hitDown.collider != null) {
 				if (hitDown.collider.gameObject.tag == Tags.ENVIREMENT) {
