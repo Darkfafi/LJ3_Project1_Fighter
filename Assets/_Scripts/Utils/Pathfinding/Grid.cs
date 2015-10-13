@@ -99,18 +99,15 @@ public class Grid {
 
 		if (cell.isGround || cell.isPassableGround || cell.isWall) {
 			result = true;
-			Debug.Log("Self...heu heu");
 		} else {
 			for(int yRow = (int)cell.position.y; yRow > 0; yRow--){
-				//if(yRow > cell.position.y){
-					currentCellCheck = _grid[xRow][yRow];
-					if(currentCellCheck.isGround || currentCellCheck.isWall || currentCellCheck.isPassableGround){
-						Debug.Log("yes " + currentCellCheck.position +" < normal | world > "+ currentCellCheck.worldPosition);
-						currentCellCheck.infoCell.GetComponent<SpriteRenderer>().color = Color.yellow;
-						result = true;
-						break;
-					}
-				//}
+				currentCellCheck = _grid[xRow][yRow];
+				if(currentCellCheck.isGround || currentCellCheck.isWall || currentCellCheck.isPassableGround){
+					//Debug.Log("yes " + currentCellCheck.position +" < normal | world > "+ currentCellCheck.worldPosition);
+					//currentCellCheck.infoCell.GetComponent<SpriteRenderer>().color = Color.yellow;
+					result = true;
+					break;
+				}
 			}
 		}
 

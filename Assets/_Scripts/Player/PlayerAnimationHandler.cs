@@ -11,6 +11,7 @@ public class PlayerAnimationHandler : MonoBehaviour {
 		player = gameObject.GetComponent<Player> ();
 		playerStats = player.playerStats;
 		animator = gameObject.GetComponent<Animator> ();
+		animator.speed = 5;
 	}
 
 	public void PlayAnimation(string animationName){

@@ -206,7 +206,9 @@ public class GameController : MonoBehaviour {
 			newPlayer.name = "Player " + (i + 1);
 			newPlayer.layer = 8;
 			newPlayerScript.SetCharacter(playerCharacter);
-			newPlayerScript.SetKeys(playerHorizontalAxis,playerVerticalAxis,playerActionKey, playerJumpKey);
+			if(newPlayerScript.GetComponent<PlayerInputHandler>() != null){
+				newPlayerScript.GetComponent<PlayerInputHandler>().SetKeys(playerHorizontalAxis,playerVerticalAxis,playerActionKey, playerJumpKey);
+			}
 			newPlayerScript.GotKilled += PlayerDied;
 			_currentPlayers.Add(newPlayerScript);
 			_currentPlayerLives.Add(_playerLives);

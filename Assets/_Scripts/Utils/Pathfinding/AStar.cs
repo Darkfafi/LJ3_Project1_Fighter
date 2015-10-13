@@ -79,10 +79,11 @@ public class AStar{
 					neighbor.j = currentCell.j + 1;
 				}else{
 					neighbor.j = 0;
+					neighbor.th = 0;
 				}
 
 				if(GetNonDiagonalDirection(currentCell,neighbor) == Vector2.up){
-					neighbor.infoCell.GetComponent<SpriteRenderer>().color = Color.cyan;
+					//neighbor.infoCell.GetComponent<SpriteRenderer>().color = Color.cyan;
 					if(currentCell.j == 0){
 						neighbor.j = 2;
 					}else if(currentCell.j % 2 != 0){
@@ -93,7 +94,7 @@ public class AStar{
 					}*/
 
 					if(neighbor.j > currentMaxJumpHeight){ //TODO calculated max jump height in tiles (pixels from jump height)
-						neighbor.infoCell.GetComponent<SpriteRenderer>().color = Color.cyan;
+						//neighbor.infoCell.GetComponent<SpriteRenderer>().color = Color.cyan;
 						continue;
 					}
 				}else if(GetNonDiagonalDirection(currentCell,neighbor) != Vector2.down){

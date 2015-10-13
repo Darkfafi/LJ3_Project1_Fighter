@@ -18,7 +18,7 @@ public class PlayerInput : MonoBehaviour {
 
 	void Start()
 	{
-		Player myPlayerScript = GetComponent<Player>();
+		PlayerInputHandler myPlayerScript = GetComponent<PlayerInputHandler>();
 		_horizontalAxis = myPlayerScript.horizontalAxis;
 		_verticalAxis = myPlayerScript.verticalAxis;
 		_actionKey = myPlayerScript.actionKey;

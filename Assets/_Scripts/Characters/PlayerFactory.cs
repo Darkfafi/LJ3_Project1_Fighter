@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerFactory {
 
-	public static GameObject CreatePlayer(string playerConstString, int playerID){
+	public static GameObject CreatePlayer(string playerConstString, int playerID,bool AI = false){
 
 		GameObject playerObject = new GameObject ();
 		Rigidbody2D rb2D;
@@ -27,7 +27,7 @@ public class PlayerFactory {
 		rb2D.freezeRotation = true;
 
 		anim = playerObject.AddComponent<Animator> ();
-		anim.speed = 5;
+		//anim.speed = 5;
 
 		boxCollider = playerObject.AddComponent<BoxCollider2D> ();
 
@@ -35,6 +35,12 @@ public class PlayerFactory {
 		boxCollider.size = new Vector2 (0.74f, 1.86f);
 
 		player = playerObject.AddComponent<Player> ();
+
+		if (!AI) {
+			player.gameObject.AddComponent<PlayerInputHandler>();
+		} else {
+			player.gameObject.AddComponent<AIPlayer>();
+		}
 
 		player.playerType = playerConstString;
 		player.playerID = playerID;

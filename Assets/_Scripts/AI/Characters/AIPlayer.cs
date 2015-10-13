@@ -3,6 +3,8 @@ using System.Collections;
 
 public class AIPlayer : MonoBehaviour {
 
+	private Player _player;
+
 	//Level knowledge
 	private AISystemManager _AISystem;
 
@@ -14,6 +16,8 @@ public class AIPlayer : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+		_player = GetComponent<Player> ();
 
 		_AISystem = GameObject.FindGameObjectWithTag (Tags.GAMECONTROLLER).GetComponent<AISystemManager> ();
 
@@ -29,5 +33,9 @@ public class AIPlayer : MonoBehaviour {
 	}
 	public AISystemManager AISystem{
 		get{return _AISystem;}
+	}
+
+	public Player player{
+		get{return _player;}
 	}
 }

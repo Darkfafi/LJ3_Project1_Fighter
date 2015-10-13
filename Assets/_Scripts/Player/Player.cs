@@ -15,6 +15,8 @@ public class Player : MonoBehaviour {
 	public event NormDelegate StopStunned;
 	public event NormDelegate StartedDying;
 
+	public event NormDelegate StartedAction;
+
 	//Stats
 	private PlayerTransformer _playerTransformer;
 
@@ -38,14 +40,7 @@ public class Player : MonoBehaviour {
 	private FadeInOut _fader;
 	private GameObject _lastKiller;
 	private ComTimer _spawnInvulnerableTimer;
-
-	// Input
-	private PlayerInput _myPlayerInput;
-	private string _horizontalAxis = "HorizontalPlayer1";
-	private string _verticalAxis = "VerticalPlayer1";
-	private string _actionKey = "ActionKeyPlayer1";
-	private string _jumpKey = "Null";
-
+	
 	// Utils
 	private PlatformerMovement _myPlatformerMovement;
 	private PlayerAnimationHandler _playerAnimHandler;
@@ -56,7 +51,6 @@ public class Player : MonoBehaviour {
 	{
 		this.transform.tag = Tags.PLAYER;
 
-		_myPlayerInput = gameObject.AddComponent<PlayerInput>();
 		_myPlatformerMovement = gameObject.AddComponent<PlatformerMovement>();
 
 		_attackCatcher = gameObject.AddComponent<AttackCather> ();
@@ -86,19 +80,17 @@ public class Player : MonoBehaviour {
 
 	void Start()
 	{
-		_myPlayerInput.RightKeyPressed += MoveRight;
-		_myPlayerInput.LeftKeyPressed += MoveLeft;
-		_myPlayerInput.JumpKeyPressed += Jump;
-		_myPlayerInput.DownKeyPressed += FallDown;
-		_myPlayerInput.ActionKeyPressed += DoAction;
-		_myPlayerInput.NoKeyPressed += OnNoKeyPressed;
+		if (GetComponent<AIPlayer> () == null && GetComponent<PlayerInput> () != null) {
+
+		}
 
 		_myPlatformerMovement.ReleasedFromGround += ReleasedGround;
 		_myPlatformerMovement.StartedWallSlide += StartWallSlide;
+
 	}
 
 	// Movement
-	void MoveRight()
+	public void MoveRight()
 	{
 		if (!busyAction) {
 			_myPlatformerMovement.MoveHorizontal (PlatformerMovement.DIR_RIGHT, _playerStats.movementSpeed);
@@ -121,20 +113,12 @@ public class Player : MonoBehaviour {
 		_specialAttack = gameObject.GetComponent<SpecialAttack> ();
 	}
 
-	public void SetKeys(string playerHorizontalAxis,string playerVerticalAxis,string playerActionKey, string playerJumpKey = "Null")
-	{
-		_horizontalAxis = playerHorizontalAxis;
-		_verticalAxis = playerVerticalAxis;
-		_actionKey = playerActionKey;
-		_jumpKey = playerJumpKey;
-	}
-
 	public void TransformPlayer(string playerTransformerConst){
 		_specialAttack.UseCounterReset ();
 		_playerTransformer.TransformCharacter (this,playerTransformerConst);
 	}
 
-	void MoveLeft()
+	public void MoveLeft()
 	{
 		if (!busyAction) {
 			_myPlatformerMovement.MoveHorizontal(PlatformerMovement.DIR_LEFT, playerStats.movementSpeed);
@@ -143,13 +127,13 @@ public class Player : MonoBehaviour {
 			}
 		}
 	}
-	void OnNoKeyPressed(){
+	public void OnNoKeyPressed(){
 		if (!busyAction && _myPlatformerMovement.onGround) {
 			_myPlatformerMovement.StopRunning();
 			_playerAnimHandler.PlayAnimation("Idle");
 		}
 	}
-	void Jump()
+	public void Jump()
 	{
 		if (!busyAction) {
 			_myPlatformerMovement.Jump(_playerStats.jumpForce);
@@ -173,15 +157,18 @@ public class Player : MonoBehaviour {
 		}
 	}
 
-	void FallDown()
+	public void FallDown()
 	{
 		if (!busyAction) {
 			_myPlatformerMovement.MoveVertical (PlatformerMovement.DIR_DOWN, _playerStats.fallSpeed);
 		}
 	}
 
-	void DoAction(){
+	public void DoAction(){
 		if (!busyAction) {
+			if(StartedAction != null){
+				StartedAction();
+			}
 			AttackBase currentAttack = _basicAttack;
 			if(!_playerStats.transformed){
 				currentAttack = _basicAttack;
@@ -270,7 +257,7 @@ public class Player : MonoBehaviour {
 		_spawnInvulnerableTimer.StartTimer (0.2f,(timeProtectedInFullSeconds * 5));
 		_spawnInvulnerableTimer.TimerTik += ProtectionTik;
 
-		_myPlayerInput.ActionKeyPressed += EndProtection;
+		StartedAction += EndProtection;
 	}
 
 	private void ProtectionTik(int repeat){
@@ -294,7 +281,7 @@ public class Player : MonoBehaviour {
 		SetInvulnerable (false);
 		gameObject.GetComponent<SpriteRenderer> ().color = new Color(1,1,1);
 		_spawnInvulnerableTimer.TimerTik -= ProtectionTik;
-		_myPlayerInput.ActionKeyPressed -= EndProtection;
+		StartedAction -= EndProtection;
 
 		Destroy (_spawnInvulnerableTimer);
 	}
@@ -310,40 +297,6 @@ public class Player : MonoBehaviour {
 
 	public ClashAble clasher{
 		get{return _clashAble;}
-	}
-
-	//public variables for keyinputs
-	public string horizontalAxis{
-		get {
-			return _horizontalAxis;
-		}
-		set {
-			_horizontalAxis = value;
-		}
-	}
-	public string verticalAxis{
-		get {
-			return _verticalAxis;
-		}
-		set {
-			_verticalAxis = value;
-		}
-	}
-	public string actionKey{
-		get {
-			return _actionKey;
-		}
-		set {
-			_verticalAxis = value;
-		}
-	}
-	public string jumpKey{
-		get {
-			return _jumpKey;
-		}
-		set {
-			_jumpKey = value;
-		}
 	}
 	public bool busyAction{
 		get{return _busyAction.Count > 0;}

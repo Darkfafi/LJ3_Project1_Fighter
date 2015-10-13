@@ -54,13 +54,14 @@ public class CellPrefabInfo : MonoBehaviour {
 
 
 		if (_isBlocked) {
-			hitLeft = Physics2D.Raycast (new Vector2(transform.position.x - _cellSize.x,transform.position.y - 0.05f), Vector2.left, _cellSize.x / 2); 
-			hitRight = Physics2D.Raycast (new Vector2(transform.position.x + _cellSize.x,transform.position.y - 0.05f), Vector2.right, _cellSize.x / 2);
+			hitLeft = Physics2D.Raycast (new Vector2(transform.position.x - _cellSize.x,transform.position.y - 0.05f), Vector2.left, 0.002f); 
+			hitRight = Physics2D.Raycast (new Vector2(transform.position.x + _cellSize.x,transform.position.y - 0.05f), Vector2.right, 0.002f);
 
-			if((hitLeft.collider == null && hitRight.collider == null) 
-			   || (hitLeft.collider != null && hitLeft.collider.gameObject.tag == Tags.ENVIREMENT && hitRight.collider == null) 
-			   || (hitLeft.collider == null  && hitRight.collider != null && hitRight.collider.gameObject.tag == Tags.ENVIREMENT)
-			   || ((hitLeft.collider != null && hitLeft.collider.tag != Tags.ENVIREMENT) &&(hitRight.collider != null && hitRight.collider.tag != Tags.ENVIREMENT))){
+			if(//(hitLeft.collider == null && hitRight.collider == null) 
+			   (hitLeft.collider != null && hitLeft.collider.gameObject.tag == Tags.ENVIREMENT && hitRight.collider == null) 
+			   || (hitLeft.collider == null  && hitRight.collider != null && hitRight.collider.gameObject.tag == Tags.ENVIREMENT))
+			   //|| ((hitLeft.collider != null && hitLeft.collider.tag != Tags.ENVIREMENT) &&(hitRight.collider != null && hitRight.collider.tag != Tags.ENVIREMENT)))
+		   {
 				//TODO Wall (Wall Jumpable) OBJECT: Create logic! 
 				GetComponent<SpriteRenderer> ().color = Color.blue;
 				_isWall = true;

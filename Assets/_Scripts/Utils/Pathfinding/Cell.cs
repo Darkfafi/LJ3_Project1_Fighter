@@ -7,7 +7,9 @@ public class Cell{
 	public float g = 0; // dist score to start point
 	public float h = 0; // dist score to end point
 	public float j = 0; // jump cost.
+	public float th = 0; // the height of this tile from ground point.
 	public float f = 0; // g + h (start distance + end distance (from this point))
+
 
 	public bool isBlocked = false; //Is this cell able to be crossed.
 	public bool isGround = false;
