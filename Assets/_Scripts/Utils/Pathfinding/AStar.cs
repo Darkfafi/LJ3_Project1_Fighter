@@ -75,7 +75,7 @@ public class AStar{
 				} 
 
 
-				if(currentCell.j > 0 && !neighbor.isGround && !neighbor.isPassableGround){
+				if(currentCell.j > 0 && !neighbor.isGround && !neighbor.isPassableGround && !neighbor.isWall){
 					neighbor.j = currentCell.j + 1;
 				}else{
 					neighbor.j = 0;
@@ -109,6 +109,15 @@ public class AStar{
 					if(!currentCell.isPassableGround && neighbor.j > currentMaxJumpHeight && neighbor.j != 0){
 						continue;
 					}*/
+				}
+
+				// neem een aanloopje voor je op een muur komt.
+				if(currentCell.j == 0 && neighbor.isWall && !currentCell.isWall 
+				   || (currentCell.isWall 
+				    && (currentCell.parent == null 
+				    || (currentCell.parent != null && !currentCell.parent.isWall && GetNonDiagonalDirection(currentCell,currentCell.parent) == Vector2.down)))){
+
+					continue;
 				}
 
 				gScore += currentCell.j;

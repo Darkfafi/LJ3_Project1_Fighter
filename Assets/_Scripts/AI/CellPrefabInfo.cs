@@ -53,7 +53,7 @@ public class CellPrefabInfo : MonoBehaviour {
 		}
 
 
-		if (_isBlocked) {
+		//if (_isBlocked) {
 			hitLeft = Physics2D.Raycast (new Vector2(transform.position.x - _cellSize.x,transform.position.y - 0.05f), Vector2.left, 0.002f); 
 			hitRight = Physics2D.Raycast (new Vector2(transform.position.x + _cellSize.x,transform.position.y - 0.05f), Vector2.right, 0.002f);
 
@@ -66,7 +66,7 @@ public class CellPrefabInfo : MonoBehaviour {
 				GetComponent<SpriteRenderer> ().color = Color.blue;
 				_isWall = true;
 			}
-		}
+		//}
 
 		_trueColor = gameObject.GetComponent<SpriteRenderer> ().color;
 	}
