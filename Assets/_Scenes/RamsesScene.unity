@@ -365,8 +365,8 @@ GameObject:
   - 4: {fileID: 929558375}
   - 81: {fileID: 929558377}
   - 114: {fileID: 929558376}
-  - 114: {fileID: 929558374}
   - 114: {fileID: 929558378}
+  - 114: {fileID: 929558374}
   m_Layer: 0
   m_Name: GameController (1)
   m_TagString: GameController

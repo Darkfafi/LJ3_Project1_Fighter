@@ -28,6 +28,9 @@ public class AIMovement : MonoBehaviour {
 			Movement ();
 		} else {
 			_aiPlayer.player.OnNoKeyPressed();
+			if(_platformMovement.inWallSlide){
+				_aiPlayer.player.Jump();
+			}
 		}
 	}
 
@@ -65,24 +68,6 @@ public class AIMovement : MonoBehaviour {
 	}
 
 	private void CheckDeleteWaypoint(Cell currentWaypointCell){
-		/*
-		if (Mathf.Abs (currentWaypointCell.worldPosition.x - transform.position.x) + Mathf.Abs (currentWaypointCell.worldPosition.y - transform.position.y) < currentWaypointCell.cellSize.x
-		    || ((currentWaypointCell.parent != null))
-		    && (currentWaypointCell.parent.position.y < currentWaypointCell.position.y && vecSelf.y > currentWaypointCell.position.y  // if the road goes down and you are already a far way down
-		    || currentWaypointCell.parent.position.y > currentWaypointCell.position.y && vecSelf.y < currentWaypointCell.position.y) // if the road goed up and you are way up!
-		    ) 
-		{
-			currentWaypointCell.infoCell.DebugColor(false);
-			_waypoints.Remove(currentWaypointCell);
-		}else if(currentWaypointCell.j > 0 
-		         && currentWaypointCell.worldPosition.y < transform.position.y + currentWaypointCell.cellSize.y * 2
-		         && Mathf.Abs(currentWaypointCell.worldPosition.x - transform.position.x) < currentWaypointCell.cellSize.x){
-			//Mathf.Abs (currentWaypointCell.worldPosition.x - transform.position.x) +  Mathf.Abs (currentWaypointCell.worldPosition.y - transform.position.y) < currentWaypointCell.cellSize.x * 3
-			currentWaypointCell.infoCell.DebugColor(false);
-			_waypoints.Remove(currentWaypointCell);
-		}*/
-
-		//Debug.Log (currentWaypointCell.parent.position.y + " p  c" + currentWaypointCell.position.y);
 
 		float distToNextCell = Mathf.Abs (currentWaypointCell.worldPosition.x - transform.position.x) + Mathf.Abs (currentWaypointCell.worldPosition.y - transform.position.y);
 
@@ -92,16 +77,17 @@ public class AIMovement : MonoBehaviour {
 		    ((currentWaypointCell.parent.position.y >= currentWaypointCell.position.y && currentWaypointCell.worldPosition.y > transform.position.y && Mathf.Abs(currentWaypointCell.worldPosition.y - transform.position.y) > currentWaypointCell.cellSize.x ) || 
 		 (currentWaypointCell.parent.position.y <= currentWaypointCell.position.y && currentWaypointCell.worldPosition.y < transform.position.y && Mathf.Abs(currentWaypointCell.worldPosition.y - transform.position.y) > currentWaypointCell.cellSize.x))) {
 
-			currentWaypointCell.infoCell.DebugColor(false);
+			//currentWaypointCell.infoCell.DebugColor(false); // FOR DEBUGGNG PATH SHOW
 			_waypoints.Remove(currentWaypointCell);
 		}
 
 	}
 
 	private void SetWaypoints(){
+		/* //FOR DEBUGGNG PATH SHOW
 		foreach(Cell cell in _waypoints){
 			cell.infoCell.DebugColor(false);
-		}
+		}*/
 
 		Vector2 vecTarget = _grid.WorldPosToCellPos (moveTarget);
 		Vector2 vecSelf = _grid.WorldPosToCellPos (new Vector2 (transform.position.x, transform.position.y));  //&& _grid.CellAboveOrSelfGround(_grid.GetCell((int)vecSelf.x,(int)vecSelf.y));
@@ -109,9 +95,10 @@ public class AIMovement : MonoBehaviour {
 		if (_grid.CellAboveOrSelfGround (_grid.GetCell((int)vecTarget.x,(int)vecTarget.y),7) && (_platformMovement.onGround || _grid.GetCell((int)vecSelf.x,(int)vecSelf.y).isWall)) {
 			_waypoints = AStar.Search (_grid, _grid.WorldPosToCellPos (transform.position), _grid.WorldPosToCellPos (moveTarget));
 		}
+		/* //FOR DEBUGGNG PATH SHOW
 		foreach(Cell cell in _waypoints){
 			cell.infoCell.DebugColor(true);
-		}
+		}*/
 
 		Invoke ("SetWaypoints", 0.6f);
 	}

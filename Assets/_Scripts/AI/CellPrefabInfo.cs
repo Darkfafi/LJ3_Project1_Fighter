@@ -69,6 +69,7 @@ public class CellPrefabInfo : MonoBehaviour {
 		//}
 
 		_trueColor = gameObject.GetComponent<SpriteRenderer> ().color;
+		gameObject.GetComponent<SpriteRenderer> ().color = new Color (0, 0, 0, 0);
 	}
 	
 

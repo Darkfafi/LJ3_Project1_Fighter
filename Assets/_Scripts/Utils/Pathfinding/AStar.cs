@@ -7,7 +7,7 @@ public class AStar{
 	public static int horizontalScore = 1;
 	public static int diagonalScore = 3;
 
-	public static List<Cell>  Search(Grid grid, Vector2 start, Vector2 end){
+	public static List<Cell> Search(Grid grid, Vector2 start, Vector2 end){
 
 		grid.Reset ();
 
@@ -20,7 +20,7 @@ public class AStar{
 		List<Cell> neighbors;
 
 		int maxJumpHeight = 6;
-		int maxDubbleJumpHeight = 2;
+		int maxDubbleJumpHeight = 3;
 
 		int currentMaxJumpHeight = maxJumpHeight;
 
