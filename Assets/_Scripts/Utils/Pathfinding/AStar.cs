@@ -19,12 +19,20 @@ public class AStar{
 		bool gScoreIsBest;
 		List<Cell> neighbors;
 
-		int maxJumpHeight = 10;
+		int maxJumpHeight = 6;
 		int maxDubbleJumpHeight = 2;
 
 		int currentMaxJumpHeight = maxJumpHeight;
 
-		openList.Add (grid.GetCell ((int)start.x, (int)start.y));
+		currentCell = grid.GetCell ((int)start.x, (int)start.y);
+
+		if (currentCell.isWall) {
+			currentCell.isGround = true;
+			currentCell.isWall = false;
+			currentCell.tempGroundTile = true;
+		}
+
+		openList.Add (currentCell);
 
 		while (openList.Count > 0) {
 			openList.Sort(SortOnF);
@@ -76,7 +84,11 @@ public class AStar{
 
 
 				if(currentCell.j > 0 && !neighbor.isGround && !neighbor.isPassableGround && !neighbor.isWall){
-					neighbor.j = currentCell.j + 1;
+					if(GetNonDiagonalDirection(currentCell,neighbor) != Vector2.left && GetNonDiagonalDirection(currentCell,neighbor) != Vector2.right){
+						neighbor.j = currentCell.j + 1;
+					}else{
+						neighbor.j = currentCell.j + 0.5f;
+					}
 				}else{
 					neighbor.j = 0;
 					neighbor.th = 0;
@@ -89,6 +101,7 @@ public class AStar{
 					}else if(currentCell.j % 2 != 0){
 						neighbor.j = currentCell.j + 1;
 					}
+
 					/*else{
 						neighbor.j = currentCell.j + 1;
 					}*/
@@ -101,18 +114,32 @@ public class AStar{
 					if(currentCell.j == 0 && !neighbor.isGround && !neighbor.isPassableGround && !neighbor.isWall){
 						continue;
 					}
-					if(currentCell.j > 0 && currentCell.j / 2 != Mathf.RoundToInt(currentCell.j / 2)){
+					if(currentCell.j > 0 && Mathf.Round(currentCell.j) % 2 != 0 && currentCell.j % 1 == 0){
 						continue;
 					}
 				}else{
-					/*
-					if(!currentCell.isPassableGround && neighbor.j > currentMaxJumpHeight && neighbor.j != 0){
+					bool skip = false;
+					Cell curCellNeigh;
+					if(currentCell.j < currentMaxJumpHeight && currentCell.j != 0){
 						continue;
-					}*/
+					}
+
+					for(int j = 0; j < currentCell.neighbors.Count; j++){
+						curCellNeigh = currentCell.neighbors[j];
+						if(GetNonDiagonalDirection(currentCell,curCellNeigh) == Vector2.left || GetNonDiagonalDirection(currentCell,curCellNeigh) == Vector2.right){
+							if(curCellNeigh.isWall || curCellNeigh.isGround || curCellNeigh.isPassableGround){
+								skip = true;
+								break;
+							}
+						}
+					}
+					if(skip){
+						continue;
+					}
 				}
 
 				// neem een aanloopje voor je op een muur komt.
-				if(currentCell.j == 0 && neighbor.isWall && !currentCell.isWall 
+				if((currentCell.parent != null && GetNonDiagonalDirection(currentCell,currentCell.parent) != Vector2.down) && currentCell.j == 0 && neighbor.isWall && !currentCell.isWall 
 				   || (currentCell.isWall 
 				    && (currentCell.parent == null 
 				    || (currentCell.parent != null && !currentCell.parent.isWall && GetNonDiagonalDirection(currentCell,currentCell.parent) == Vector2.down)))){

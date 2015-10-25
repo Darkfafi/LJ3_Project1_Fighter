@@ -70,6 +70,10 @@ public class Grid {
 				currentCell.isClosed = false;
 				currentCell.isOpen = false;
 				currentCell.parent = null;
+				if(currentCell.tempGroundTile){
+					currentCell.isGround = false;
+					currentCell.isWall = true;
+				}
 			}
 		}
 	}
@@ -90,19 +94,24 @@ public class Grid {
 		return vector;
 	}
 
-	public bool CellAboveOrSelfGround(Cell cell){
+	public bool CellAboveOrSelfGround(Cell cell, int maxHeight = 0){
 		bool result = false;
 		int xRow = (int)cell.position.x;
 		Cell currentCellCheck;
 
+		if (maxHeight > 0 && maxHeight < (int)cell.position.y) {
+			maxHeight = (int)cell.position.y - maxHeight;
+		} else {
+			maxHeight = 0;
+		}
 
 
 		if (cell.isGround || cell.isPassableGround || cell.isWall) {
 			result = true;
 		} else {
-			for(int yRow = (int)cell.position.y; yRow > 0; yRow--){
+			for(int yRow = (int)cell.position.y; yRow > maxHeight; yRow--){
 				currentCellCheck = _grid[xRow][yRow];
-				if(currentCellCheck.isGround || currentCellCheck.isWall || currentCellCheck.isPassableGround){
+				if(currentCellCheck.isGround || currentCellCheck.isPassableGround){ //TODO iswall moet er nog bij (met fix)
 					//Debug.Log("yes " + currentCellCheck.position +" < normal | world > "+ currentCellCheck.worldPosition);
 					//currentCellCheck.infoCell.GetComponent<SpriteRenderer>().color = Color.yellow;
 					result = true;

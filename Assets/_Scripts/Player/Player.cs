@@ -25,8 +25,8 @@ public class Player : MonoBehaviour {
 
 	private List<string> _busyAction = new List<string>();
 
-	private const string IN_STUNNED = "InStunned";
-	private const string IN_DEATH = "InDeath";
+	public const string IN_STUNNED = "InStunned";
+	public const string IN_DEATH = "InDeath";
  
 
 	// Combat
@@ -311,6 +311,15 @@ public class Player : MonoBehaviour {
 			_busyAction.Remove(actionString);
 		}
 	}
+
+	public bool CheckIfInBusyAction(string actionString){
+		if (_busyAction.Contains (actionString)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	public void ResetBusyAction(){
 		_busyAction.Clear ();
 	}

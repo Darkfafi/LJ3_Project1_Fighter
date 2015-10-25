@@ -4,6 +4,8 @@ using System.Collections;
 public class AIPlayer : MonoBehaviour {
 
 	private Player _player;
+	private GameObject _target;
+
 
 	//Level knowledge
 	private AISystemManager _AISystem;
@@ -13,6 +15,8 @@ public class AIPlayer : MonoBehaviour {
 
 	// Movement
 	private AIMovement _movement;
+	private AICombat _combat;
+	private AITargetPrioritizer _targetLocator;
 
 	// Use this for initialization
 	void Start () {
@@ -24,6 +28,9 @@ public class AIPlayer : MonoBehaviour {
 		_grid = new Grid (_AISystem.prefabGridList);
 
 		_movement = gameObject.AddComponent<AIMovement> ();
+		_combat = gameObject.AddComponent<AICombat> ();
+		_targetLocator = gameObject.AddComponent<AITargetPrioritizer> ();
+
 		_movement.SetLevelGrid (_grid);
 	}
 
@@ -37,5 +44,10 @@ public class AIPlayer : MonoBehaviour {
 
 	public Player player{
 		get{return _player;}
+	}
+
+	public GameObject target{
+		get{return _target;}
+		set{_target = value;}
 	}
 }

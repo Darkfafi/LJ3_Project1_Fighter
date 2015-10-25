@@ -15,6 +15,7 @@ public class Cell{
 	public bool isGround = false;
 	public bool isPassableGround = false;
 	public bool isWall = false;
+	public bool tempGroundTile = false;
 
 	public bool isOpen = false; 
 	public bool isClosed = false;
