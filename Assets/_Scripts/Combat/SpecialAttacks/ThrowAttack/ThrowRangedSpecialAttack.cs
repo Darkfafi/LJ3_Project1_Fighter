@@ -13,6 +13,7 @@ public class ThrowRangedSpecialAttack : SpecialAttack {
 		_throwStrength = 15;
 		_maxTimesUse = 3;
 		_animator = GetComponent<Animator> ();
+		_rangeAttack = 150;
 	}
 
 	protected override void OnAttack (Player player)

@@ -11,6 +11,7 @@ public class SpecialBasicAttack : SpecialAttack {
 		_basicAttack = gameObject.GetComponent<BasicStunAttack> ();
 		_maxTimesUse = 8;
 		_coolDownTime = 0.5f;
+		_rangeAttack = 4.2f;
 	}
 
 	protected override void OnAttack (Player player)

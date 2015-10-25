@@ -5,6 +5,7 @@ public class SpecialAttack : AttackBase {
 	
 	protected int _useCounter;
 	protected int _maxTimesUse = 0;
+	protected float _rangeAttack = 3;
 
 	protected override void OnAttack (Player player)
 	{
@@ -20,5 +21,8 @@ public class SpecialAttack : AttackBase {
 	}
 	public void UseCounterReset(){
 		_useCounter = 0;
+	}
+	public float rangeAttack{
+		get{return _rangeAttack;}
 	}
 }

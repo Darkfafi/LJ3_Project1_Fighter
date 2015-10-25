@@ -323,4 +323,8 @@ public class Player : MonoBehaviour {
 	public void ResetBusyAction(){
 		_busyAction.Clear ();
 	}
+
+	public SpecialAttack specialAttack{
+		get{return _specialAttack;}
+	}
 }

@@ -90,7 +90,7 @@ public class AStar{
 						neighbor.j = currentCell.j + 0.5f;
 					}
 				}else if(currentCell.j > 0){
-					if(GetNonDiagonalDirection(currentCell,neighbor) != Vector2.left && GetNonDiagonalDirection(currentCell,neighbor) != Vector2.right || neighbor.isWall){
+					if((GetNonDiagonalDirection(currentCell,neighbor) != Vector2.left && GetNonDiagonalDirection(currentCell,neighbor) != Vector2.right && currentCell.parent != null && GetNonDiagonalDirection(currentCell,currentCell.parent) == Vector2.up) || neighbor.isWall){
 						neighbor.j = 0;
 						neighbor.th = 0;
 					}else{
