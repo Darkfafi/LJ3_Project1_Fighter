@@ -36,7 +36,8 @@ public class AITargetPrioritizer : MonoBehaviour {
 		}
 		bestTarget = bestPlayer;
 
-		if (specialItem != null && Mathf.Abs ((specialItem.transform.position - transform.position).magnitude) < Mathf.Abs ((bestPlayer.transform.position - transform.position).magnitude) + 2) {
+		if (specialItem != null && Mathf.Abs ((specialItem.transform.position - transform.position).magnitude) < 4
+		    && Mathf.Abs ((specialItem.transform.position - transform.position).magnitude) < Mathf.Abs ((bestPlayer.transform.position - transform.position).magnitude) + 2) {
 			bestTarget = specialItem;
 		}
 

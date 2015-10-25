@@ -89,9 +89,13 @@ public class AStar{
 					}else{
 						neighbor.j = currentCell.j + 0.5f;
 					}
-				}else{
-					neighbor.j = 0;
-					neighbor.th = 0;
+				}else if(currentCell.j > 0){
+					if(GetNonDiagonalDirection(currentCell,neighbor) != Vector2.left && GetNonDiagonalDirection(currentCell,neighbor) != Vector2.right || neighbor.isWall){
+						neighbor.j = 0;
+						neighbor.th = 0;
+					}else{
+						continue;
+					}
 				}
 
 				if(GetNonDiagonalDirection(currentCell,neighbor) == Vector2.up){
