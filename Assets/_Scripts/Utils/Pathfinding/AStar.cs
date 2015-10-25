@@ -139,10 +139,8 @@ public class AStar{
 				}
 
 				// neem een aanloopje voor je op een muur komt.
-				if((currentCell.parent != null && GetNonDiagonalDirection(currentCell,currentCell.parent) != Vector2.down) && currentCell.j == 0 && neighbor.isWall && !currentCell.isWall 
-				   || (currentCell.isWall 
-				    && (currentCell.parent == null 
-				    || (currentCell.parent != null && !currentCell.parent.isWall && GetNonDiagonalDirection(currentCell,currentCell.parent) == Vector2.down)))){
+				if((currentCell.parent == null || currentCell.parent != null && GetNonDiagonalDirection(currentCell,currentCell.parent) != Vector2.down) && currentCell.j == 0 && neighbor.isWall && !currentCell.isWall 
+				   || (currentCell.isWall && (currentCell.parent == null || (currentCell.parent != null && !currentCell.parent.isWall && GetNonDiagonalDirection(currentCell,currentCell.parent) == Vector2.down)))){
 
 					continue;
 				}

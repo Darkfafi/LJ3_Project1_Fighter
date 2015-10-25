@@ -53,9 +53,10 @@ public class AIMovement : MonoBehaviour {
 			_aiPlayer.player.Jump();
 		}
 
-		if (currentWaypointCell.worldPosition.y < transform.position.y - 0.2f) {
+		if (currentWaypointCell.worldPosition.y < transform.position.y - currentWaypointCell.cellSize.x / 2) {
 			Vector2 vec = _grid.WorldPosToCellPos(new Vector2(transform.position.x,transform.position.y));
-			if(_grid.GetCell((int)vec.x,(int)vec.y).isPassableGround){
+			Cell inCell = _grid.GetCell((int)vec.x,(int)vec.y);
+			if(inCell.isPassableGround || _platformMovement.inWallSlide){
 				_aiPlayer.player.FallDown();
 			}
 		}
@@ -83,11 +84,14 @@ public class AIMovement : MonoBehaviour {
 
 		//Debug.Log (currentWaypointCell.parent.position.y + " p  c" + currentWaypointCell.position.y);
 
-		if (currentWaypointCell.j == 0 && (Mathf.Abs (currentWaypointCell.worldPosition.x - transform.position.x) + Mathf.Abs (currentWaypointCell.worldPosition.y - transform.position.y) < currentWaypointCell.cellSize.x ) ||
-			(currentWaypointCell.j > 0 && (Mathf.Abs (currentWaypointCell.worldPosition.x - transform.position.x) + Mathf.Abs (currentWaypointCell.worldPosition.y - transform.position.y) < currentWaypointCell.cellSize.x * 2)) ||
+		float distToNextCell = Mathf.Abs (currentWaypointCell.worldPosition.x - transform.position.x) + Mathf.Abs (currentWaypointCell.worldPosition.y - transform.position.y);
+
+		if (distToNextCell > currentWaypointCell.cellSize.x * 5 || currentWaypointCell.j == 0 && (distToNextCell < currentWaypointCell.cellSize.x) ||
+		    (currentWaypointCell.j > 0 && (distToNextCell < currentWaypointCell.cellSize.x * 2)) ||
 			currentWaypointCell.parent != null && 
 		    ((currentWaypointCell.parent.position.y >= currentWaypointCell.position.y && currentWaypointCell.worldPosition.y > transform.position.y && Mathf.Abs(currentWaypointCell.worldPosition.y - transform.position.y) > currentWaypointCell.cellSize.x ) || 
 		 (currentWaypointCell.parent.position.y <= currentWaypointCell.position.y && currentWaypointCell.worldPosition.y < transform.position.y && Mathf.Abs(currentWaypointCell.worldPosition.y - transform.position.y) > currentWaypointCell.cellSize.x))) {
+
 			currentWaypointCell.infoCell.DebugColor(false);
 			_waypoints.Remove(currentWaypointCell);
 		}

@@ -363,9 +363,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 929558375}
-  - 114: {fileID: 929558374}
-  - 114: {fileID: 929558376}
   - 81: {fileID: 929558377}
+  - 114: {fileID: 929558376}
+  - 114: {fileID: 929558374}
   - 114: {fileID: 929558378}
   m_Layer: 0
   m_Name: GameController (1)
@@ -410,6 +410,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allAudio:
   - {fileID: 8300000, guid: c9c028db4c55c8442a0becc55afc41e6, type: 3}
+  - {fileID: 8300000, guid: 0770f8d1e3c747945b24e705358c2ebd, type: 3}
+  - {fileID: 8300000, guid: d3bf852ab9d826449a8f893a1d3abcda, type: 3}
+  - {fileID: 8300000, guid: 21948fabbaa24f842a9a9169a2559a40, type: 3}
+  - {fileID: 8300000, guid: 45866db9959fb2f43af40832cd34831e, type: 3}
+  - {fileID: 8300000, guid: 385a6205052652b45a79f14a4005a00a, type: 3}
+  - {fileID: 8300000, guid: 7f87d96700b2cac4cab0b7d026a28a64, type: 3}
+  - {fileID: 8300000, guid: 9886d578112ea90439ce6d4b923716ff, type: 3}
+  - {fileID: 8300000, guid: 79b0aca53533646449a4534f30525f31, type: 3}
+  - {fileID: 8300000, guid: 1cf65e15da7448942a74f2578f635b6f, type: 3}
+  - {fileID: 8300000, guid: 75341b577c7ff0141b8d26734cd4c98d, type: 3}
+  - {fileID: 8300000, guid: e8a17a10904dadd47bde280553d461f5, type: 3}
+  - {fileID: 8300000, guid: e292d5277239c09429b48223d3ae1f82, type: 3}
+  - {fileID: 8300000, guid: 5fc86d6ec1be9e040882ea3eb2160dba, type: 3}
+  - {fileID: 8300000, guid: 8ed9b9facb1ee7d48bfb46547d802dd0, type: 3}
+  - {fileID: 8300000, guid: a9024e15c1b49a54488cd655017d8485, type: 3}
+  - {fileID: 8300000, guid: d3bf852ab9d826449a8f893a1d3abcda, type: 3}
+  - {fileID: 8300000, guid: d3bf852ab9d826449a8f893a1d3abcda, type: 3}
+  - {fileID: 8300000, guid: d3bf852ab9d826449a8f893a1d3abcda, type: 3}
+  - {fileID: 8300000, guid: d3bf852ab9d826449a8f893a1d3abcda, type: 3}
 --- !u!81 &929558377
 AudioListener:
   m_ObjectHideFlags: 0

@@ -114,6 +114,7 @@ public class Grid {
 				if(currentCellCheck.isGround || currentCellCheck.isPassableGround){ //TODO iswall moet er nog bij (met fix)
 					//Debug.Log("yes " + currentCellCheck.position +" < normal | world > "+ currentCellCheck.worldPosition);
 					//currentCellCheck.infoCell.GetComponent<SpriteRenderer>().color = Color.yellow;
+
 					result = true;
 					break;
 				}
