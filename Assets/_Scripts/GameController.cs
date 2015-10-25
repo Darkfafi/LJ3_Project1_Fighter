@@ -134,7 +134,7 @@ public class GameController : MonoBehaviour {
 	}
 	IEnumerator CheckSpawnItem () 
 	{
-		_standardSpawnPercentage = 5; //5%
+		_standardSpawnPercentage = 1; //5%
 		_spawnPercentage = _standardSpawnPercentage;
 		_percentageCounter = 0;
 		while(true)
@@ -151,12 +151,12 @@ public class GameController : MonoBehaviour {
 					_percentageCounter++;
 					if(_percentageCounter == 10)
 					{
-						_spawnPercentage += 5;
+						_spawnPercentage += 2;
 						_percentageCounter = 0;
 					}
 				}
 			} 
-			yield return new WaitForSeconds(1);
+			yield return new WaitForSeconds(2);
 		}
 	}
 	private void SpawnItem()

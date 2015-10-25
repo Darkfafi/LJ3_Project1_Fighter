@@ -20,6 +20,8 @@ public class AITargetPrioritizer : MonoBehaviour {
 		GameObject specialItem = GameObject.FindGameObjectWithTag (Tags.SPECIAL_ITEM);
 
 		GameObject bestPlayer = gameObject;
+		GameObject bestTarget = null;
+
 
 		for (int i = players.Length - 1; i >= 0; i--) {
 			if(players[i].activeSelf && !players[i].GetComponent<Player>().CheckIfInBusyAction(Player.IN_DEATH)){
@@ -32,7 +34,12 @@ public class AITargetPrioritizer : MonoBehaviour {
 				}
 			}
 		}
+		bestTarget = bestPlayer;
 
-		_aiPlayer.target = bestPlayer;
+		if (specialItem != null && Mathf.Abs ((specialItem.transform.position - transform.position).magnitude) < Mathf.Abs ((bestPlayer.transform.position - transform.position).magnitude) + 2) {
+			bestTarget = specialItem;
+		}
+
+		_aiPlayer.target = bestTarget;
 	}
 }

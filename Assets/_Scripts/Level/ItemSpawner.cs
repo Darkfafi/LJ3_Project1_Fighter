@@ -18,6 +18,7 @@ public class ItemSpawner : MonoBehaviour {
 		_spawnPercentage = _standardSpawnPercentage;
 		_spawnTimer = 0;
 		_percentageCounter = 0;
+
 	}
 
 	IEnumerator CheckSpawnItem () 
