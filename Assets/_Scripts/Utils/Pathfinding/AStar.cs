@@ -19,8 +19,8 @@ public class AStar{
 		bool gScoreIsBest;
 		List<Cell> neighbors;
 
-		int maxJumpHeight = 6;
-		int maxDubbleJumpHeight = 3;
+		int maxJumpHeight = 8;
+		int maxDubbleJumpHeight = 2;
 
 		int currentMaxJumpHeight = maxJumpHeight;
 

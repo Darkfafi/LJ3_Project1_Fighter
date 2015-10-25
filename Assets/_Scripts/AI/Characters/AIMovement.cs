@@ -9,6 +9,7 @@ public class AIMovement : MonoBehaviour {
 
 	public Vector2 moveTarget;
 	public bool canDubbleJump = true;
+	private Vector3 _prePos;
 
 	// Waypint System
 	private Grid _grid;
@@ -20,6 +21,7 @@ public class AIMovement : MonoBehaviour {
 		moveTarget = new Vector2(transform.position.x,transform.position.y);
 		_aiPlayer = GetComponent<AIPlayer> ();
 		_platformMovement = gameObject.GetComponent<PlatformerMovement> ();
+		_prePos = transform.position;
 	}
 
 	// Update is called once per frame
@@ -92,9 +94,24 @@ public class AIMovement : MonoBehaviour {
 		Vector2 vecTarget = _grid.WorldPosToCellPos (moveTarget);
 		Vector2 vecSelf = _grid.WorldPosToCellPos (new Vector2 (transform.position.x, transform.position.y));  //&& _grid.CellAboveOrSelfGround(_grid.GetCell((int)vecSelf.x,(int)vecSelf.y));
 		//Debug.Log (_grid.CellAboveOrSelfGround (_grid.GetCell ((int)vecTarget.x, (int)vecTarget.y), 7) && (_platformMovement.onGround || _platformMovement.inWallSlide));
-		if (_grid.CellAboveOrSelfGround (_grid.GetCell((int)vecTarget.x,(int)vecTarget.y),7) && (_platformMovement.onGround || _grid.GetCell((int)vecSelf.x,(int)vecSelf.y).isWall)) {
-			_waypoints = AStar.Search (_grid, _grid.WorldPosToCellPos (transform.position), _grid.WorldPosToCellPos (moveTarget));
+		if (_grid.CellAboveOrSelfGround (_grid.GetCell((int)vecTarget.x,(int)vecTarget.y),7)) {
+			if((_grid.GetCell((int)vecSelf.x,(int)vecSelf.y).isGround || _grid.GetCell((int)vecSelf.x,(int)vecSelf.y).isWall)){
+				_waypoints = AStar.Search (_grid, vecSelf, _grid.WorldPosToCellPos (moveTarget));
+			}else{ 
+				Vector2 cellSize = GameObject.Find("Cell(Clone)").GetComponent<CellPrefabInfo>().cellSize;
+				Cell cellLeft = _grid.GetCell((int)vecSelf.x - (int)cellSize.x,(int)vecSelf.y);
+				Cell cellRight = _grid.GetCell((int)vecSelf.x + (int)cellSize.x,(int)vecSelf.y);
+
+				if(cellLeft.isWall || cellLeft.isGround || cellLeft.isPassableGround){
+					_waypoints = AStar.Search (_grid, cellLeft.position, _grid.WorldPosToCellPos (moveTarget));
+				}else if(cellRight.isWall || cellRight.isGround || cellRight.isPassableGround){
+					_waypoints = AStar.Search (_grid, cellRight.position, _grid.WorldPosToCellPos (moveTarget));
+				}else if( Mathf.Abs((_prePos - transform.position).magnitude) < 0.1f){
+					GetComponent<Player>().DoAction();
+				}
+			}
 		}
+		_prePos = transform.position;
 		/* //FOR DEBUGGNG PATH SHOW
 		foreach(Cell cell in _waypoints){
 			cell.infoCell.DebugColor(true);

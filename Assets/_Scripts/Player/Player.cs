@@ -21,7 +21,7 @@ public class Player : MonoBehaviour {
 	private PlayerTransformer _playerTransformer;
 
 	//private PlayerStats _playerStats = new PlayerStats(6f,10f,3f,5f,10f,12f); // <--- Idee
-	private PlayerStats _playerStats = new PlayerStats (5f, 10f, 2f, 5f, 10f, 10f); // set all base stats
+	private PlayerStats _playerStats = new PlayerStats (6f, 10.5f, 2f, 5f, 10f, 10f); // set all base stats
 
 	private List<string> _busyAction = new List<string>();
 

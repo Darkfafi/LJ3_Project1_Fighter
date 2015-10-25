@@ -41,8 +41,8 @@ public class AICombat : MonoBehaviour {
 				playerTarget = target.GetComponent<Player>();
 
 				if(playerTarget.CheckIfInBusyAction(Player.IN_STUNNED)){
-					if(playerTarget.GetComponent<Rigidbody2D>().velocity.x < 0.2f){
-						_aiMovement.moveTarget = new Vector2(target.transform.position.x, target.transform.position.y + 2.4f);
+					if(playerTarget.GetComponent<Rigidbody2D>().velocity.x < 0.1f){
+						_aiMovement.moveTarget = new Vector2(target.transform.position.x, target.transform.position.y + 2.3f);
 						attackTarget = false;
 					}
 				}
