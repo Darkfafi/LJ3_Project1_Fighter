@@ -73,6 +73,7 @@ public class Grid {
 				if(currentCell.tempGroundTile){
 					currentCell.isGround = false;
 					currentCell.isWall = true;
+					currentCell.tempGroundTile = false;
 				}
 			}
 		}

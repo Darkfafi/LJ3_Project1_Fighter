@@ -16,24 +16,20 @@ public class RoomManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		if(Input.GetButtonDown("ActionKeyPlayer1"))
-		{
-			AddPlayer(Controls.keyboard01);
-		} else if(Input.GetButtonDown("ActionKeyPlayer2"))
-		{
-			AddPlayer(Controls.keyboard02);
-		} else if(Input.GetButtonDown("JoystickActionKey1") || Input.GetButtonDown("JoystickJumpKey1"))
-		{
-			AddPlayer(Controls.joystick01);
-		} else if(Input.GetButtonDown("JoystickActionKey2") || Input.GetButtonDown("JoystickJumpKey2"))
-		{
-			AddPlayer(Controls.joystick02);
-		} else if(Input.GetButtonDown("JoystickActionKey3") || Input.GetButtonDown("JoystickJumpKey3"))
-		{
-			AddPlayer(Controls.joystick03);
-		} else if(Input.GetButtonDown("JoystickActionKey4") || Input.GetButtonDown("JoystickJumpKey4"))
-		{
-			AddPlayer(Controls.joystick04);
+		if (Input.GetButtonDown ("ActionKeyPlayer1")) {
+			AddPlayer (Controls.keyboard01);
+		} else if (Input.GetButtonDown ("ActionKeyPlayer2")) {
+			AddPlayer (Controls.keyboard02);
+		} else if (Input.GetButtonDown ("JoystickActionKey1") || Input.GetButtonDown ("JoystickJumpKey1")) {
+			AddPlayer (Controls.joystick01);
+		} else if (Input.GetButtonDown ("JoystickActionKey2") || Input.GetButtonDown ("JoystickJumpKey2")) {
+			AddPlayer (Controls.joystick02);
+		} else if (Input.GetButtonDown ("JoystickActionKey3") || Input.GetButtonDown ("JoystickJumpKey3")) {
+			AddPlayer (Controls.joystick03);
+		} else if (Input.GetButtonDown ("JoystickActionKey4") || Input.GetButtonDown ("JoystickJumpKey4")) {
+			AddPlayer (Controls.joystick04);
+		} else if(Input.GetKeyDown(KeyCode.O)) {
+			AddPlayer(Controls.computerControlled);
 		}
 		if(Input.GetKeyDown(KeyCode.Escape))
 		{

@@ -24,7 +24,7 @@ public class AITargetPrioritizer : MonoBehaviour {
 
 
 		for (int i = players.Length - 1; i >= 0; i--) {
-			if(players[i].activeSelf && !players[i].GetComponent<Player>().CheckIfInBusyAction(Player.IN_DEATH)){
+			if(players[i].activeSelf && !players[i].GetComponent<Player>().CheckIfInBusyAction(Player.IN_DEATH) && !players[i].gameObject.Equals(gameObject)){
 				if(bestPlayer.gameObject.Equals(gameObject)){
 					bestPlayer = players[i];
 				}else if(players[i].GetComponent<Player>().CheckIfInBusyAction(Player.IN_STUNNED)){

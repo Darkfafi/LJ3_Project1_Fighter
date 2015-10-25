@@ -12,10 +12,10 @@ public class AISystemManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		PlaceAIGrid ();
+		//PlaceAIGrid ();
 	}
 
-	void PlaceAIGrid(){
+	public void PlaceAIGrid(){
 		Vector3 tempBounds;
 		GameObject cellsHolder = new GameObject ();
 		cellsHolder.name = "CellsHolder";

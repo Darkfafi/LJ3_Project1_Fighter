@@ -11,6 +11,7 @@ public class Controls : MonoBehaviour {
 	public const string joystick02 = "Joystick02";
 	public const string joystick03 = "Joystick03";
 	public const string joystick04 = "Joystick04";
+	public const string computerControlled = "COMPUTER_BIEP_BOEP_BAP";
 
 	private List<string> _keyboard01Controls = new List<string>();
 	private List<string> _keyboard02Controls = new List<string>();
@@ -18,6 +19,8 @@ public class Controls : MonoBehaviour {
 	private List<string> _joystick02Controls = new List<string>();
 	private List<string> _joystick03Controls = new List<string>();
 	private List<string> _joystick04Controls = new List<string>();
+	private List<string> _computerControls = new List<string>(){"bot","VerticalPlayer1","ActionKeyPlayer1","JumpKeyPlayer1","BackKeyPlayer1"};
+
 	void Awake()
 	{
 		if(controls.Count == 0)
@@ -74,6 +77,7 @@ public class Controls : MonoBehaviour {
 			controls.Add(joystick02, _joystick02Controls);
 			controls.Add(joystick03, _joystick03Controls);
 			controls.Add(joystick04, _joystick04Controls);
+			controls.Add(computerControlled,_computerControls);
 		}
 	}
 

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerFactory {
 
-	public static GameObject CreatePlayer(string playerConstString, int playerID,bool AI = false){
+	public static GameObject CreatePlayer(string playerConstString, int playerID,bool AI){
 
 		GameObject playerObject = new GameObject ();
 		Rigidbody2D rb2D;

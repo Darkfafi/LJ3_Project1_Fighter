@@ -88,6 +88,7 @@ public class GameController : MonoBehaviour {
 		string levelString = PlayerPrefs.GetString ("LevelChosen");
 		GameObject level = Resources.Load("Prefabs/Levels/"+levelString + "Level") as GameObject;
 		Instantiate (level, new Vector3 (0, 0, 0), Quaternion.identity);
+		GetComponent<AISystemManager> ().PlaceAIGrid ();
 	}
 
 	private void InitGame()
@@ -189,9 +190,14 @@ public class GameController : MonoBehaviour {
 		string playerVerticalAxis;
 		string playerActionKey;
 		string playerJumpKey;
+		bool playerAI;
 		for (int i = 0; i < playersPlaying; i++) 
 		{
+			playerAI = false;
 			//get information
+			if(PlayerPrefs.GetString("Horizontal-" + i) == "bot"){
+				playerAI = true;
+			}
 			playerCharacter = PlayerPrefs.GetString("Character-" + i);
 			playerHorizontalAxis = PlayerPrefs.GetString("Horizontal-" + i);
 			playerVerticalAxis = PlayerPrefs.GetString("Vertical-" + i);
@@ -199,7 +205,7 @@ public class GameController : MonoBehaviour {
 			playerJumpKey = PlayerPrefs.GetString("Jump-" + i);
 			
 			//spawnplayer
-			GameObject newPlayer = PlayerFactory.CreatePlayer(playerCharacter, i);
+			GameObject newPlayer = PlayerFactory.CreatePlayer(playerCharacter, i,playerAI);
 			Player newPlayerScript = newPlayer.GetComponent<Player>();
 			
 			//add player information

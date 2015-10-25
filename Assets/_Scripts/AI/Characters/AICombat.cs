@@ -28,8 +28,8 @@ public class AICombat : MonoBehaviour {
 		if (!_aiMovement.canDubbleJump) {
 			_aiMovement.canDubbleJump = true;
 		}
-
 		if (target != null && target != gameObject) {
+
 			_aiMovement.moveTarget = new Vector2 (target.transform.position.x, target.transform.position.y);
 
 			if(target.GetComponent<Player>() != null){
