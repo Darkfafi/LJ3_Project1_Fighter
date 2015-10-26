@@ -17,6 +17,6 @@ Player And Combat: <br>
 Platform Movement<br>
 [2D Platformer movement](https://github.com/Darkfafi/LJ3_Project1_Fighter/blob/master/Assets/_Scripts/Player/PlatformerMovement.cs)<br>
 
-Utils
+Utils <br>
 [Touch Detector](https://github.com/Darkfafi/LJ3_Project1_Fighter/blob/master/Assets/_Scripts/Utils/TouchDetector2D.cs)<br>
 [Fade Component Script (for every 2D object)](https://github.com/Darkfafi/LJ3_Project1_Fighter/blob/master/Assets/_Scripts/Utils/FadeInOut.cs)<br>
