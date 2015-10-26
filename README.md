@@ -14,8 +14,8 @@ Player And Combat: <br>
 [Base Attack](https://github.com/Darkfafi/LJ3_Project1_Fighter/blob/master/Assets/_Scripts/Combat/AttackBase.cs)<br>
 [Attack Catcher](https://github.com/Darkfafi/LJ3_Project1_Fighter/blob/master/Assets/_Scripts/Combat/AttackCather.cs)<br>
 
-Platform Movement
-[Attack Catcher](http://)<br>
+Platform Movement<br>
+[2D Platformer movement](https://github.com/Darkfafi/LJ3_Project1_Fighter/blob/master/Assets/_Scripts/Player/PlatformerMovement.cs)<br>
 
 Utils
 [Touch Detector](https://github.com/Darkfafi/LJ3_Project1_Fighter/blob/master/Assets/_Scripts/Utils/TouchDetector2D.cs)<br>
